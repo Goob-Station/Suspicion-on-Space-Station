@@ -27,6 +27,7 @@ public sealed class GunPredictionSystem : SharedGunPredictionSystem
     private EntityQuery<IgnorePredictionHideComponent> _ignorePredictionHideQuery;
     private EntityQuery<SpriteComponent> _spriteQuery;
 
+
     public override void Initialize()
     {
         base.Initialize();
