@@ -1,7 +1,6 @@
 ﻿# TRAITOR WEAPONS
 
 - type: listing
-  parent: UplinkPistolViper # shit doesn't work, need to clone name and description and all that
   id: UplinkPistolViperSSS
   name: uplink-pistol-viper-name
   description: uplink-pistol-viper-desc
@@ -12,7 +11,6 @@
     Telecrystal: 2
 
 - type: listing
-  parent: UplinkPistolCobra
   id: UplinkPistolCobraSSS
   name: uplink-pistol-cobra-name
   description: uplink-pistol-cobra-desc
@@ -24,7 +22,6 @@
 
 - type: listing
   id: UplinkRifleMosinSSS
-  parent: UplinkRifleMosin
   name: uplink-rifle-mosin-name
   description: uplink-rifle-mosin-desc
   productEntity: WeaponSniperMosin
@@ -35,7 +32,6 @@
 
 - type: listing
   id: UplinkEswordSSS
-  parent: UplinkEsword
   name: uplink-esword-name
   description: uplink-esword-desc
   productEntity: EnergySword
@@ -47,7 +43,6 @@
 
 - type: listing
   id: UplinkEnergyDaggerSSS
-  parent: UplinkEnergyDagger
   name: uplink-edagger-name
   description: uplink-edagger-desc
   icon: { sprite: /Textures/Objects/Weapons/Melee/e_dagger.rsi, state: icon }
@@ -58,7 +53,6 @@
     Telecrystal: 4
 
 - type: listing
-  parent: UplinkThrowingKnivesKit
   id: UplinkThrowingKnivesKitSSS
   name: uplink-knives-kit-name
   description: uplink-knives-kit-desc
@@ -74,14 +68,12 @@
   name: uplink-disposable-turret-name
   description: uplink-disposable-turret-desc
   productEntity: ToolboxElectricalTurretFilled
-  parent: UplinkDisposableTurret
   categories:
   - SSSTraitorWeapons
   cost:
     Telecrystal: 6
 
 - type: listing
-  parent: UplinkSniperBundle
   id: UplinkSniperBundleSSS
   name: uplink-sniper-bundle-name
   description: uplink-sniper-bundle-desc
@@ -94,7 +86,6 @@
 
 - type: listing
   id: UplinkExplosiveGrenadeSSS
-  parent: UplinkExplosiveGrenade
   name: uplink-explosive-grenade-name
   description: uplink-explosive-grenade-desc
   productEntity: ExGrenade
@@ -105,7 +96,6 @@
 
 - type: listing
   id: UplinkExplosiveGrenadeFlashSSS
-  parent: UplinkExplosiveGrenadeFlash
   name: uplink-flash-grenade-name
   description: uplink-flash-grenade-desc
   productEntity: GrenadeFlashBang
@@ -116,7 +106,6 @@
 
 - type: listing
   id: UplinkSmokeGrenadeSSS
-  parent: UplinkSmokeGrenade
   name: uplink-smoke-grenade-name
   description: uplink-smoke-grenade-desc
   productEntity: SmokeGrenade
@@ -127,7 +116,6 @@
 
 - type: listing
   id: UplinkSyndieMiniBombSSS
-  parent: UplinkSyndieMiniBomb
   name: uplink-mini-bomb-name
   description: uplink-mini-bomb-desc
   productEntity: SyndieMiniBomb
@@ -138,7 +126,6 @@
 
 - type: listing
   id: UplinkSupermatterGrenadeSSS
-  parent: UplinkSupermatterGrenade
   name: uplink-supermatter-grenade-name
   description: uplink-supermatter-grenade-desc
   productEntity: SupermatterGrenade
@@ -149,7 +136,6 @@
 
 - type: listing
   id: UplinkWhiteholeGrenadeSSS
-  parent: UplinkWhiteholeGrenade
   name: uplink-whitehole-grenade-name
   description: uplink-whitehole-grenade-desc
   productEntity: WhiteholeGrenade
@@ -163,7 +149,6 @@
   name: uplink-penguin-grenade-name
   description: uplink-penguin-grenade-desc
   productEntity: MobGrenadePenguin
-  parent: UplinkGrenadePenguin
   categories:
   - SSSTraitorExplosives
   cost:
@@ -171,7 +156,6 @@
 
 - type: listing
   id: UplinkExplodingPenSSS
-  parent: UplinkExplodingPen
   name: uplink-exploding-pen-name
   description: uplink-exploding-pen-desc
   icon: { sprite: /Textures/Objects/Misc/pens.rsi, state: pen }
@@ -183,7 +167,6 @@
 
 - type: listing
   id: UplinkSyndicateBombSSS
-  parent: UplinkSyndicateBomb
   restockTime: 120
   name: uplink-exploding-syndicate-bomb-name
   description: uplink-exploding-syndicate-bomb-desc
@@ -195,7 +178,6 @@
 
 - type: listing
   id: UplinkClusterGrenadeSSS
-  parent: UplinkClusterGrenade
   name: uplink-cluster-grenade-name
   description: uplink-cluster-grenade-desc
   productEntity: ClusterGrenade
@@ -206,7 +188,6 @@
 
 - type: listing
   id: UplinkGrenadeShrapnelSSS
-  parent: UplinkGrenadeShrapnel
   name: uplink-shrapnel-grenade-name
   description: uplink-shrapnel-grenade-desc
   productEntity: GrenadeShrapnel
@@ -220,7 +201,6 @@
   name: uplink-incendiary-grenade-name
   description: uplink-incendiary-grenade-desc
   productEntity: GrenadeIncendiary
-  parent: UplinkGrenadeIncendiary
   cost:
     Telecrystal: 3
   categories:
@@ -232,7 +212,6 @@
   description: uplink-hypopen-desc
   icon: { sprite: /Textures/Objects/Misc/pens.rsi, state: pen }
   productEntity: HypopenBox
-  parent: UplinkHypopen
   cost:
     Telecrystal: 2
   categories:
@@ -244,7 +223,6 @@
   description: uplink-hypodart-desc
   icon: { sprite: /Textures/Objects/Fun/Darts/dart_red.rsi, state: icon }
   productEntity: HypoDartBox
-  parent: UplinkHypoDart
   cost:
     Telecrystal: 2
   categories:
@@ -256,7 +234,6 @@
   description: uplink-chemistry-kit-desc
   icon: { sprite: /Textures/Objects/Storage/boxicons.rsi, state: vials }
   productEntity: ChemicalSynthesisKit
-  parent: UplinkChemistryKitBundle
   cost:
     Telecrystal: 2
   categories:
@@ -264,7 +241,6 @@
 
 - type: listing
   id: UplinkNocturineChemistryBottleSSS
-  parent: UplinkNocturineChemistryBottle
   name: uplink-nocturine-chemistry-bottle-name
   description: uplink-nocturine-chemistry-bottle-desc
   productEntity: NocturineChemistryBottle
@@ -275,7 +251,6 @@
 
 - type: listing
   id: UplinkCombatMedkitSSS
-  parent: UplinkCombatMedkit
   name: uplink-combat-medkit-name
   description: uplink-combat-medkit-desc
   productEntity: MedkitCombatFilled
@@ -286,7 +261,6 @@
 
 - type: listing
   id: UplinkCombatMedipenSSS
-  parent: UplinkCombatMedipen
   name: uplink-combat-medipen-name
   description: uplink-combat-medipen-desc
   productEntity: CombatMedipen
@@ -300,7 +274,6 @@
   name: uplink-stimpack-name
   description: uplink-stimpack-desc
   productEntity: Stimpack
-  parent: UplinkStimpack
   cost:
     Telecrystal: 4
   categories:
@@ -311,7 +284,6 @@
   name: uplink-stealth-box-name
   description: uplink-stealth-box-desc
   productEntity: StealthBox
-  parent: UplinkStealthBox
   cost:
     Telecrystal: 1
   categories:
@@ -319,7 +291,6 @@
 
 - type: listing
   id: UplinkChameleonProjectorSSS
-  parent: UplinkChameleonProjector
   name: uplink-chameleon-projector-name
   description: uplink-chameleon-projector-desc
   productEntity: ChameleonProjector
@@ -330,7 +301,6 @@
 
 - type: listing
   id: UplinkRadioJammerSSS
-  parent: UplinkRadioJammer
   name: uplink-radio-jammer-name
   description: uplink-radio-jammer-desc
   productEntity: RadioJammer
@@ -354,7 +324,6 @@
 
 - type: listing
   id: UplinkClothingNoSlipsShoesSSS
-  parent: UplinkClothingNoSlipsShoes
   name: uplink-clothing-no-slips-shoes-name
   description: uplink-clothing-no-slips-shoes-desc
   productEntity: ClothingShoesChameleonNoSlips
@@ -365,7 +334,6 @@
 
 - type: listing
   id: UplinkClothingShoesBootsMagSyndieSSS
-  parent: UplinkClothingShoesBootsMagSyndie
   name: uplink-clothing-shoes-boots-mag-syndie-name
   description: uplink-clothing-shoes-boots-mag-syndie-desc
   productEntity: ClothingShoesBootsMagSyndie
@@ -376,7 +344,6 @@
 
 - type: listing
   id: UplinkHardsuitSyndieSSS
-  parent: UplinkHardsuitSyndie
   name: uplink-hardsuit-syndie-name
   description: uplink-hardsuit-syndie-desc
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndicate.rsi, state: icon }
@@ -388,7 +355,6 @@
 
 - type: listing
   id: UplinkClothingOuterHardsuitJuggernautSSS
-  parent: UplinkClothingOuterHardsuitJuggernaut
   name: uplink-clothing-outer-hardsuit-juggernaut-name
   description: uplink-clothing-outer-hardsuit-juggernaut-desc
   icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
