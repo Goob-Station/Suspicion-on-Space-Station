@@ -26,5 +26,21 @@ public sealed partial class EntityTableSpawnerComponent : Component
     /// </summary>
     [DataField]
     public bool DeleteSpawnerAfterSpawn = true;
+
+    // SSS - New fields
+
+    /// <summary>
+    /// How many times the item will spawn.
+    /// </summary>
+    [DataField]
+    public int Count = 1;
+
+    /// <summary>
+    /// How delayed the item will spawn in.
+    /// </summary>
+    [DataField]
+    public TimeSpan Delay = TimeSpan.Zero;
+
+    // SSS - End of new fields
 }
 

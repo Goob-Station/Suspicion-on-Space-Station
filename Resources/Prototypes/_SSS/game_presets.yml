@@ -1,0 +1,10 @@
+﻿- type: gamePreset
+  id: Suspicion
+  alias:
+  - sss
+  - suspicion
+  name: suspicion-title
+  description: suspicion-description
+  supportedMaps: SuspicionMapPool
+  rules:
+  - Suspicion

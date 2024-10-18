@@ -1,0 +1,10 @@
+﻿- type: entity
+  id: ActionPingRadarImplant
+  name: Ping Radar
+  description: Pings the radar implant, revealing the location of all nearby humanoids.
+  components:
+  - type: InstantAction
+    icon: { sprite: Objects/Devices/pinpointer.rsi, state: pinpointer-syndicate }
+    itemIconStyle: NoItem
+    useDelay: 30
+    event: !type:PingRadarImplantEvent
