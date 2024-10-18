@@ -40,7 +40,7 @@
   id: TrainSSS
   mapName: 'Train'
   mapPath: /Maps/_SSS/train-sss.yml
-  minPlayers: 20
+  minPlayers: 15
   stations:
     TrainSSS:
       stationProto: StandardStationArena
