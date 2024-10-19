@@ -1,9 +1,12 @@
 ﻿using Content.Server._SSS.SuspicionGameRule.Components;
 using Content.Shared.Chat;
+using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
+using Content.Shared.Implants.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Content.Shared.Store.Components;
 using Robust.Server.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
@@ -25,6 +28,55 @@ public sealed partial class SuspicionRuleSystem
             hideChat: false,
             recordReplay: true,
             colorOverride: colorOverride);
+    }
+
+    private void AddTcToPlayer(EntityUid player, int amount, bool displayMessage = true)
+    {
+        var implantedComponent = CompOrNull<ImplantedComponent>(player);
+        if (implantedComponent == null)
+            return;
+
+        foreach (var implant in implantedComponent.ImplantContainer.ContainedEntities)
+        {
+            var storeComp = CompOrNull<StoreComponent>(implant);
+            if (storeComp == null)
+                continue;
+
+            _storeSystem.TryAddCurrency(new Dictionary<string, FixedPoint2>()
+                {
+                    { "Telecrystal", FixedPoint2.New(amount)},
+                },
+                implant,
+                storeComp
+            );
+        }
+
+        if (!_playerManager.TryGetSessionByEntity(player, out var session))
+            return;
+
+        if (!displayMessage)
+            return;
+
+        var message = Loc.GetString("tc-added-sus", ("tc", amount));
+        _chatManager.ChatMessageToOne(ChatChannel.Server, message, message, EntityUid.Invalid, false, session.Channel);
+    }
+
+    private Entity<StoreComponent>? GetUplinkImplant(EntityUid player)
+    {
+        var implantedComponent = CompOrNull<ImplantedComponent>(player);
+        if (implantedComponent == null)
+            return null;
+
+        foreach (var implant in implantedComponent.ImplantContainer.ContainedEntities)
+        {
+            var storeComp = CompOrNull<StoreComponent>(implant);
+            if (storeComp == null)
+                continue;
+
+            return (implant, storeComp);
+        }
+
+        return null;
     }
 
     /// <summary>
