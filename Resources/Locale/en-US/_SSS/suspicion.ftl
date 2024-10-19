@@ -6,6 +6,7 @@ suspicion-detective-uplink = Detective Uplink
 tc-added-sus = You have been given {$tc} TC for your performance.
 suspicion-examination = { SUBJECT($ent) } were [color={$col}]{ $role }[/color]
 suspicion-examination-chat = [italic]{ $finder }[/italic] found the body of [italic]{ $found }[/italic] { $where } and discovered { SUBJECT($found) } { CONJUGATE-BASIC($found, "were", "was") } { INDEFINITE($role) } [bold][color={ $col }]{ $role }[/color][/bold].
+suspicion-found-tc = You found [bold]{$tc} TC[/bold] on the body. They have been added to your uplink.
 
 roles-antag-suspicion-traitor-name = Traitor
 roles-antag-suspicion-traitor-objective = Kill the innocents while avoiding detection.

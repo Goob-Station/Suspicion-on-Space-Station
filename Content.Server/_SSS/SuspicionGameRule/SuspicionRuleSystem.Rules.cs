@@ -1,4 +1,5 @@
-﻿using Content.Server._SSS.GridMarker;
+﻿using System.Linq;
+using Content.Server._SSS.GridMarker;
 using Content.Server._SSS.SuspicionGameRule.Components;
 using Content.Server.Communications;
 using Content.Server.Ghost;
@@ -67,36 +68,8 @@ public sealed partial class SuspicionRuleSystem
             // Ok this is fucking horrible
             foreach (var traitor in allTraitors)
             {
-                var implantedComponent = CompOrNull<ImplantedComponent>(traitor.body);
-                if (implantedComponent == null)
-                    continue;
-
-                foreach (var implant in implantedComponent.ImplantContainer.ContainedEntities)
-                {
-                    var storeComp = CompOrNull<StoreComponent>(implant);
-                    if (storeComp == null)
-                        continue;
-
-                    _storeSystem.TryAddCurrency(new Dictionary<string, FixedPoint2>()
-                        {
-                            { "Telecrystal", sus.AmountAddedPerKill },
-                        },
-                        implant,
-                        storeComp
-                    );
-                }
+                AddTcToPlayer(traitor.body, sus.AmountAddedPerKill);
             }
-
-            var message = Loc.GetString("tc-added-sus", ("tc", sus.AmountAddedPerKill));
-
-            var channels = new List<INetChannel>();
-            foreach (var traitor in allTraitors)
-            {
-                var found = _playerManager.TryGetSessionByEntity(traitor.body, out var channel);
-                if (found)
-                    channels.Add(channel!.Channel);
-            }
-            _chatManager.ChatMessageToMany(ChatChannel.Server, message, message, EntityUid.Invalid, false, true, channels);
 
             var allInnocents = FindAllOfType(SuspicionRole.Innocent);
             var allDetectives = FindAllOfType(SuspicionRole.Detective);
@@ -148,6 +121,7 @@ public sealed partial class SuspicionRuleSystem
         }
 
         var mind = _mindSystem.GetMind(args.Examined);
+        var examinerMind = _mindSystem.GetMind(args.Examiner);
 
         if (mind == null)
             return;
@@ -157,6 +131,42 @@ public sealed partial class SuspicionRuleSystem
 
         if (role.Value.Comp2.Role == SuspicionRole.Pending)
             return;
+
+        if (examinerMind.HasValue) // I apologize for this being so nested. Can't use early returns with the other stuff below.
+        {
+            // If the examined is a traitor and the examinor is a detective, we give the detective any TC the traitor had.
+            if (role.Value.Comp2.Role == SuspicionRole.Traitor)
+            {
+                if (_roleSystem.MindHasRole<SuspicionRoleComponent>(examinerMind.Value, out var examinerRole))
+                {
+                    if (examinerRole.Value.Comp2.Role == SuspicionRole.Detective)
+                    {
+                        var implantT = GetUplinkImplant(args.Examined);
+                        var implantD = GetUplinkImplant(args.Examiner);
+                        if (implantT.HasValue && implantD.HasValue)
+                        {
+                            var tc = implantT.Value.Comp.Balance.Values.Sum(x => x.Int());
+                            AddTcToPlayer(args.Examiner, tc);
+                            implantT.Value.Comp.Balance.Clear();
+
+                            if (_playerManager.TryGetSessionByEntity(args.Examiner, out var session))
+                            {
+                                var msgFound = Loc.GetString("suspicion-found-tc", ("tc", tc));
+                                _chatManager.ChatMessageToOne(
+                                    ChatChannel.Server,
+                                    msgFound,
+                                    msgFound,
+                                    EntityUid.Invalid,
+                                    false,
+                                    client: session.Channel,
+                                    recordReplay:true
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         args.PushMarkup(Loc.GetString(
                 "suspicion-examination",
@@ -174,6 +184,15 @@ public sealed partial class SuspicionRuleSystem
         // Reveal the role in chat
         if (component.Revealed)
             return;
+
+        if (role.Value.Comp2.Role == SuspicionRole.Traitor)
+        {
+            var allDetectives = FindAllOfType(SuspicionRole.Detective);
+            foreach (var det in allDetectives) // Once a Traitor is found, all detectives get 1 TC.
+            {
+                AddTcToPlayer(det.body, 1, false);
+            }
+        }
 
         component.Revealed = true;
         var trans = Comp<TransformComponent>(args.Examined);
