@@ -248,19 +248,19 @@ public sealed partial class SuspicionRuleSystem
         {
             case <= 241 when !sus.AnnouncedTimeLeft.Contains(241):
                 _chatManager.DispatchServerAnnouncement($"The round will end in {Math.Round(sus.EndAt.TotalMinutes)}:{sus.EndAt.Seconds}.");
-                sus.AnnouncedTimeLeft.Add(240);
+                sus.AnnouncedTimeLeft.Add(241);
                 break;
             case <= 181 when !sus.AnnouncedTimeLeft.Contains(181):
                 _chatManager.DispatchServerAnnouncement($"The round will end in {Math.Round(sus.EndAt.TotalMinutes)}:{sus.EndAt.Seconds}.");
-                sus.AnnouncedTimeLeft.Add(180);
+                sus.AnnouncedTimeLeft.Add(181);
                 break;
             case <= 121 when !sus.AnnouncedTimeLeft.Contains(121):
                 _chatManager.DispatchServerAnnouncement($"The round will end in {Math.Round(sus.EndAt.TotalMinutes)}:{sus.EndAt.Seconds}.");
-                sus.AnnouncedTimeLeft.Add(120);
+                sus.AnnouncedTimeLeft.Add(121);
                 break;
             case <= 61 when !sus.AnnouncedTimeLeft.Contains(61):
                 _chatManager.DispatchServerAnnouncement($"The round will end in {Math.Round(sus.EndAt.TotalMinutes)}:{sus.EndAt.Seconds}.");
-                sus.AnnouncedTimeLeft.Add(60);
+                sus.AnnouncedTimeLeft.Add(61);
                 break;
             case <= 30 when !sus.AnnouncedTimeLeft.Contains(30):
                 _chatManager.DispatchServerAnnouncement($"The round will end in 30 seconds.");
