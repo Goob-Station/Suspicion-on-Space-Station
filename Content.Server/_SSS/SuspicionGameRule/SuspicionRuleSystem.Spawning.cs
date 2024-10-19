@@ -21,7 +21,6 @@ using Content.Shared.Overlays;
 using Content.Shared.Players;
 using Content.Shared.Security.Components;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Server._SSS.SuspicionGameRule;
 
