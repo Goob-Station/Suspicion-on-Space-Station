@@ -79,6 +79,16 @@ public sealed partial class SuspicionRuleSystem
         var traitorCount = MathHelper.Clamp((int) (participatingPlayers.Count * component.TraitorPercentage), 1, allPlayerData.Count);
         var detectiveCount = MathHelper.Clamp((int) (participatingPlayers.Count * component.DetectivePercentage), 1, allPlayerData.Count);
 
+        if (traitorCount + detectiveCount > participatingPlayers.Count)
+        {
+            // we somehow have more picked players than valid
+
+            // what the fuck
+
+            traitorCount = participatingPlayers.Count;
+            detectiveCount = 0;
+        }
+
         RobustRandom.Shuffle(participatingPlayers); // Shuffle the list so we can just take the first N players
         RobustRandom.Shuffle(participatingPlayers);
         RobustRandom.Shuffle(participatingPlayers); // I don't trust the shuffle.
