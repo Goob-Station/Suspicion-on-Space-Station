@@ -1,0 +1,14 @@
+﻿Entries:
+- author: Simyon
+  changes:
+  - message: Each detective will now get 1 TC when a traitor is revealed.
+    type: Add
+  - message: When a detective examines a body and it turns out its a traitor; Any unspent TC from the traitor will be given to the detective.
+    type: Add
+  - message: There will now be always at least one detective.
+    type: Add
+  - message: The round timer will now announce correctly at the exact minute mark.
+    type: Fix
+  id: 0
+  time: '2024-10-19T05:44:59.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/2
