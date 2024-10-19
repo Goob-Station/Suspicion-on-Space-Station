@@ -140,7 +140,16 @@ namespace Content.Server.Spawners.EntitySystems
                 {
                     if (ent.Comp.Delay != TimeSpan.Zero)
                     {
-                        Timer.Spawn(ent.Comp.Delay, () => Spawn(proto, trueCoords));
+                        Timer.Spawn(ent.Comp.Delay, () =>
+                        {
+                            if (TerminatingOrDeleted(ent) && Exists(ent))
+                                return;
+
+                            if (!trueCoords.IsValid(EntityManager))
+                                return;
+
+                            Spawn(proto, trueCoords);
+                        });
                     }
                     else
                     {
