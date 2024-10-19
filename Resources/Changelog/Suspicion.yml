@@ -3,7 +3,8 @@
   changes:
   - message: Each detective will now get 1 TC when a traitor is revealed.
     type: Add
-  - message: When a detective examines a body and it turns out its a traitor; Any unspent TC from the traitor will be given to the detective.
+  - message: When a detective examines a body and it turns out its a traitor; Any
+      unspent TC from the traitor will be given to the detective.
     type: Add
   - message: There will now be always at least one detective.
     type: Add
@@ -12,3 +13,14 @@
   id: 0
   time: '2024-10-19T05:44:59.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/2
+- author: Flareguy
+  changes:
+  - message: Further enhanced item spawners. Utility items & ammo should now spawn
+      in a more balanced manner, and almost every reasonable-to-add weapon in the
+      game is now available.
+    type: Add
+  - message: Caseless mags will no longer spawn in the ammunition pool.
+    type: Fix
+  id: 1
+  time: '2024-10-19T22:32:17.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/4
