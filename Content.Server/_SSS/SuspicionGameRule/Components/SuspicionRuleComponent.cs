@@ -74,11 +74,14 @@ public sealed partial class SuspicionRuleComponent : Component
     public string DetectiveImplant = "SusDetectiveUplinkImplant";
 
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<RadioChannelPrototype>))]
-    public string TraitorRadio = "Syndicate";
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string TraitorRadio = "EncryptionKeySyndie";
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<NpcFactionPrototype>))]
     public string TraitorFaction = "Syndicate";
+
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string DetectiveRadio = "EncryptionKeySecurity";
 
     /// <summary>
     /// How much TC to give to traitors/detectives for their performance

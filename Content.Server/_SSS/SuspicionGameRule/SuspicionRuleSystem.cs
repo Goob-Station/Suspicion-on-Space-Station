@@ -20,9 +20,11 @@ using Content.Server.Store.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
+using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -53,6 +55,8 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
     [Dependency] private readonly IdCardSystem _idCardSystem = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly ContainerSystem _containerSystem = default!;
 
     private readonly SoundSpecifier _traitorStartSound = new SoundPathSpecifier("/Audio/Ambience/Antag/traitor_start.ogg");
 

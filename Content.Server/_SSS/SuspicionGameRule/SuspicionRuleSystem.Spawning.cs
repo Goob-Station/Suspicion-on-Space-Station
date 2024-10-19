@@ -100,7 +100,8 @@ public sealed partial class SuspicionRuleSystem
             // Hijacking the nuke op systems to show fellow traitors. Don't have to reinvent the wheel.
             EnsureComp<NukeOperativeComponent>(ownedEntity.Value);
             EnsureComp<ShowSyndicateIconsComponent>(ownedEntity.Value);
-            EnsureComp<IntrinsicRadioTransmitterComponent>(ownedEntity.Value).Channels.Add(component.TraitorRadio);
+
+            AddKeyToRadio(ownedEntity.Value, component.TraitorRadio);
 
             _npcFactionSystem.AddFaction(ownedEntity.Value, component.TraitorFaction);
 
@@ -125,6 +126,8 @@ public sealed partial class SuspicionRuleSystem
             }
 
             EnsureComp<CriminalRecordComponent>(ownedEntity.Value).StatusIcon = "SecurityIconDischarged";
+
+            AddKeyToRadio(ownedEntity.Value, component.DetectiveRadio);
 
             _subdermalImplant.AddImplants(ownedEntity.Value, new List<string> {component.DetectiveImplant});
 

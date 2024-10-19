@@ -4,6 +4,9 @@ using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Robust.Server.Containers;
+using Robust.Shared.Map;
+using Robust.Shared.Physics.Components;
 
 namespace Content.Server._SSS.SuspicionGameRule;
 
@@ -64,5 +67,21 @@ public sealed partial class SuspicionRuleSystem
         }
 
         return result;
+    }
+
+    public void AddKeyToRadio(EntityUid entity, string keyProto)
+    {
+        if (!_inventory.TryGetSlotEntity(entity, "ears", out var headset))
+            return;
+
+        if (!_containerSystem.TryGetContainer(headset.Value, "key_slots", out var container))
+            return;
+
+        var key = Spawn(keyProto, MapCoordinates.Nullspace);
+        var transform = Comp<TransformComponent>(key);
+        var meta = Comp<MetaDataComponent>(key);
+        var physics = Comp<PhysicsComponent>(key);
+
+        _containerSystem.Insert((key, transform, meta, physics), container, null, true);
     }
 }
