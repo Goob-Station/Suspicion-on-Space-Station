@@ -31,3 +31,19 @@
   id: 2
   time: '2024-10-20T00:09:02.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/5
+- author: Simyon
+  changes:
+  - message: 1984'd nuclear options. They now have a more distinct sound and will
+      go off in 20 seconds instead of 3.
+    type: Tweak
+  id: 3
+  time: '2024-10-20T00:58:04.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/6
+- author: Simyon
+  changes:
+  - message: Round will not end properly. No more "The X have won the round" after
+      the round has already ended.
+    type: Fix
+  id: 4
+  time: '2024-10-20T00:57:52.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/7
