@@ -61,6 +61,8 @@
         - id: WeaponShotgunEnforcer
         - id: WeaponProtoKineticAccelerator
         - id: WeaponShotgunSawn
+        - id: WeaponMakeshiftLaser
+        - id: WeaponLaserCarbine
         - id: CaptainSabre
         - id: WeaponPistolCHIMPUpgraded # here so that its a weird projectile spam weapon. might not work out
         - id: WeaponImprovisedPneumaticCannonGun
@@ -113,11 +115,7 @@
         - id: WeaponRevolverPythonAP
         - id: WeaponSniperMosin
         - id: WeaponLauncherRocket
-        # Wands
-        - !type:GroupSelector
-          children:
-          - id: WeaponWandPolymorphMonkey
-          - id: WeaponWandFireball
+        - id: WeaponWandFireball
 
 - type: entity
   name: SSS Utility Spawner
@@ -188,19 +186,21 @@
         weight: 5 # Very rare
         children:
         - id: Bola
+          prob: 0.9
         - id: MedkitCombatFilled
+          prob: 0.9
         - id: DrinkSpaceLube
+          prob: 0.9
         - id: DrinkSpaceGlue
-        - id: DrinkSpaceGlue
+          prob: 0.9
+        - id: NuclearGrenade
+          prob: 0.001
         # Wands
         - !type:GroupSelector
+          prob: 0.1
           children:
           - id: WeaponStaffHealing
           - id: WeaponWandPolymorphDoor
-      - !type:GroupSelector
-        weight: 0.5 # The Nuclear Option. No further elaboration needed.
-        children:
-        - id: NuclearGrenade
 
 
 - type: entity
