@@ -34,6 +34,7 @@ ChangelogEntry = dict[str, Any]
 
 def main():
     if not DISCORD_WEBHOOK_URL:
+        print("No discord webhook URL found, skipping discord send")
         return
 
     session = requests.Session()
