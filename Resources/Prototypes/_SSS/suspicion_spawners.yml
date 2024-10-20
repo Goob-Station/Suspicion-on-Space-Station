@@ -145,7 +145,7 @@
       weight: 90
       children:
       - !type:GroupSelector
-        weight: 84.5 # Common 
+        weight: 85 # Common 
         children:
         - id: ClothingEyesGlassesSunglasses
         - id: ClothingMaskGas
