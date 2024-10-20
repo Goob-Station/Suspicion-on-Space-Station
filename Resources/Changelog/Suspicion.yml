@@ -24,3 +24,10 @@
   id: 1
   time: '2024-10-19T22:32:17.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/4
+- author: Simyon
+  changes:
+  - message: Reach has been added back into the map rotation.
+    type: Tweak
+  id: 2
+  time: '2024-10-20T00:09:02.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/5
