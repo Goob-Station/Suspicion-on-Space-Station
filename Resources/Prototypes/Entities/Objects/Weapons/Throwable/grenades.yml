@@ -280,7 +280,7 @@
   - type: Sprite
     sprite: Objects/Weapons/Grenades/nukenade.rsi
   - type: OnUseTimerTrigger
-    delay: 5
+    delay: 15
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -299,7 +299,9 @@
   - type: Appearance
   - type: TimerTriggerVisuals
     primingSound:
-      path: /Audio/Effects/countdown.ogg
+      path: /Audio/Announcements/war.ogg
+      params:
+        volume: 50
 
 - type: entity
   name: modular grenade
