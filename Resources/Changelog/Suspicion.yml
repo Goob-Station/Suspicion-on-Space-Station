@@ -47,3 +47,14 @@
   id: 4
   time: '2024-10-20T00:57:52.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/7
+- author: Flareguy
+  changes:
+  - message: Added laser carbine & makeshift laser into the spawn pool.
+    type: Add
+  - message: Removed the monkey polymorph wand.
+    type: Remove
+  - message: Tweaked spawn rate of the nuclear option to be much rarer.
+    type: Tweak
+  id: 5
+  time: '2024-10-21T07:32:04.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/8
