@@ -362,6 +362,9 @@
     Telecrystal: 3
   categories:
   - SSSTraitorWearables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: UplinkClothingOuterHardsuitJuggernautSSS
@@ -408,3 +411,6 @@
     Telecrystal: 2
   categories:
   - SSSDetectiveWearables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
