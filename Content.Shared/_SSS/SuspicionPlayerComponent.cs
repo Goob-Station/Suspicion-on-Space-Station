@@ -1,4 +1,4 @@
-﻿namespace Content.Server._SSS;
+﻿namespace Content.Shared._SSS;
 
 /// <summary>
 /// Main component that marks a player "active" in a round of SSS.

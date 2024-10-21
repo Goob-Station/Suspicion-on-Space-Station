@@ -1,13 +1,12 @@
 ﻿using Content.Shared.NPC.Prototypes;
-using Content.Shared.Radio;
 using Content.Shared.Roles;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server._SSS.SuspicionGameRule.Components;
+namespace Content.Shared._SSS.SuspicionGameRule.Components;
 
-[RegisterComponent, Access(typeof(SuspicionRuleSystem))]
+[RegisterComponent]
 public sealed partial class SuspicionRuleComponent : Component
 {
     #region State management
@@ -107,4 +106,29 @@ public enum SuspicionGameState
     /// The game has ended. The summary is being displayed and players are waiting for the round to restart.
     /// </summary>
     PostRound
+}
+
+[Serializable, NetSerializable]
+public sealed class SuspicionRuleTimerUpdate(TimeSpan endTime) : EntityEventArgs
+{
+    public TimeSpan EndTime = endTime;
+}
+
+[Serializable, NetSerializable]
+public sealed class SuspicionRulePreroundStarted(TimeSpan preroundEndTime) : EntityEventArgs
+{
+    public TimeSpan PreroundEndTime = preroundEndTime;
+}
+
+[Serializable, NetSerializable]
+public sealed class SuspicionRuleUpdateRole(SuspicionRole newRole) : EntityEventArgs
+{
+    public readonly SuspicionRole NewRole = newRole;
+}
+
+[Serializable, NetSerializable]
+public sealed class SuspicionRulePlayerSpawn : EntityEventArgs
+{
+    public SuspicionGameState GameState;
+    public TimeSpan EndTime;
 }

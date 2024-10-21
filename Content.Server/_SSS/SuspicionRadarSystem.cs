@@ -1,7 +1,8 @@
-﻿using Content.Server._SSS.SuspicionGameRule.Components;
-using Content.Server.Mind;
+﻿using Content.Server.Mind;
 using Content.Server.Roles;
+using Content.Shared._SSS;
 using Content.Shared._SSS.RadarOverlay;
+using Content.Shared._SSS.SuspicionGameRule.Components;
 using Content.Shared.Implants.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;

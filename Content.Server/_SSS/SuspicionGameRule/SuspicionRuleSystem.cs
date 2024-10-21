@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Content.Server._SSS.SuspicionGameRule.Components;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Systems;
 using Content.Server.Antag;
@@ -17,6 +16,8 @@ using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
+using Content.Shared._SSS;
+using Content.Shared._SSS.SuspicionGameRule.Components;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking.Components;
@@ -126,6 +127,8 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
         Timer.Spawn(TimeSpan.FromSeconds(component.PreparingDuration - 5), () =>  _chatManager.DispatchServerAnnouncement("The round will start in 5 seconds."));
         Timer.Spawn(TimeSpan.FromSeconds(component.PreparingDuration), () =>  StartRound(uid, component, gameRule));
         Log.Debug("Starting a game of Suspicion.");
+
+        RaiseNetworkEvent(new SuspicionRulePreroundStarted(TimeSpan.FromSeconds(component.PreparingDuration)));
     }
 
     public override void Update(float frameTime)

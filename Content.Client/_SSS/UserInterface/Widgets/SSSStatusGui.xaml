@@ -16,19 +16,15 @@
         <PanelContainer StyleClasses="AngleRect" />
         <BoxContainer Orientation="Vertical" Margin="8">
             <BoxContainer Orientation="Horizontal">
-                <Control Margin="8">
-
-                    <PanelContainer Name="RoleBG" Access="Public" StyleClasses="AngleRect">
-                        <!-- <PanelContainer.PanelOverride>
-                            <graphics:StyleBoxFlat BackgroundColor="#DE3A3A" />
-                        </PanelContainer.PanelOverride> -->
-
+                <Control>
+                    <PanelContainer Name="RoleBG" Access="Public">
                     </PanelContainer>
-                    <Label Name="RoleText" Access="Public" Text="Traitor?" />
+                    <Label Name="RoleText" Access="Public" Text="Traitor?" Margin="4"/>
                 </Control>
                 <Label Name="TimerText" Access="Public" Text="5:00" Align="Right" HorizontalExpand="True" />
             </BoxContainer>
-            <Control MinWidth="200" MinHeight="20">
+            <Control MinSize="0 4" />
+            <Control MinSize="200 20">
                 <ProgressBar Name="HealthBar" Access="Public" Value="75" MaxValue="100">
                     <ProgressBar.ForegroundStyleBoxOverride>
                         <graphics:StyleBoxFlat BackgroundColor="#DE3A3A" />
