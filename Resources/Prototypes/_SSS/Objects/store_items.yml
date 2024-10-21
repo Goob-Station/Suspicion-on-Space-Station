@@ -14,8 +14,7 @@
     - id: WaterChemistryBottle
   - type: Sprite
     layers:
-    - state: internals
-    - state: emergencytank
+    - state: box_of_doom
 
 - type: entity
   id: WaterChemistryBottle
