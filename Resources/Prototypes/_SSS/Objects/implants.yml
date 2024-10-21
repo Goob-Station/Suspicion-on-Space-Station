@@ -29,6 +29,7 @@
     - SSSTraitorWearables
     - SSSTraitorChemicals
     - SSSTraitorDisruption
+    - SSSTraitorAllies
 
 - type: entity
   parent: UplinkImplant

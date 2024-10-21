@@ -24,6 +24,11 @@
   name: store-category-disruption
   priority: 5
 
+- type: storeCategory
+  id: SSSTraitorAllies
+  name: store-category-allies
+  priority: 6
+
 ### SSS Detective
 - type: storeCategory
   id: SSSDetectiveWeapons

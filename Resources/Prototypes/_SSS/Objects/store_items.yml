@@ -1,0 +1,33 @@
+- type: entity
+  parent: BoxCardboard
+  id: BoxDehydratedCarp
+  name: dehydrated carp box
+  description: uplink-carp-box-desc
+  suffix: Traitor
+  components:
+  - type: StorageFill
+    contents:
+    - id: DehydratedSpaceCarp
+    - id: DehydratedSpaceCarp
+    - id: DehydratedSpaceCarp
+    - id: DehydratedSpaceCarp
+    - id: WaterChemistryBottle
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: emergencytank
+
+- type: entity
+  id: WaterChemistryBottle
+  suffix: water
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-water
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Water
+          Quantity: 30
