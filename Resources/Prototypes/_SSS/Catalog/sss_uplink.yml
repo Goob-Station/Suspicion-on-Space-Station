@@ -364,6 +364,16 @@
   categories:
   - SSSTraitorWearables
 
+- type: listing
+  id: UplinkCarpBoxSSS
+  name: uplink-carp-box-name
+  description: uplink-carp-box-desc
+  productEntity: BoxDehydratedCarp
+  cost:
+    Telecrystal: 3
+  categories:
+  - SSSTraitorAllies
+
 # DETECTIVE WEAPONS
 
 - type: listing
