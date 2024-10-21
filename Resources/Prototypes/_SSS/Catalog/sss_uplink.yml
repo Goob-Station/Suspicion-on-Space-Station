@@ -159,7 +159,7 @@
   id: UplinkSyndicateBombSSS
   restockTime: 120
   name: uplink-exploding-syndicate-bomb-name
-  description: uplink-exploding-syndicate-bomb-desc
+  description: uplink-exploding-syndicate-bomb-SSS-desc
   productEntity: SyndicateBombSSS
   categories:
   - SSSTraitorExplosives
