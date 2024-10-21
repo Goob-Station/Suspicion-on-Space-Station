@@ -65,3 +65,31 @@
   id: 6
   time: '2024-10-21T09:20:35.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/9
+- author: Coolsurf6
+  changes:
+  - message: Armour Upgrade Kit for Detectives (2TC) and Terrorists (3TC)
+    type: Add
+  - message: Starting Armour Vest is now 20% Pierce and 10% Blunt/Slash
+    type: Tweak
+  - message: Syndicate Hardsuit Price is now 3TC from 8TC
+    type: Tweak
+  - message: No Slips is now 2TC from 4TC
+    type: Tweak
+  - message: Syndicate MagBoots is now 1TC from 4TC
+    type: Tweak
+  id: 7
+  time: '2024-10-21T16:39:47.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/10
+- author: Coolsurf6
+  changes:
+  - message: Disruptive Grenade Kit for 1TC replacing individual purchases of grenades
+    type: Add
+  - message: Syndicate Bomb has a 90 second timer and 30 second quiet period
+    type: Tweak
+  - message: Overall decreased TC cost of Explosives for Traitors
+    type: Tweak
+  - message: Explosive and Shrapnel Grenades from spawning naturally
+    type: Remove
+  id: 8
+  time: '2024-10-21T16:59:10.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/12
