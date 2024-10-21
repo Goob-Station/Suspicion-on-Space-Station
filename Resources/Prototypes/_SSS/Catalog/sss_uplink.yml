@@ -92,23 +92,13 @@
   categories:
   - SSSTraitorExplosives
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
 
 - type: listing
-  id: UplinkExplosiveGrenadeFlashSSS
-  name: uplink-flash-grenade-name
-  description: uplink-flash-grenade-desc
-  productEntity: GrenadeFlashBang
-  categories:
-  - SSSTraitorExplosives
-  cost:
-    Telecrystal: 1
-
-- type: listing
-  id: UplinkSmokeGrenadeSSS
-  name: uplink-smoke-grenade-name
-  description: uplink-smoke-grenade-desc
-  productEntity: SmokeGrenade
+  id: UplinkBoxDisruptiveThrowableSSS
+  name: uplink-disruptive-throwable-name
+  description: uplink-disruptive-throwable-desc
+  productEntity: BoxDisruptiveThrowable
   categories:
   - SSSTraitorExplosives
   cost:
@@ -122,7 +112,7 @@
   categories:
   - SSSTraitorExplosives
   cost:
-    Telecrystal: 5
+    Telecrystal: 3
 
 - type: listing
   id: UplinkSupermatterGrenadeSSS
@@ -132,7 +122,7 @@
   categories:
   - SSSTraitorExplosives
   cost:
-    Telecrystal: 5
+    Telecrystal: 3
 
 - type: listing
   id: UplinkWhiteholeGrenadeSSS
@@ -169,12 +159,12 @@
   id: UplinkSyndicateBombSSS
   restockTime: 120
   name: uplink-exploding-syndicate-bomb-name
-  description: uplink-exploding-syndicate-bomb-desc
-  productEntity: SyndicateBomb
+  description: uplink-exploding-syndicate-bomb-SSS-desc
+  productEntity: SyndicateBombSSS
   categories:
   - SSSTraitorExplosives
   cost:
-    Telecrystal: 10
+    Telecrystal: 5
 
 - type: listing
   id: UplinkClusterGrenadeSSS
@@ -182,7 +172,7 @@
   description: uplink-cluster-grenade-desc
   productEntity: ClusterGrenade
   cost:
-    Telecrystal: 8
+    Telecrystal: 5
   categories:
   - SSSTraitorExplosives
 
@@ -401,6 +391,16 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: UplinkBoxDisruptiveThrowableSSSDetective
+  name: uplink-disruptive-throwable-name
+  description: uplink-disruptive-throwable-desc
+  productEntity: BoxDisruptiveThrowable
+  categories:
+  - SSSDetectiveExplosives
+  cost:
+    Telecrystal: 1
 
 - type: listing
   id: UplinkArmourUpgradeKitSSSDetective
