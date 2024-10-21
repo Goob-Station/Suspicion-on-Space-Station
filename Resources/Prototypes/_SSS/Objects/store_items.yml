@@ -30,3 +30,32 @@
         reagents:
         - ReagentId: Water
           Quantity: 30
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxDisruptiveThrowable
+  name: disruptive grenade kit
+  description: A set of 1 flash, smoke and stinger grenades. Perfect for slowing down and getting away.
+  suffix: Traitor
+  components:
+  - type: StorageFill
+    contents:
+    - id: GrenadeFlashBang
+    - id: SmokeGrenade
+    - id: GrenadeStinger
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+- type: entity
+  parent: SyndicateBomb
+  id: SyndicateBombSSS
+  suffix: Traitor
+  name: syndicate bomb
+  description: A bomb for Syndicate operatives and agents alike. The real deal, no more training, get to it!
+  components:
+  - type: OnUseTimerTrigger
+    delay: 90
+    delayOptions: [90, 180]
+    initialBeepDelay: 30 # Gives the bomb some more stealth options due to how loud the timer is.
+    beepSound: /Audio/Machines/timer.ogg

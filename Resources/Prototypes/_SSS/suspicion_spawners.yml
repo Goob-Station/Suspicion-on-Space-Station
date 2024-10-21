@@ -145,7 +145,7 @@
       weight: 90
       children:
       - !type:GroupSelector
-        weight: 85 # Common 
+        weight: 85 # Common
         children:
         - id: ClothingEyesGlassesSunglasses
         - id: ClothingMaskGas
@@ -165,20 +165,20 @@
         - id: Ointment5
         - id: PipeBomb
         - id: FireBomb
-        - id: ExGrenade
+        # - id: ExGrenade # Removing the explosive grenade from rotation, most other throwables seem alright.
         # Toolboxes
         - !type:GroupSelector
           children:
           - id: ToolboxEmergencyFilled
           - id: ToolboxElectricalFilled
           - id: ToolboxMechanicalFilled
-        - id: ToolboxEmergencyFilled # we're not just doubling down on crowbar spawns, we're TRIPLING DOWN on them
+          - id: ToolboxEmergencyFilled # we're not just doubling down on crowbar spawns, we're TRIPLING DOWN on them
       - !type:GroupSelector
         weight: 10 # Rare
         children:
         - id: ClothingEyesHudMedical
         - id: MedkitFilled
-        - id: GrenadeShrapnel
+        # - id: GrenadeShrapnel # Removing the Shrapnel grenade from rotation.
         - id: GrenadeStinger
         - id: CombatMedipen
         - id: ToolboxSyndicateFilled
