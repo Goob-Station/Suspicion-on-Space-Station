@@ -318,7 +318,7 @@
   description: uplink-clothing-no-slips-shoes-desc
   productEntity: ClothingShoesChameleonNoSlips
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - SSSTraitorWearables
 
@@ -328,7 +328,7 @@
   description: uplink-clothing-shoes-boots-mag-syndie-desc
   productEntity: ClothingShoesBootsMagSyndie
   cost:
-    Telecrystal: 4
+    Telecrystal: 1
   categories:
   - SSSTraitorWearables
 
@@ -339,9 +339,22 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndicate.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateHardsuitBundle
   cost:
-    Telecrystal: 8
+    Telecrystal: 3
   categories:
   - SSSTraitorWearables
+
+- type: listing
+  id: UplinkArmourUpgradeKitSSS
+  name: uplink-armour-upgrade-name
+  description: uplink-armour-upgrade-desc
+  productEntity: ClothingOuterVestWebMercSuspicionUpgradeKit
+  cost:
+    Telecrystal: 3
+  categories:
+  - SSSTraitorWearables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: UplinkClothingOuterHardsuitJuggernautSSS
@@ -388,3 +401,16 @@
   - SSSDetectiveExplosives
   cost:
     Telecrystal: 1
+
+- type: listing
+  id: UplinkArmourUpgradeKitSSSDetective
+  name: uplink-armour-upgrade-name
+  description: uplink-armour-upgrade-desc
+  productEntity: ClothingOuterVestWebMercSuspicionUpgradeKit
+  cost:
+    Telecrystal: 2
+  categories:
+  - SSSDetectiveWearables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
