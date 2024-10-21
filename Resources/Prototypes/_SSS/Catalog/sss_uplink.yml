@@ -378,3 +378,13 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: UplinkBoxDisruptiveThrowableSSSDetective
+  name: uplink-disruptive-throwable-name
+  description: uplink-disruptive-throwable-desc
+  productEntity: BoxDisruptiveThrowable
+  categories:
+  - SSSDetectiveExplosives
+  cost:
+    Telecrystal: 1
