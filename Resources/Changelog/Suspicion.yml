@@ -80,3 +80,16 @@
   id: 7
   time: '2024-10-21T16:39:47.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/10
+- author: Coolsurf6
+  changes:
+  - message: Disruptive Grenade Kit for 1TC replacing individual purchases of grenades
+    type: Add
+  - message: Syndicate Bomb has a 90 second timer and 30 second quiet period
+    type: Tweak
+  - message: Overall decreased TC cost of Explosives for Traitors
+    type: Tweak
+  - message: Explosive and Shrapnel Grenades from spawning naturally
+    type: Remove
+  id: 8
+  time: '2024-10-21T16:59:10.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/12
