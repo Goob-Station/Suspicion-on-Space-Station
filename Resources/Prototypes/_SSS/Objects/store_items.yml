@@ -30,3 +30,18 @@
         reagents:
         - ReagentId: Water
           Quantity: 30
+
+- type: entity
+  name: Armour Upgrade Kit
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: ClothingOuterVestWebMercSuspicionUpgradeKit
+  description: An armour upgrade kit. Use on your armour to upgrade the protection. Armour will drop if equipped!
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: abductor_mod # temp - new item might be better but for now this will work
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - ClothingOuterVestWebMercSuspicionUpgradeKit
