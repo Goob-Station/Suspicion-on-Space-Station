@@ -1,7 +1,6 @@
 using Content.Client._SSS.UserInterface.Widgets;
 using Content.Client.GameTicking.Managers;
 using Content.Client.Mind;
-using Content.Client.Resources;
 using Content.Client.Roles;
 using Content.Shared._SSS.SuspicionGameRule.Components;
 using Content.Shared.Damage;
@@ -10,7 +9,6 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
-using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Timing;
@@ -19,16 +17,12 @@ namespace Content.Client._SSS.UserInterface;
 
 public sealed class SSSStatusUIController : UIController, IOnSystemChanged<DamageableSystem>
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     private ISawmill _log = default!;
+
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+
     [UISystemDependency] private readonly MobThresholdSystem? _mobThreshold;
     [UISystemDependency] private readonly ClientGameTicker? _clientGameTicker;
-    [UISystemDependency] private readonly RoleSystem? _role;
-    [UISystemDependency] private readonly MindSystem? _mind;
-
-    private StyleBoxTexture _roleStyleBox = default!;
 
     public override void Initialize()
     {
@@ -40,16 +34,6 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<Damag
         SubscribeNetworkEvent<SuspicionRulePreroundStarted>(PreroundStarted);
         SubscribeNetworkEvent<SuspicionRuleUpdateRole>(UpdateRoleDisplay);
         SubscribeNetworkEvent<SuspicionRulePlayerSpawn>(UpdatePlayerSpawn);
-
-        _log.Info($"{nameof(SSSStatusUIController)} loaded.");
-
-        var styleBox = new StyleBoxTexture()
-        {
-            Texture = _resourceCache.GetTexture("/Textures/Interface/Nano/button.svg.96dpi.png"),
-        };
-        styleBox.SetPatchMargin(StyleBox.Margin.All, 10);
-
-        _roleStyleBox = styleBox;
     }
 
     private TimeSpan _lastEndTime;
@@ -91,7 +75,7 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<Damag
 
         if (mobState.CurrentState == MobState.Dead)
         {
-            SetHealthBarCustom("DEAD", 0, 100);
+            SetHealthBarUI("DEAD", 0, 100);
             return;
         }
 
@@ -103,12 +87,11 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<Damag
 
         var maxHp = _mobThreshold.GetThresholdForState(ent, MobState.Critical, mobThresholds);
         var hp = Math.Max(Math.Ceiling((maxHp - ent.Comp.TotalDamage).Double()), 0);
-        // var hp = Math.Max((maxHp - ent.Comp.TotalDamage).Float(), 0);
 
         SetHealthBar((float)hp, maxHp.Float());
     }
 
-    private void SetHealthBarCustom(string text, float value, float maxValue)
+    private void SetHealthBarUI(string text, float value, float maxValue)
     {
         var ui = StatusUI;
 
@@ -118,9 +101,7 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<Damag
             return;
         }
 
-        ui.HealthNumber.Text = text;
-        ui.HealthBar.MaxValue = maxValue;
-        ui.HealthBar.Value = value;
+        ui.SetHealthBar(text, value, maxValue);
     }
 
     private bool SetHealthBarFromQueued()
@@ -133,10 +114,7 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<Damag
             return false;
 
         var (text, value, maxValue) = _queuedHealth.Value;
-
-        ui.HealthNumber.Text = text;
-        ui.HealthBar.MaxValue = maxValue;
-        ui.HealthBar.Value = value;
+        ui.SetHealthBar(text, value, maxValue);
         _queuedHealth = null;
 
         return true;
@@ -144,7 +122,7 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<Damag
 
     private void SetHealthBar(float hp, float maxHp)
     {
-        SetHealthBarCustom($"\u2665 {hp}", hp, maxHp);
+        SetHealthBarUI($"\u2665 {hp}", hp, maxHp);
     }
 
     private void UpdateTimer(TimeSpan ts)
@@ -172,10 +150,10 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<Damag
     public void PreroundStarted(SuspicionRulePreroundStarted ev, EntitySessionEventArgs args)
     {
         _lastEndTime = ev.PreroundEndTime;
-        SetRoleCustom("Preround", Color.DarkGray);
+        SetRoleUI("Preround", Color.DarkGray);
     }
 
-    private void SetRoleCustom(string role, Color color)
+    private void SetRoleUI(string role, Color color)
     {
         var ui = StatusUI;
 
@@ -185,8 +163,7 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<Damag
             return;
         }
 
-        ui.RoleBG.PanelOverride = new StyleBoxTexture(_roleStyleBox) { Modulate = color };
-        ui.RoleText.Text = role;
+        ui.SetRole(role, color);
     }
 
     private bool SetRoleFromQueued()
@@ -199,9 +176,7 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<Damag
             return false;
 
         var (role, color) = _queuedRole.Value;
-
-        ui.RoleBG.PanelOverride = new StyleBoxTexture(_roleStyleBox) { Modulate = color };
-        ui.RoleText.Text = role;
+        ui.SetRole(role, color);
         _queuedRole = null;
 
         return true;
@@ -209,19 +184,17 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<Damag
 
     private void SetRoleToPreround()
     {
-        SetRoleCustom("Preround", Color.DarkGray);
+        SetRoleUI("Preround", Color.Gray);
     }
 
     private void SetRoleToObserbing()
     {
-        SetRoleCustom("Obserbing", Color.DarkGray);
+        SetRoleUI("Obserbing", Color.Gray);
     }
 
     public void UpdateRoleDisplay(SuspicionRuleUpdateRole ev, EntitySessionEventArgs args)
     {
-        // ui.RoleBG.PanelOverride = new StyleBoxTexture(_roleStyleBox) { Modulate = Color.FromName(ev.NewRole.GetRoleColor()) };
-        // ui.RoleText.Text = ev.NewRole.ToString();
-        SetRoleCustom(ev.NewRole.ToString(), Color.FromName(ev.NewRole.GetRoleColor()));
+        SetRoleUI(ev.NewRole.ToString(), Color.FromName(ev.NewRole.GetRoleColor()));
     }
 
     public void UpdatePlayerSpawn(SuspicionRulePlayerSpawn ev, EntitySessionEventArgs args)
