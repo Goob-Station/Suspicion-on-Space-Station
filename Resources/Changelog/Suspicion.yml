@@ -93,3 +93,10 @@
   id: 8
   time: '2024-10-21T16:59:10.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/12
+- author: Coolsurf6
+  changes:
+  - message: Dehydrated Carp Description is functional now
+    type: Fix
+  id: 9
+  time: '2024-10-22T03:09:58.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/11
