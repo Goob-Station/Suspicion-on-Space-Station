@@ -77,6 +77,7 @@ public sealed partial class SuspicionRuleSystem
             if (allInnocents.Count == 0 && allDetectives.Count == 0)
             {
                 _chatManager.DispatchServerAnnouncement("The traitors have won the round.");
+                sus.GameState = SuspicionGameState.PostRound;
                 _roundEndSystem.EndRound(TimeSpan.FromSeconds(sus.PostRoundDuration));
                 return;
             }
@@ -84,6 +85,7 @@ public sealed partial class SuspicionRuleSystem
             if (allTraitors.Count == 0)
             {
                 _chatManager.DispatchServerAnnouncement("The innocents have won the round.");
+                sus.GameState = SuspicionGameState.PostRound;
                 _roundEndSystem.EndRound(TimeSpan.FromSeconds(sus.PostRoundDuration));
                 return;
             }

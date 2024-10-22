@@ -1,0 +1,102 @@
+﻿Entries:
+- author: Simyon
+  changes:
+  - message: Each detective will now get 1 TC when a traitor is revealed.
+    type: Add
+  - message: When a detective examines a body and it turns out its a traitor; Any
+      unspent TC from the traitor will be given to the detective.
+    type: Add
+  - message: There will now be always at least one detective.
+    type: Add
+  - message: The round timer will now announce correctly at the exact minute mark.
+    type: Fix
+  id: 0
+  time: '2024-10-19T05:44:59.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/2
+- author: Flareguy
+  changes:
+  - message: Further enhanced item spawners. Utility items & ammo should now spawn
+      in a more balanced manner, and almost every reasonable-to-add weapon in the
+      game is now available.
+    type: Add
+  - message: Caseless mags will no longer spawn in the ammunition pool.
+    type: Fix
+  id: 1
+  time: '2024-10-19T22:32:17.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/4
+- author: Simyon
+  changes:
+  - message: Reach has been added back into the map rotation.
+    type: Tweak
+  id: 2
+  time: '2024-10-20T00:09:02.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/5
+- author: Simyon
+  changes:
+  - message: 1984'd nuclear options. They now have a more distinct sound and will
+      go off in 20 seconds instead of 3.
+    type: Tweak
+  id: 3
+  time: '2024-10-20T00:58:04.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/6
+- author: Simyon
+  changes:
+  - message: Round will not end properly. No more "The X have won the round" after
+      the round has already ended.
+    type: Fix
+  id: 4
+  time: '2024-10-20T00:57:52.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/7
+- author: Flareguy
+  changes:
+  - message: Added laser carbine & makeshift laser into the spawn pool.
+    type: Add
+  - message: Removed the monkey polymorph wand.
+    type: Remove
+  - message: Tweaked spawn rate of the nuclear option to be much rarer.
+    type: Tweak
+  id: 5
+  time: '2024-10-21T07:32:04.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/8
+- author: Coolsurf6
+  changes:
+  - message: Added Dehydrated Carp Box with 4 carps for 3TC. Fish!
+    type: Add
+  id: 6
+  time: '2024-10-21T09:20:35.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/9
+- author: Coolsurf6
+  changes:
+  - message: Armour Upgrade Kit for Detectives (2TC) and Terrorists (3TC)
+    type: Add
+  - message: Starting Armour Vest is now 20% Pierce and 10% Blunt/Slash
+    type: Tweak
+  - message: Syndicate Hardsuit Price is now 3TC from 8TC
+    type: Tweak
+  - message: No Slips is now 2TC from 4TC
+    type: Tweak
+  - message: Syndicate MagBoots is now 1TC from 4TC
+    type: Tweak
+  id: 7
+  time: '2024-10-21T16:39:47.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/10
+- author: Coolsurf6
+  changes:
+  - message: Disruptive Grenade Kit for 1TC replacing individual purchases of grenades
+    type: Add
+  - message: Syndicate Bomb has a 90 second timer and 30 second quiet period
+    type: Tweak
+  - message: Overall decreased TC cost of Explosives for Traitors
+    type: Tweak
+  - message: Explosive and Shrapnel Grenades from spawning naturally
+    type: Remove
+  id: 8
+  time: '2024-10-21T16:59:10.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/12
+- author: Coolsurf6
+  changes:
+  - message: Dehydrated Carp Description is functional now
+    type: Fix
+  id: 9
+  time: '2024-10-22T03:09:58.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/11

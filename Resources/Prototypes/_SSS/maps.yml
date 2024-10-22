@@ -1,7 +1,7 @@
 ﻿- type: gameMapPool
   id: SuspicionMapPool
   maps:
-  # - ReachSSS
+  - ReachSSS
   - CentcommSSS
   - TrainSSS
 
