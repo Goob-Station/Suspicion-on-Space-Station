@@ -2,7 +2,7 @@
   parent: BoxCardboard
   id: BoxDehydratedCarp
   name: dehydrated carp box
-  description: uplink-carp-box-desc
+  description: Box filled with 4 dehydrated carps. Make sure your friends pet them as well!
   suffix: Traitor
   components:
   - type: StorageFill
