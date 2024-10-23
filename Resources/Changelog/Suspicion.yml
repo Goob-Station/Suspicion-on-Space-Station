@@ -108,3 +108,10 @@
   id: 10
   time: '2024-10-23T11:02:50.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/14
+- author: Coolsurf6
+  changes:
+  - message: Shuttle Walls no longer Reflect. Rejoice for Reach!
+    type: Tweak
+  id: 11
+  time: '2024-10-23T11:18:56.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/15
