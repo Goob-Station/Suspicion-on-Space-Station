@@ -3,6 +3,7 @@ using Content.Server._SSS.GridMarker;
 using Content.Server.Communications;
 using Content.Server.Ghost;
 using Content.Shared._SSS;
+using Content.Shared._SSS.SuspicionGameRule;
 using Content.Shared._SSS.SuspicionGameRule.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage;

@@ -1,28 +1,28 @@
 using Content.Client._SSS.UserInterface.Widgets;
+using Content.Client.Gameplay;
 using Content.Client.GameTicking.Managers;
-using Content.Client.Mind;
-using Content.Client.Roles;
+using Content.Shared._SSS.SuspicionGameRule;
 using Content.Shared._SSS.SuspicionGameRule.Components;
 using Content.Shared.Damage;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Robust.Client.Graphics;
 using Robust.Client.Player;
+using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Timing;
 
 namespace Content.Client._SSS.UserInterface;
 
-public sealed class SSSStatusUIController : UIController, IOnSystemChanged<DamageableSystem>
+public sealed class SSSStatusUIController : UIController, IOnSystemChanged<SSSStatusUISystem>, IOnStateChanged<GameplayState>
 {
     private ISawmill _log = default!;
 
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    [UISystemDependency] private readonly MobThresholdSystem? _mobThreshold;
-    [UISystemDependency] private readonly ClientGameTicker? _clientGameTicker;
+    [UISystemDependency] private readonly MobThresholdSystem? _mobThreshold = default!;
+    [UISystemDependency] private readonly ClientGameTicker? _clientGameTicker = default!;
 
     public override void Initialize()
     {
@@ -143,7 +143,6 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<Damag
 
     public void UpdateTimerEnd(SuspicionRuleTimerUpdate ev, EntitySessionEventArgs args)
     {
-        _log.Info($"WHAT AT {ev.EndTime}");
         _lastEndTime = ev.EndTime;
     }
 
@@ -215,13 +214,38 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<Damag
         _lastEndTime = ev.EndTime;
     }
 
-    public void OnSystemLoaded(DamageableSystem system)
+    public void OnSystemLoaded(SSSStatusUISystem system)
     {
         system.OnPlayerDamageChanged += UpdateHealth;
     }
 
-    public void OnSystemUnloaded(DamageableSystem system)
+    public void OnSystemUnloaded(SSSStatusUISystem system)
     {
         system.OnPlayerDamageChanged -= UpdateHealth;
+    }
+
+    public void OnStateEntered(GameplayState state)
+    {
+        _log.Debug($"Entered: {nameof(GameplayState)}");
+
+        if (EntityManager.TryGetComponent<DamageableComponent>(_playerManager.LocalEntity!.Value, out var damagable))
+            UpdateHealth((_playerManager.LocalEntity!.Value, damagable));
+        else
+            SetHealthBar(0, 100);
+
+        UpdateTimer(TimeSpan.Zero);
+
+        SetRoleUI("-", Color.Black);
+    }
+
+    public void OnStateExited(GameplayState state)
+    {
+        _log.Debug($"Entered: {nameof(GameplayState)}");
+
+        SetHealthBarUI("-", 0, 100);
+
+        UpdateTimer(TimeSpan.Zero);
+
+        SetRoleUI("-", Color.Black);
     }
 }

@@ -9,6 +9,7 @@ using Content.Server.Roles;
 using Content.Server.Temperature.Components;
 using Content.Server.Traits.Assorted;
 using Content.Shared._SSS;
+using Content.Shared._SSS.SuspicionGameRule;
 using Content.Shared._SSS.SuspicionGameRule.Components;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
@@ -27,8 +28,6 @@ namespace Content.Server._SSS.SuspicionGameRule;
 
 public sealed partial class SuspicionRuleSystem
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-
     [ValidatePrototypeId<EntityPrototype>]
     private const string MarkerPrototype = "SSSGridMarker";
 

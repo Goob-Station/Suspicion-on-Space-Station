@@ -17,6 +17,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
 using Content.Shared._SSS;
+using Content.Shared._SSS.SuspicionGameRule;
 using Content.Shared._SSS.SuspicionGameRule.Components;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
@@ -58,6 +59,7 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ContainerSystem _containerSystem = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     private readonly SoundSpecifier _traitorStartSound = new SoundPathSpecifier("/Audio/Ambience/Antag/traitor_start.ogg");
 

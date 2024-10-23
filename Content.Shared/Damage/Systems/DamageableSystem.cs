@@ -9,7 +9,6 @@ using Content.Shared.Radiation.Events;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -17,7 +16,6 @@ namespace Content.Shared.Damage
 {
     public sealed class DamageableSystem : EntitySystem
     {
-        [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly INetManager _netMan = default!;
@@ -26,8 +24,6 @@ namespace Content.Shared.Damage
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
         private EntityQuery<MindContainerComponent> _mindContainerQuery;
-
-        public Action<Entity<DamageableComponent>>? OnPlayerDamageChanged;
 
         public override void Initialize()
         {
@@ -113,11 +109,6 @@ namespace Content.Shared.Damage
                 _appearance.SetData(uid, DamageVisualizerKeys.DamageUpdateGroups, data, appearance);
             }
             RaiseLocalEvent(uid, new DamageChangedEvent(component, damageDelta, interruptsDoAfters, origin));
-
-            if (uid == _playerManager.LocalEntity)
-            {
-                OnPlayerDamageChanged?.Invoke((uid, component));
-            }
         }
 
         /// <summary>

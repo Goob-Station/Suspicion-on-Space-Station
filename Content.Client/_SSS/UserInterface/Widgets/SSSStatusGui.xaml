@@ -7,10 +7,6 @@
     HorizontalAlignment="Right"
     >
 
-    <!--
-    VerticalExpand="True"
-    Orientation="Horizontal"
-    -->
     <Control>
 
         <PanelContainer StyleClasses="AngleRect" />
