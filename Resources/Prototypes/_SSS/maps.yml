@@ -4,6 +4,7 @@
   - ReachSSS
   - CentcommSSS
   - TrainSSS
+  - CentcommHQSSS
 
 - type: gameMap
   id: ReachSSS
@@ -32,6 +33,21 @@
       components:
       - type: StationNameSetup
         mapNameTemplate: "Central Command"
+      - type: StationJobs
+        availableJobs:
+          Passenger: [ -1, -1 ]
+
+- type: gameMap
+  id: CentcommHQSSS
+  mapName: 'Central Command Headquarters'
+  mapPath: /Maps/_SSS/centcomm-hq-sss.yml
+  minPlayers: 10
+  stations:
+    CentcommHQSSS:
+      stationProto: StandardStationArena
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: "Central Command Headquarters"
       - type: StationJobs
         availableJobs:
           Passenger: [ -1, -1 ]
