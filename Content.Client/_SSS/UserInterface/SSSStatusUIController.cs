@@ -8,7 +8,6 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Client.Player;
-using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Timing;
@@ -75,7 +74,7 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<SSSSt
 
         if (mobState.CurrentState == MobState.Dead)
         {
-            SetHealthBarUI("DEAD", 0, 100);
+            SetHealthBarUI(Loc.GetString("suspicion-status-ui-health-dead"), 0, 100);
             return;
         }
 
@@ -149,7 +148,7 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<SSSSt
     public void PreroundStarted(SuspicionRulePreroundStarted ev, EntitySessionEventArgs args)
     {
         _lastEndTime = ev.PreroundEndTime;
-        SetRoleUI("Preround", Color.DarkGray);
+        SetRoleToPreround();
     }
 
     private void SetRoleUI(string role, Color color)
@@ -183,17 +182,24 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<SSSSt
 
     private void SetRoleToPreround()
     {
-        SetRoleUI("Preround", Color.Gray);
+        SetRoleUI(Loc.GetString("suspicion-status-ui-role-preround"), Color.Gray);
     }
 
     private void SetRoleToObserbing()
     {
-        SetRoleUI("Obserbing", Color.Gray);
+        SetRoleUI(Loc.GetString("suspicion-status-ui-role-obserbing"), Color.Gray);
     }
 
     public void UpdateRoleDisplay(SuspicionRuleUpdateRole ev, EntitySessionEventArgs args)
     {
-        SetRoleUI(ev.NewRole.ToString(), Color.FromName(ev.NewRole.GetRoleColor()));
+        var roleName = Loc.GetString(ev.NewRole switch
+        {
+            SuspicionRole.Traitor => "roles-antag-suspicion-traitor-name",
+            SuspicionRole.Detective => "roles-antag-suspicion-detective-name",
+            SuspicionRole.Innocent => "roles-antag-suspicion-innocent-name",
+            _ => "roles-antag-suspicion-unknown",
+        });
+        SetRoleUI(roleName, Color.FromName(ev.NewRole.GetRoleColor()));
     }
 
     public void UpdatePlayerSpawn(SuspicionRulePlayerSpawn ev, EntitySessionEventArgs args)
@@ -226,8 +232,6 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<SSSSt
 
     public void OnStateEntered(GameplayState state)
     {
-        _log.Debug($"Entered: {nameof(GameplayState)}");
-
         if (EntityManager.TryGetComponent<DamageableComponent>(_playerManager.LocalEntity!.Value, out var damagable))
             UpdateHealth((_playerManager.LocalEntity!.Value, damagable));
         else
@@ -240,8 +244,6 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<SSSSt
 
     public void OnStateExited(GameplayState state)
     {
-        _log.Debug($"Entered: {nameof(GameplayState)}");
-
         SetHealthBarUI("-", 0, 100);
 
         UpdateTimer(TimeSpan.Zero);
