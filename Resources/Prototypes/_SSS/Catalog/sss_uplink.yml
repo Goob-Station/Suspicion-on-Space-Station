@@ -265,7 +265,7 @@
   description: uplink-stimpack-desc
   productEntity: Stimpack
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - SSSTraitorChemicals
 
