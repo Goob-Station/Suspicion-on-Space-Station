@@ -18,7 +18,7 @@
   categories:
   - SSSTraitorWeapons
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
 
 - type: listing
   id: UplinkRifleMosinSSS
@@ -28,7 +28,7 @@
   categories:
   - SSSTraitorWeapons
   cost:
-    Telecrystal: 1
+    Telecrystal: 2
 
 - type: listing
   id: UplinkEswordSSS
@@ -39,7 +39,7 @@
   categories:
   - SSSTraitorWeapons
   cost:
-    Telecrystal: 6
+    Telecrystal: 4
 
 - type: listing
   id: UplinkEnergyDaggerSSS
@@ -50,7 +50,7 @@
   categories:
   - SSSTraitorWeapons
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
 
 - type: listing
   id: UplinkThrowingKnivesKitSSS
@@ -61,7 +61,7 @@
   categories:
   - SSSTraitorWeapons
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
 
 - type: listing
   id: UplinkDisposableTurretSSS
@@ -71,7 +71,7 @@
   categories:
   - SSSTraitorWeapons
   cost:
-    Telecrystal: 6
+    Telecrystal: 4
 
 - type: listing
   id: UplinkSniperBundleSSS
@@ -82,7 +82,7 @@
   categories:
   - SSSTraitorWeapons
   cost:
-    Telecrystal: 8
+    Telecrystal: 4
 
 - type: listing
   id: UplinkExplosiveGrenadeSSS
@@ -112,7 +112,7 @@
   categories:
   - SSSTraitorExplosives
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
 
 - type: listing
   id: UplinkSupermatterGrenadeSSS
@@ -122,7 +122,7 @@
   categories:
   - SSSTraitorExplosives
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
 
 - type: listing
   id: UplinkWhiteholeGrenadeSSS
@@ -142,7 +142,7 @@
   categories:
   - SSSTraitorExplosives
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
 
 - type: listing
   id: UplinkExplodingPenSSS
@@ -151,7 +151,7 @@
   icon: { sprite: /Textures/Objects/Misc/pens.rsi, state: pen }
   productEntity: PenExplodingBox
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - SSSTraitorExplosives
 
@@ -164,7 +164,7 @@
   categories:
   - SSSTraitorExplosives
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
 
 - type: listing
   id: UplinkClusterGrenadeSSS
@@ -172,7 +172,7 @@
   description: uplink-cluster-grenade-desc
   productEntity: ClusterGrenade
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
   categories:
   - SSSTraitorExplosives
 
@@ -182,7 +182,7 @@
   description: uplink-shrapnel-grenade-desc
   productEntity: GrenadeShrapnel
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - SSSTraitorExplosives
 
@@ -192,7 +192,7 @@
   description: uplink-incendiary-grenade-desc
   productEntity: GrenadeIncendiary
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - SSSTraitorExplosives
 
@@ -203,7 +203,7 @@
   icon: { sprite: /Textures/Objects/Misc/pens.rsi, state: pen }
   productEntity: HypopenBox
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - SSSTraitorChemicals
 
@@ -214,7 +214,7 @@
   icon: { sprite: /Textures/Objects/Fun/Darts/dart_red.rsi, state: icon }
   productEntity: HypoDartBox
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - SSSTraitorChemicals
 
@@ -225,7 +225,7 @@
   icon: { sprite: /Textures/Objects/Storage/boxicons.rsi, state: vials }
   productEntity: ChemicalSynthesisKit
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - SSSTraitorChemicals
 
@@ -235,7 +235,7 @@
   description: uplink-nocturine-chemistry-bottle-desc
   productEntity: NocturineChemistryBottle
   cost:
-    Telecrystal: 6
+    Telecrystal: 2
   categories:
   - SSSTraitorChemicals
 
@@ -245,7 +245,7 @@
   description: uplink-combat-medkit-desc
   productEntity: MedkitCombatFilled
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
   categories:
   - SSSTraitorChemicals
 
@@ -275,7 +275,7 @@
   description: uplink-stealth-box-desc
   productEntity: StealthBox
   cost:
-    Telecrystal: 1
+    Telecrystal: 2
   categories:
   - SSSTraitorDisruption
 
@@ -285,7 +285,7 @@
   description: uplink-chameleon-projector-desc
   productEntity: ChameleonProjector
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - SSSTraitorDisruption
 
@@ -323,23 +323,13 @@
   - SSSTraitorWearables
 
 - type: listing
-  id: UplinkClothingShoesBootsMagSyndieSSS
-  name: uplink-clothing-shoes-boots-mag-syndie-name
-  description: uplink-clothing-shoes-boots-mag-syndie-desc
-  productEntity: ClothingShoesBootsMagSyndie
-  cost:
-    Telecrystal: 1
-  categories:
-  - SSSTraitorWearables
-
-- type: listing
   id: UplinkHardsuitSyndieSSS
   name: uplink-hardsuit-syndie-name
   description: uplink-hardsuit-syndie-desc
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndicate.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateHardsuitBundle
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - SSSTraitorWearables
 
@@ -349,7 +339,7 @@
   description: uplink-armour-upgrade-desc
   productEntity: ClothingOuterVestWebMercSuspicionUpgradeKit
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - SSSTraitorWearables
   conditions:
@@ -363,7 +353,7 @@
   icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
   productEntity: CrateCybersunJuggernautBundle
   cost:
-    Telecrystal: 12
+    Telecrystal: 8
   categories:
   - SSSTraitorWearables
 
@@ -373,7 +363,7 @@
   description: uplink-carp-box-desc
   productEntity: BoxDehydratedCarp
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - SSSTraitorAllies
 
@@ -400,7 +390,7 @@
   categories:
   - SSSDetectiveExplosives
   cost:
-    Telecrystal: 1
+    Telecrystal: 2
 
 - type: listing
   id: UplinkArmourUpgradeKitSSSDetective
