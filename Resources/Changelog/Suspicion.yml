@@ -100,3 +100,11 @@
   id: 9
   time: '2024-10-22T03:09:58.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/11
+- author: Simyon
+  changes:
+  - message: The nuclear option will now trigger the timer instead of instantly exploding
+      upon taking too much damage.
+    type: Tweak
+  id: 10
+  time: '2024-10-23T11:02:50.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/14
