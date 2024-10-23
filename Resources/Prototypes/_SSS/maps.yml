@@ -4,6 +4,7 @@
   - ReachSSS
   - CentcommSSS
   - TrainSSS
+  - CentcommHQSSS
 
 - type: gameMap
   id: ReachSSS
