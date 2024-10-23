@@ -293,9 +293,7 @@
         !type:DamageTrigger
         damage: 50
       behaviors:
-      - !type:TriggerBehavior
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
+      - !type:TimerStartBehavior
   - type: Appearance
   - type: TimerTriggerVisuals
     primingSound:
