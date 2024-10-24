@@ -1,8 +1,10 @@
 ﻿using System.Linq;
 using Content.Server._SSS.GridMarker;
-using Content.Server._SSS.SuspicionGameRule.Components;
 using Content.Server.Communications;
 using Content.Server.Ghost;
+using Content.Shared._SSS;
+using Content.Shared._SSS.SuspicionGameRule;
+using Content.Shared._SSS.SuspicionGameRule.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -11,13 +13,10 @@ using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Hands.Components;
-using Content.Shared.Implants.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Overlays;
 using Content.Shared.Popups;
-using Content.Shared.Store.Components;
-using Robust.Shared.Network;
 
 namespace Content.Server._SSS.SuspicionGameRule;
 
@@ -63,6 +62,8 @@ public sealed partial class SuspicionRuleSystem
 
             sus.EndAt += TimeSpan.FromSeconds(sus.TimeAddedPerKill);
             sus.AnnouncedTimeLeft.Clear();
+
+            RaiseNetworkEvent(new SuspicionRuleTimerUpdate(_gameTicker.RoundDuration() + sus.EndAt));
 
             var allTraitors = FindAllOfType(SuspicionRole.Traitor);
             // Ok this is fucking horrible

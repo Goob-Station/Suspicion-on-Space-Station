@@ -1,13 +1,12 @@
 ﻿using Content.Shared.NPC.Prototypes;
-using Content.Shared.Radio;
 using Content.Shared.Roles;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server._SSS.SuspicionGameRule.Components;
+namespace Content.Shared._SSS.SuspicionGameRule.Components;
 
-[RegisterComponent, Access(typeof(SuspicionRuleSystem))]
+[RegisterComponent]
 public sealed partial class SuspicionRuleComponent : Component
 {
     #region State management

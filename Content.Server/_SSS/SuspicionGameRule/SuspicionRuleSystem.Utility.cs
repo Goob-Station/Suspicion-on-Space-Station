@@ -1,4 +1,4 @@
-﻿using Content.Server._SSS.SuspicionGameRule.Components;
+﻿using Content.Shared._SSS.SuspicionGameRule.Components;
 using Content.Shared.Chat;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
@@ -7,7 +7,6 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Content.Shared.Store.Components;
-using Robust.Server.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 

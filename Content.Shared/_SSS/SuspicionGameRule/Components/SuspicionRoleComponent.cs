@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Roles;
+using Robust.Shared.Serialization;
 
-namespace Content.Server._SSS.SuspicionGameRule.Components;
+namespace Content.Shared._SSS.SuspicionGameRule.Components;
 
 [RegisterComponent]
 public sealed partial class SuspicionRoleComponent : BaseMindRoleComponent
@@ -23,6 +24,7 @@ public static class SusRoleExtensions
     }
 }
 
+[Serializable, NetSerializable]
 public enum SuspicionRole
 {
     Pending,

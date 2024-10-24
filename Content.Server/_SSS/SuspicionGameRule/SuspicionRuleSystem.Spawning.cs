@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Content.Server._SSS.SuspicionGameRule.Components;
 using Content.Server.Administration.Commands;
 using Content.Server.Atmos.Components;
 using Content.Server.GameTicking;
@@ -9,6 +8,9 @@ using Content.Server.Radio.Components;
 using Content.Server.Roles;
 using Content.Server.Temperature.Components;
 using Content.Server.Traits.Assorted;
+using Content.Shared._SSS;
+using Content.Shared._SSS.SuspicionGameRule;
+using Content.Shared._SSS.SuspicionGameRule.Components;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Atmos.Rotting;
@@ -122,6 +124,8 @@ public sealed partial class SuspicionRuleSystem
                 Loc.GetString("traitor-briefing"),
                 Color.Red,
                 _traitorStartSound);
+
+            RaiseNetworkEvent(new SuspicionRuleUpdateRole(SuspicionRole.Traitor), ownedEntity.Value);
         }
 
         for (var i = traitorCount; i < traitorCount + detectiveCount; i++)
@@ -146,6 +150,7 @@ public sealed partial class SuspicionRuleSystem
                 Loc.GetString("detective-briefing"),
                 Color.Blue,
                 briefingSound:null);
+            RaiseNetworkEvent(new SuspicionRuleUpdateRole(SuspicionRole.Detective), ownedEntity.Value);
         }
 
         // Anyone who isn't a traitor will get the innocent role.
@@ -164,9 +169,14 @@ public sealed partial class SuspicionRuleSystem
                 Loc.GetString("innocent-briefing"),
                 briefingColor: Color.Green,
                 briefingSound:null);
+
+            RaiseNetworkEvent(new SuspicionRuleUpdateRole(SuspicionRole.Innocent), ownedEntity.Value);
         }
 
         _chatManager.DispatchServerAnnouncement($"The round has started. There are {traitorCount} traitors among us.");
+
+        // SIMYON WHY
+        RaiseNetworkEvent(new SuspicionRuleTimerUpdate(_gameTicker.RoundDuration() + component.EndAt));
     }
 
     private void OnBeforeSpawn(PlayerBeforeSpawnEvent ev)
@@ -175,6 +185,7 @@ public sealed partial class SuspicionRuleSystem
             .EnumeratePrototypes<AccessLevelPrototype>()
             .Select(p => new ProtoId<AccessLevelPrototype>(p.ID))
             .ToArray();
+
 
         var query = EntityQueryEnumerator<SuspicionRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var sus, out var gameRule))
@@ -188,8 +199,30 @@ public sealed partial class SuspicionRuleSystem
                 _chatManager.DispatchServerMessage(ev.Player, "Sorry, the game has already started. You have been made an observer.");
                 GameTicker.SpawnObserver(ev.Player); // Players can't join mid-round.
                 ev.Handled = true;
+                if (sus.GameState == SuspicionGameState.InProgress)
+                {
+                    RaiseNetworkEvent(new SuspicionRulePlayerSpawn()
+                    {
+                        GameState = SuspicionGameState.InProgress,
+                        EndTime = _gameTicker.RoundDuration() + sus.EndAt,
+                    }, ev.Player);
+                }
+                else if (sus.GameState == SuspicionGameState.PostRound)
+                {
+                    RaiseNetworkEvent(new SuspicionRulePlayerSpawn()
+                    {
+                        GameState = SuspicionGameState.PostRound,
+                        EndTime = TimeSpan.MinValue,
+                    }, ev.Player);
+                }
                 return;
             }
+
+            RaiseNetworkEvent(new SuspicionRulePlayerSpawn()
+            {
+                GameState = SuspicionGameState.Preparing,
+                EndTime = TimeSpan.FromSeconds(sus.PreparingDuration),
+            }, ev.Player);
 
             var newMind = _mindSystem.CreateMind(ev.Player.UserId, ev.Profile.Name);
             _mindSystem.SetUserId(newMind, ev.Player.UserId);
