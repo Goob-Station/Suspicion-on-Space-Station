@@ -129,3 +129,17 @@
   id: 13
   time: '2024-10-24T07:11:31.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/13
+- author: Simyon
+  changes:
+  - message: Added more guns to CC HQ.
+    type: Tweak
+  id: 14
+  time: '2024-10-24T10:24:36.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/18
+- author: Coolsurf6
+  changes:
+  - message: TC costs for almost all Traitor Items have been reduced.
+    type: Tweak
+  id: 15
+  time: '2024-10-24T10:23:57.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/16
