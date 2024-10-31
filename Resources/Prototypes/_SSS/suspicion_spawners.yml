@@ -99,8 +99,6 @@
         - id: Chainsaw
         - id: Stunbaton # Not as unfair as you'd think it is, almost everything in this tier is better than it.
         - id: WeaponTeslaGun
-        - id: WeaponTetherGunAdmin
-        - id: WeaponForceGunAdmin
         - id: WeaponMinigun
         - id: WeaponLaserCannon
         - id: WeaponXrayCannon
