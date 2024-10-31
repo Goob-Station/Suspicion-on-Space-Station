@@ -143,3 +143,10 @@
   id: 15
   time: '2024-10-24T10:23:57.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/16
+- author: Simyon
+  changes:
+  - message: Removed forceguns from the lootpool.
+    type: Remove
+  id: 16
+  time: '2024-10-31T00:50:43.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/22
