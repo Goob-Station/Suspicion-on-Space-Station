@@ -98,8 +98,8 @@ public sealed class VotingSystem : EntitySystem
         }
 
         // Must be whitelisted
-        if (!await _dbManager.GetWhitelistStatusAsync(initiator.UserId))
-            return false;
+        //if (!await _dbManager.GetWhitelistStatusAsync(initiator.UserId))
+        //    return false;
 
         return true;
     }
