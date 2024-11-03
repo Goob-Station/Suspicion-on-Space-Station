@@ -3,7 +3,8 @@
   maps:
   - ReachSSS
   - CentcommSSS
-  - TrainSSS
+  #- TrainSSS
+  # train sucks for sss holy shit
   - CentcommHQSSS
 
 - type: gameMap
