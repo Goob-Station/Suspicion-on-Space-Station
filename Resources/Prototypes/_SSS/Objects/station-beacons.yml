@@ -36,7 +36,7 @@
   suffix: Centcomm Surveillance Area
   components:
   - type: NavMapBeacon
-    defaultText: station-beacon-surveillance-area
+    defaultText: station-beacon-central-surveillance-area
 
 - type: entity
   parent: DefaultStationBeaconCommand
