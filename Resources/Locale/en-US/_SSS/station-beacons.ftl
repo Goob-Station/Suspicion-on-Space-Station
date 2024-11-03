@@ -1,0 +1,12 @@
+station-beacon-deathsquad-armory = Deathsquad Armory
+station-beacon-ert-armory = ERT Armory
+station-beacon-commander = Commander's Quarters
+station-beacon-commander-vault = Commander's Vault
+station-beacon-surveillance-area = Central Surveillance Area
+station-beacon-ert-room = ERT Meeting Room
+station-beacon-ert-dock = ERT Docking Area
+station-beacon-arrivals-security-checkpoint = Arrivals Security Checkpoint
+station-beacon-arivals-waiting-area = Arrivals Waiting Area
+station-beacon-civilian-area-checkpoint = Civilian Area Checkpoint
+station-beacon-civilian-dock = Civilian Docking Area
+station-beacon-fuel-room = Fuel Rooom
