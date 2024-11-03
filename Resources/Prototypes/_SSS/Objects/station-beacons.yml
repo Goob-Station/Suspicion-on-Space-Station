@@ -1,0 +1,103 @@
+- type: entity
+  parent: DefaultStationBeaconSecurity
+  id: DefaultStationBeaconArmoryDeathsquad
+  suffix: Deathsquad Armory
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-deathsquad-armory
+
+- type: entity
+  parent: DefaultStationBeaconSecurity
+  id: DefaultStationBeaconArmoryERT
+  suffix: ERT Armory
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-ert-armory
+
+- type: entity
+  parent: DefaultStationBeaconCommand
+  id: DefaultStationBeaconCommander
+  suffix: Centcomm Commander's Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-commander
+
+- type: entity
+  parent: DefaultStationBeaconCommand
+  id: DefaultStationBeaconCommanderVault
+  suffix: Centcomm Commander's Vault
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-commander-vault
+
+- type: entity
+  parent: DefaultStationBeaconCommand
+  id: DefaultStationBeaconCentcommSurveillance
+  suffix: Centcomm Surveillance Area
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-central-surveillance-area
+
+- type: entity
+  parent: DefaultStationBeaconCommand
+  id: DefaultStationBeaconERTMeetingRoom
+  suffix: Centcomm ERT Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-ert-meeting-room
+
+- type: entity
+  parent: DefaultStationBeaconCommand
+  id: DefaultStationBeaconERTDocking
+  suffix: Centcomm ERT Dock
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-ert-dock
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconCentcommCivilianCheckpoint
+  suffix: Centcomm Civilian Checkpoint
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-civilian-area-checkpoint
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconCentcommCivilianDocking
+  suffix: Centcomm Civilian Dock
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-civilian-dock
+
+- type: entity
+  parent: DefaultStationBeaconSecurity
+  id: DefaultStationBeaconArrivalsSecurityCheckpoint
+  suffix: Arrivals Security Checkpoint
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-arrivals-security-checkpoint
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconArrivalsWaitingArea
+  suffix: Arrivals Waiting Area
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-arivals-waiting-area
+
+- type: entity
+  parent: DefaultStationBeaconSupply
+  id: DefaultStationBeaconCargo
+  suffix: Cargo
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-cargo
+
+- type: entity
+  parent: DefaultStationBeaconEngineering
+  id: DefaultStationBeaconFuelRoom
+  suffix: Fuel Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-fuel-room
