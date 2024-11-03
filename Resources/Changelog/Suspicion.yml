@@ -150,3 +150,10 @@
   id: 16
   time: '2024-10-31T00:50:43.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/22
+- author: Flareguy
+  changes:
+  - message: Added station beacons to Centcomm.
+    type: Add
+  id: 17
+  time: '2024-11-03T13:04:39.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/24
