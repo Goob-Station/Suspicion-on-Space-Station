@@ -35,6 +35,12 @@
   id: ClothingOuterVestWebMercSuspicion
   suffix: SSS
   components:
+  - type: Storage
+    grid:
+    - 0,0,2,1
+    blacklist:
+      components:
+      - Gun
   - type: Armor
     modifiers:
       coefficients:
