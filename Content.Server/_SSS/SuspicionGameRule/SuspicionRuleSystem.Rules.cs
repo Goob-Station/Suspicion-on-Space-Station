@@ -51,6 +51,8 @@ public sealed partial class SuspicionRuleSystem
         if (args.NewMobState != MobState.Dead) // Someone died.
             return;
 
+        DropAllItemsOnEntity(args.Target);
+
         var query = EntityQueryEnumerator<SuspicionRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var ruleId, out var sus, out var gameRule))
         {
