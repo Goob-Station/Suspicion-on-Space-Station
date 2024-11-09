@@ -3,9 +3,11 @@ using Content.Shared.Chat;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Implants.Components;
+using Content.Shared.Inventory;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Content.Shared.Storage;
 using Content.Shared.Store.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
@@ -118,6 +120,32 @@ public sealed partial class SuspicionRuleSystem
         }
 
         return result;
+    }
+
+    public void DropAllItemsOnEntity(EntityUid entity)
+    {
+        if (!TryComp(entity, out InventoryComponent? inventory))
+            return;
+
+        var slots = _inventory.GetSlotEnumerator(new Entity<InventoryComponent?>(entity, inventory), SlotFlags.All);
+        var targetPos = _transformSystem.GetWorldPosition(entity);
+
+        while (slots.MoveNext(out var slot))
+        {
+            foreach (var rootContainerEnt in slot.ContainedEntities)
+            {
+                if (!TryComp(rootContainerEnt, out StorageComponent? storage))
+                    continue;
+
+                var dumpQueue = new Queue<EntityUid>(storage.Container.ContainedEntities);
+
+                foreach (var item in dumpQueue)
+                {
+                    var transform = Transform(item);
+                    _transformSystem.SetWorldPositionRotation(item, targetPos + _random.NextVector2Box() / 4, _random.NextAngle(), transform);
+                }
+            }
+        }
     }
 
     public void AddKeyToRadio(EntityUid entity, string keyProto)

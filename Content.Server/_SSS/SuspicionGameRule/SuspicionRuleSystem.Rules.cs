@@ -51,6 +51,8 @@ public sealed partial class SuspicionRuleSystem
         if (args.NewMobState != MobState.Dead) // Someone died.
             return;
 
+        DropAllItemsOnEntity(args.Target);
+
         var query = EntityQueryEnumerator<SuspicionRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var ruleId, out var sus, out var gameRule))
         {
@@ -152,18 +154,21 @@ public sealed partial class SuspicionRuleSystem
                             AddTcToPlayer(args.Examiner, tc);
                             implantT.Value.Comp.Balance.Clear();
 
-                            if (_playerManager.TryGetSessionByEntity(args.Examiner, out var session))
+                            if (tc >= 0)
                             {
-                                var msgFound = Loc.GetString("suspicion-found-tc", ("tc", tc));
-                                _chatManager.ChatMessageToOne(
-                                    ChatChannel.Server,
-                                    msgFound,
-                                    msgFound,
-                                    EntityUid.Invalid,
-                                    false,
-                                    client: session.Channel,
-                                    recordReplay:true
-                                );
+                                if (_playerManager.TryGetSessionByEntity(args.Examiner, out var session))
+                                {
+                                    var msgFound = Loc.GetString("suspicion-found-tc", ("tc", tc));
+                                    _chatManager.ChatMessageToOne(
+                                        ChatChannel.Server,
+                                        msgFound,
+                                        msgFound,
+                                        EntityUid.Invalid,
+                                        false,
+                                        client: session.Channel,
+                                        recordReplay:true
+                                    );
+                                }
                             }
                         }
                     }
