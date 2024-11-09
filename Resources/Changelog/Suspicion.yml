@@ -164,3 +164,15 @@
   id: 18
   time: '2024-11-08T02:15:24.0000000+00:00'
   url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/25
+- author: Simyon264
+  changes:
+  - message: Items in bags will now drop from a person once they die.
+    type: Add
+  - message: Removed blastdoors on Central Command.
+    type: Remove
+  - message: Fixed TC finding message on Traitors for detectives apperaing multiple
+      times.
+    type: Fix
+  id: 19
+  time: '2024-11-09T00:36:00.0000000+00:00'
+  url: https://github.com/Simyon264/Suspicion-on-Space-Station/pull/26
