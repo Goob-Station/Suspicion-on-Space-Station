@@ -85,28 +85,26 @@ public sealed partial class SuspicionRuleSystem
     /// </summary>
     private List<(EntityUid body, Entity<MindRoleComponent, SuspicionRoleComponent> sus)> FindAllOfType(SuspicionRole role, bool filterDead = true)
     {
-        var allMinds = new List<EntityUid>();
+        var allMinds = new  HashSet<Entity<MindComponent>>();
         if (filterDead)
         {
-            allMinds = _mindSystem.GetAliveHumansExcept(EntityUid.Invalid);
+            allMinds = _mindSystem.GetAliveHumans(EntityUid.Invalid);
         }
         else
         {
-            var query = EntityQueryEnumerator<MindContainerComponent, HumanoidAppearanceComponent>();
-            while (query.MoveNext(out var _, out var mc, out _))
+            var query = EntityQueryEnumerator<MindComponent, HumanoidAppearanceComponent>();
+            while (query.MoveNext(out var mind, out var mindComp, out _))
             {
-                // the player needs to have a mind and not be the excluded one
-                if (mc.Mind == null)
-                    continue;
-
-                allMinds.Add(mc.Mind.Value);
+                allMinds.Add(new Entity<MindComponent>(mind, mindComp));
             }
         }
 
         var result = new List<(EntityUid body, Entity<MindRoleComponent, SuspicionRoleComponent>)>();
         foreach (var mind in allMinds)
         {
-            if (!_roleSystem.MindHasRole<SuspicionRoleComponent>(mind, out var roleComp))
+            var nullableMind = new Entity<MindComponent?>(mind.Owner, mind.Comp); // I see your shitcode, and i raise you MORE shit code.
+
+            if (!_roleSystem.MindHasRole<SuspicionRoleComponent>(nullableMind, out var roleComp))
                 continue;
 
             if (roleComp.Value.Comp2.Role != role)

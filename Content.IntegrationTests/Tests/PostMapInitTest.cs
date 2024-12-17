@@ -62,11 +62,13 @@ namespace Content.IntegrationTests.Tests
             "Train",
             "Oasis",
             "Cog",
+            "Amber",
 
             // SSS - NEW MAPS
             "CentcommSSS",
             "ReachSSS",
             "TrainSSS"
+
         };
 
         /// <summary>
