@@ -88,13 +88,16 @@ public sealed partial class SuspicionRuleSystem
         var allMinds = new  HashSet<Entity<MindComponent>>();
         if (filterDead)
         {
-            allMinds = _mindSystem.GetAliveHumans(EntityUid.Invalid);
+            allMinds = _mindSystem.GetAliveHumans();
         }
         else
         {
-            var query = EntityQueryEnumerator<MindComponent, HumanoidAppearanceComponent>();
-            while (query.MoveNext(out var mind, out var mindComp, out _))
+            var query = EntityQueryEnumerator<HumanoidAppearanceComponent>();
+            while (query.MoveNext(out var uid, out _))
             {
+                if (!_mindSystem.TryGetMind(uid, out var mind, out var mindComp))
+                    continue;
+
                 allMinds.Add(new Entity<MindComponent>(mind, mindComp));
             }
         }
