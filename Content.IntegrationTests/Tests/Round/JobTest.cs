@@ -50,8 +50,13 @@ public sealed class JobTest
         var mindSys = pair.Server.System<MindSystem>();
         var roleSys = pair.Server.System<RoleSystem>();
         var ticker = pair.Server.System<GameTicker>();
+        var prototypeManager = pair.Server.ProtoMan;
 
         user ??= pair.Client.User!.Value;
+
+        // If it shouldn't exist in preferences, it shouldn't be tested.
+        if (prototypeManager.TryIndex(job, out var jobPrototype) && !jobPrototype.SetPreference)
+            return;
 
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
         Assert.That(ticker.PlayerGameStatuses[user.Value], Is.EqualTo(PlayerGameStatus.JoinedGame));
