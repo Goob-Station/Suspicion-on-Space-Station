@@ -149,7 +149,7 @@ public sealed partial class SuspicionRuleSystem
             _antagSelectionSystem.SendBriefing(
                 ownedEntity.Value,
                 Loc.GetString("detective-briefing"),
-                Color.Blue,
+                Color.LightBlue,
                 briefingSound:null);
             RaiseNetworkEvent(new SuspicionRuleUpdateRole(SuspicionRole.Detective), ownedEntity.Value);
         }
