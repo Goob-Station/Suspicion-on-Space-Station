@@ -31,6 +31,7 @@ using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -63,6 +64,7 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
     [Dependency] private readonly ContainerSystem _containerSystem = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private readonly SoundSpecifier _traitorStartSound = new SoundPathSpecifier("/Audio/Ambience/Antag/traitor_start.ogg");
 
@@ -70,6 +72,8 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
     public override void Initialize()
     {
         base.Initialize();
+
+        InitializeCVars();
 
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(OnBeforeSpawn);
         SubscribeLocalEvent<SuspicionRoleComponent, GetBriefingEvent>(OnGetBriefing);
@@ -129,11 +133,11 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
 
         component.GameState = SuspicionGameState.Preparing;
 
-        Timer.Spawn(TimeSpan.FromSeconds(component.PreparingDuration - 5), () =>  _chatManager.DispatchServerAnnouncement("The round will start in 5 seconds."));
-        Timer.Spawn(TimeSpan.FromSeconds(component.PreparingDuration), () =>  StartRound(uid, component, gameRule));
+        Timer.Spawn(TimeSpan.FromSeconds(_preparingDuration - 5), () =>  _chatManager.DispatchServerAnnouncement("The round will start in 5 seconds."));
+        Timer.Spawn(TimeSpan.FromSeconds(_preparingDuration), () =>  StartRound(uid, component, gameRule));
         Log.Debug("Starting a game of Suspicion.");
 
-        RaiseNetworkEvent(new SuspicionRulePreroundStarted(TimeSpan.FromSeconds(component.PreparingDuration)));
+        RaiseNetworkEvent(new SuspicionRulePreroundStarted(TimeSpan.FromSeconds(_preparingDuration)));
     }
 
     public override void Update(float frameTime)
