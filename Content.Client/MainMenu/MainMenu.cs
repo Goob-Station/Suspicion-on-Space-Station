@@ -7,6 +7,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared;
 using Robust.Shared.Configuration;
+using Robust.Shared.Console;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
 using UsernameHelpers = Robust.Shared.AuthLib.UsernameHelpers;
@@ -26,11 +27,13 @@ namespace Content.Client.MainMenu
         [Dependency] private readonly IResourceCache _resourceCache = default!;
         [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
+        [Dependency] private readonly IConsoleHost _console = default!;
 
         private ISawmill _sawmill = default!;
 
         private MainMenuControl _mainMenuControl = default!;
         private bool _isConnecting;
+        private bool _shouldGoLobby;
 
         // ReSharper disable once InconsistentNaming
         private static readonly Regex IPv6Regex = new(@"\[(.*:.*:.*)](?::(\d+))?");
@@ -46,16 +49,19 @@ namespace Content.Client.MainMenu
             _mainMenuControl.QuitButton.OnPressed += QuitButtonPressed;
             _mainMenuControl.OptionsButton.OnPressed += OptionsButtonPressed;
             _mainMenuControl.DirectConnectButton.OnPressed += DirectConnectButtonPressed;
+            _mainMenuControl.GoLobbyButton.OnPressed += GoLobbyButtonPressed;
             _mainMenuControl.AddressBox.OnTextEntered += AddressBoxEntered;
             _mainMenuControl.ChangelogButton.OnPressed += ChangelogButtonPressed;
 
             _client.RunLevelChanged += RunLevelChanged;
+            _client.PlayerJoinedGame += OnPlayerJoinedGame;
         }
 
         /// <inheritdoc />
         protected override void Shutdown()
         {
             _client.RunLevelChanged -= RunLevelChanged;
+            _client.PlayerJoinedGame -= OnPlayerJoinedGame;
             _netManager.ConnectFailed -= _onConnectFailed;
 
             _mainMenuControl.Dispose();
@@ -82,12 +88,18 @@ namespace Content.Client.MainMenu
             TryConnect(input.Text);
         }
 
+        private void GoLobbyButtonPressed(BaseButton.ButtonEventArgs obj)
+        {
+            var input = _mainMenuControl.AddressBox;
+            TryConnect(input.Text);
+
+            _shouldGoLobby = true;
+        }
+
         private void AddressBoxEntered(LineEdit.LineEditEventArgs args)
         {
             if (_isConnecting)
-            {
                 return;
-            }
 
             TryConnect(args.Text);
         }
@@ -141,6 +153,15 @@ namespace Content.Client.MainMenu
             }
         }
 
+        private void OnPlayerJoinedGame(object? sender, PlayerEventArgs e)
+        {
+            if (_shouldGoLobby)
+            {
+                _console.ExecuteCommand("golobby");
+                _shouldGoLobby = false;
+            }
+        }
+
         private void ParseAddress(string address, out string ip, out ushort port)
         {
             var match6 = IPv6Regex.Match(address);
@@ -190,6 +211,7 @@ namespace Content.Client.MainMenu
         {
             _isConnecting = state;
             _mainMenuControl.DirectConnectButton.Disabled = state;
+            _mainMenuControl.GoLobbyButton.Disabled = state;
         }
     }
 }
