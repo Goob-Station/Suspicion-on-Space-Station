@@ -20,11 +20,8 @@ using Content.Shared.Examine;
 using Content.Shared.Gravity;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
-using Content.Shared.Stunnable;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
@@ -81,9 +78,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
     [Dependency] private   readonly UseDelaySystem _useDelay = default!;
     [Dependency] private   readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private   readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private   readonly StaminaSystem _stamina = default!;
-    [Dependency] private   readonly SharedStunSystem _stun = default!;
     [Dependency] private   readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private   readonly SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private   readonly IConfigurationManager _config = default!;
@@ -94,7 +89,6 @@ public abstract partial class SharedGunSystem : EntitySystem
     protected const string AmmoExamineColor = "yellow";
     protected const string FireRateExamineColor = "yellow";
     public const string ModeExamineColor = "cyan";
-    public const float GunClumsyChance = 0.5f;
     private const float DamagePitchVariation = 0.05f;
     public bool GunPrediction { get; private set; }
 
@@ -430,26 +424,14 @@ public abstract partial class SharedGunSystem : EntitySystem
     {
         userImpulse = true;
 
-        // Try a clumsy roll
-        // TODO: Who put this here
-        if (TryComp<ClumsyComponent>(user, out var clumsy) && gun.ClumsyProof == false)
+        if (user != null)
         {
-            for (var i = 0; i < ammo.Count; i++)
+            var selfEvent = new SelfBeforeGunShotEvent(user.Value, (gunUid, gun), ammo);
+            RaiseLocalEvent(user.Value, selfEvent);
+            if (selfEvent.Cancelled)
             {
-                if (_interaction.TryRollClumsy(user.Value, GunClumsyChance, clumsy))
-                {
-                    // Wound them
-                    Damageable.TryChangeDamage(user, clumsy.ClumsyDamage, origin: user);
-                    _stun.TryParalyze(user.Value, TimeSpan.FromSeconds(3f), true);
-
-                    // Apply salt to the wound ("Honk!")
-                    Audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/bang.ogg"), gunUid);
-                    Audio.PlayPvs(clumsy.ClumsySound, gunUid);
-
-                    PopupSystem.PopupEntity(Loc.GetString("gun-clumsy"), user.Value);
-                    userImpulse = false;
-                    return null;
-                }
+                userImpulse = false;
+                return null;
             }
         }
 
