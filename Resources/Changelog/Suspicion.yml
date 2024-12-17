@@ -183,3 +183,19 @@
   id: 20
   time: '2024-12-16T18:05:45.0000000+00:00'
   url: https://github.com/Goob-Station/Suspicion-on-Space-Station/pull/27
+- author: Aidenkrz
+  changes:
+  - message: Burst mode on SMGs isn't borked anymore.
+    type: Fix
+  - message: Revolvers and projectile based weapons like PKA and Chimp are fixed.
+    type: Fix
+  id: 21
+  time: '2024-12-17T05:01:57.0000000+00:00'
+  url: https://github.com/Goob-Station/Suspicion-on-Space-Station/pull/36
+- author: Simyon
+  changes:
+  - message: Fixed round end summary.
+    type: Fix
+  id: 22
+  time: '2024-12-17T04:18:10.0000000+00:00'
+  url: https://github.com/Goob-Station/Suspicion-on-Space-Station/pull/37
