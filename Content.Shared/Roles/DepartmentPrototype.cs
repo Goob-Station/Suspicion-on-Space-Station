@@ -46,7 +46,7 @@ public sealed partial class DepartmentPrototype : IPrototype
     /// Toggles the display of the department in the priority setting menu in the character editor.
     /// </summary>
     [DataField]
-    public bool EditorHidden;
+    public bool EditorHidden { get; private set; } = true;
 }
 
 /// <summary>

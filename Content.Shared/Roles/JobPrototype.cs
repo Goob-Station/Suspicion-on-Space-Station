@@ -66,7 +66,7 @@ namespace Content.Shared.Roles
         ///     Should this job appear in preferences menu?
         /// </summary>
         [DataField("setPreference")]
-        public bool SetPreference { get; private set; } = true;
+        public bool SetPreference { get; private set; }
 
         /// <summary>
         ///     Should the selected traits be applied for this job?
@@ -125,9 +125,6 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public EntProtoId? JobPreviewEntity = null;
-
-        [DataField]
-        public bool RoleVisibleInPreferences { get; private set; }
 
         [DataField]
         public ProtoId<JobIconPrototype> Icon { get; private set; } = "JobIconUnknown";

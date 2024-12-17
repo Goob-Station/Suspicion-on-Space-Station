@@ -12,6 +12,7 @@
   id: Civilian
   name: department-Civilian
   description: department-Civilian-description
+  editorHidden: false
   color: "#9FED58"
   weight: -10
   roles:
