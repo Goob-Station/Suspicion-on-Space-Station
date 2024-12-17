@@ -219,7 +219,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     /// </summary>
     public void AttemptShoot(EntityUid gunUid, GunComponent gun)
     {
-        var coordinates = new EntityCoordinates(gunUid, gun.DefaultDirection);
+        var coordinates = new EntityCoordinates(gunUid, new Vector2(0, -1));
         gun.ShootCoordinates = coordinates;
         AttemptShoot(gunUid, gunUid, gun);
         gun.ShotCounter = 0;
@@ -259,9 +259,6 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         var fireRate = TimeSpan.FromSeconds(1f / gun.FireRateModified);
 
-        if (gun.SelectedMode == SelectiveFire.Burst || gun.BurstActivated)
-            fireRate = TimeSpan.FromSeconds(1f / gun.BurstFireRate);
-
         // First shot
         // Previously we checked shotcounter but in some cases all the bullets got dumped at once
         // curTime - fireRate is insufficient because if you time it just right you can get a 3rd shot out slightly quicker.
@@ -282,24 +279,18 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         // Get how many shots we're actually allowed to make, due to clip size or otherwise.
         // Don't do this in the loop so we still reset NextFire.
-        if (!gun.BurstActivated)
+        switch (gun.SelectedMode)
         {
-            switch (gun.SelectedMode)
-            {
-                case SelectiveFire.SemiAuto:
-                    shots = Math.Min(shots, 1 - gun.ShotCounter);
-                    break;
-                case SelectiveFire.Burst:
-                    shots = Math.Min(shots, gun.ShotsPerBurstModified - gun.ShotCounter);
-                    break;
-                case SelectiveFire.FullAuto:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException($"No implemented shooting behavior for {gun.SelectedMode}!");
-            }
-        } else
-        {
-            shots = Math.Min(shots, gun.ShotsPerBurstModified - gun.ShotCounter);
+            case SelectiveFire.SemiAuto:
+                shots = Math.Min(shots, 1 - gun.ShotCounter);
+                break;
+            case SelectiveFire.Burst:
+                shots = Math.Min(shots, gun.ShotsPerBurstModified - gun.ShotCounter);
+                break;
+            case SelectiveFire.FullAuto:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException($"No implemented shooting behavior for {gun.SelectedMode}!");
         }
 
         var attemptEv = new AttemptShootEvent(user, null);
@@ -311,14 +302,10 @@ public abstract partial class SharedGunSystem : EntitySystem
             {
                 PopupSystem.PopupClient(attemptEv.Message, gunUid, user);
             }
-            gun.BurstActivated = false;
-            gun.BurstShotsCount = 0;
+
             gun.NextFire = TimeSpan.FromSeconds(Math.Max(lastFire.TotalSeconds + SafetyNextFire, gun.NextFire.TotalSeconds));
             return null;
         }
-
-        if (!Timing.IsFirstTimePredicted)
-            return null;
 
         var fromCoordinates = Transform(user).Coordinates;
         // Remove ammo
@@ -335,16 +322,31 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Even if we don't actually shoot update the ShotCounter. This is to avoid spamming empty sounds
         // where the gun may be SemiAuto or Burst.
         gun.ShotCounter += shots;
+        Dirty(gunUid, gun);
+
+        void CleanupClient()
+        {
+            foreach (var (ent, _) in ev.Ammo)
+            {
+                if (ent == null)
+                    continue;
+
+                if (_netManager.IsServer || IsClientSide(ent.Value))
+                    Del(ent);
+            }
+        }
+
+        if (!Timing.IsFirstTimePredicted)
+        {
+            CleanupClient();
+            return null;
+        }
 
         if (ev.Ammo.Count <= 0)
         {
             // triggers effects on the gun if it's empty
             var emptyGunShotEvent = new OnEmptyGunShotEvent();
             RaiseLocalEvent(gunUid, ref emptyGunShotEvent);
-
-            gun.BurstActivated = false;
-            gun.BurstShotsCount = 0;
-            gun.NextFire += TimeSpan.FromSeconds(gun.BurstCooldown);
 
             // Play empty gun sounds if relevant
             // If they're firing an existing clip then don't play anything.
@@ -365,21 +367,11 @@ public abstract partial class SharedGunSystem : EntitySystem
             return null;
         }
 
-        // Handle burstfire
-        if (gun.SelectedMode == SelectiveFire.Burst)
-        {
-            gun.BurstActivated = true;
-        }
-        if (gun.BurstActivated)
-        {
-            gun.BurstShotsCount += shots;
-            if (gun.BurstShotsCount >= gun.ShotsPerBurstModified)
-            {
-                gun.NextFire += TimeSpan.FromSeconds(gun.BurstCooldown);
-                gun.BurstActivated = false;
-                gun.BurstShotsCount = 0;
-            }
-        }
+        // if (_netManager.IsClient && HasComp<GunIgnorePredictionComponent>(gunUid))
+        // {
+        //     CleanupClient();
+        //     return null;
+        // }
 
         // Shoot confirmed - sounds also played here in case it's invalid (e.g. cartridge already spent).
         var projectiles = Shoot(gunUid, gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out var userImpulse, user, throwItems: attemptEv.ThrowItems, predictedProjectiles, userSession);
@@ -495,8 +487,13 @@ public abstract partial class SharedGunSystem : EntitySystem
                         if (_netManager.IsServer || GunPrediction)
                         {
                             var uid = Spawn(cartridge.Prototype, fromEnt);
-                            shotProjectiles.Add(uid);
                             CreateAndFireProjectiles(uid, cartridge);
+
+                            if (_netManager.IsClient && HasComp<GunIgnorePredictionComponent>(gunUid))
+                            {
+                                predictedProjectiles?.RemoveAll(i => i == uid.Id);
+                                QueueDel(uid);
+                            }
 
                             RaiseLocalEvent(ent!.Value, new AmmoShotEvent()
                             {
@@ -538,8 +535,7 @@ public abstract partial class SharedGunSystem : EntitySystem
                 case AmmoComponent newAmmo:
                     if (_netManager.IsServer || GunPrediction)
                     {
-                        shotProjectiles.Add(ent!.Value);
-                        CreateAndFireProjectiles(ent.Value, newAmmo);
+                        CreateAndFireProjectiles(ent!.Value, newAmmo);
                     }
                     else
                     {
@@ -549,10 +545,8 @@ public abstract partial class SharedGunSystem : EntitySystem
 
                     Recoil(user, mapDirection, gun.CameraRecoilScalarModified);
 
-                    if (IsClientSide(ent!.Value))
-                        Del(ent.Value);
-                    else if (_netManager.IsClient)
-                        RemoveShootable(ent.Value);
+                    if (_netManager.IsClient)
+                        RemoveShootable(ent!.Value);
                     MarkPredicted(ent!.Value, 0);
                     break;
                 case HitscanPrototype hitscan:
@@ -689,7 +683,7 @@ public abstract partial class SharedGunSystem : EntitySystem
                     var newuid = Spawn(ammoSpreadComp.Proto, fromEnt);
                     ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, gunUid, user);
                     shotProjectiles.Add(newuid);
-                    MarkPredicted(newuid, i + 1);
+                    MarkPredicted(newuid, i);
                 }
             }
             else
@@ -716,7 +710,6 @@ public abstract partial class SharedGunSystem : EntitySystem
         long tick = Timing.CurTick.Value;
         tick = tick << 32;
         tick = tick | (uint) GetNetEntity(component.Owner).Id;
-        Logger.Info(Timing.CurTick.ToString());
         var random = new Xoroshiro64S(tick).NextFloat(-0.5f, 0.5f);
         var spread = component.CurrentAngle.Theta * random;
         var angle = new Angle(direction.Theta + component.CurrentAngle.Theta * random);
