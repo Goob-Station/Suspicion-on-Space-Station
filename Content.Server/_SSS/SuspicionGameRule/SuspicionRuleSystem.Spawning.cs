@@ -15,6 +15,7 @@ using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body.Components;
+using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.NukeOps;
