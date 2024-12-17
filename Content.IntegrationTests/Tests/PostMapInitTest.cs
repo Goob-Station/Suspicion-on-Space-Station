@@ -68,8 +68,6 @@ namespace Content.IntegrationTests.Tests
             "CentcommSSS",
             "ReachSSS",
             "TrainSSS",
-            "CentcommHQSSS"
-
         };
 
         /// <summary>
