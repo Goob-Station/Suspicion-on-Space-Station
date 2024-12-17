@@ -487,7 +487,6 @@ public abstract partial class SharedGunSystem : EntitySystem
                         if (_netManager.IsServer || GunPrediction)
                         {
                             var uid = Spawn(cartridge.Prototype, fromEnt);
-                            shotProjectiles.Add(uid);
                             CreateAndFireProjectiles(uid, cartridge);
 
                             if (_netManager.IsClient && HasComp<GunIgnorePredictionComponent>(gunUid))
