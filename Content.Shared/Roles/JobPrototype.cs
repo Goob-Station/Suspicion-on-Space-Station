@@ -127,6 +127,9 @@ namespace Content.Shared.Roles
         public EntProtoId? JobPreviewEntity = null;
 
         [DataField]
+        public bool RoleVisibleInPreferences { get; private set; }
+
+        [DataField]
         public ProtoId<JobIconPrototype> Icon { get; private set; } = "JobIconUnknown";
 
         [DataField("special", serverOnly: true)]
