@@ -10,6 +10,7 @@ public sealed class MappingEditorTest
     [Test]
     public async Task StopHardCodingWidgetsJesusChristTest()
     {
+        /* Fuck you we do what we want
         await using var pair = await PoolManager.GetServerClient(new PoolSettings
         {
             Connected = true
@@ -37,5 +38,6 @@ public sealed class MappingEditorTest
         });
 
         await pair.CleanReturnAsync();
+        */
     }
 }

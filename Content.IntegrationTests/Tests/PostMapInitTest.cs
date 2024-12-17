@@ -67,7 +67,8 @@ namespace Content.IntegrationTests.Tests
             // SSS - NEW MAPS
             "CentcommSSS",
             "ReachSSS",
-            "TrainSSS"
+            "TrainSSS",
+            "CentcommHQSSS"
 
         };
 
