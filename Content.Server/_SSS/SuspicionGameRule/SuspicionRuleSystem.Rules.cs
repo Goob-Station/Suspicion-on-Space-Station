@@ -62,7 +62,7 @@ public sealed partial class SuspicionRuleSystem
             if (sus.GameState != SuspicionGameState.InProgress)
                 break;
 
-            sus.EndAt += TimeSpan.FromSeconds(sus.TimeAddedPerKill);
+            sus.EndAt += TimeSpan.FromSeconds(_timeAddedPerKill);
             sus.AnnouncedTimeLeft.Clear();
 
             RaiseNetworkEvent(new SuspicionRuleTimerUpdate(_gameTicker.RoundDuration() + sus.EndAt));

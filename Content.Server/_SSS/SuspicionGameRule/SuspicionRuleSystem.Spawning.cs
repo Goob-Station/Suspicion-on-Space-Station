@@ -46,7 +46,7 @@ public sealed partial class SuspicionRuleSystem
     private void StartRound(EntityUid uid, SuspicionRuleComponent component, GameRuleComponent gameRule)
     {
         component.GameState = SuspicionGameState.InProgress;
-        component.EndAt = TimeSpan.FromSeconds(component.RoundDuration);
+        component.EndAt = TimeSpan.FromSeconds(_roundDuration);
 
         var allPlayerData = _playerManager.GetAllPlayerData().ToList();
         var participatingPlayers = new List<(EntityUid mind, SuspicionRoleComponent comp)>();
@@ -79,8 +79,8 @@ public sealed partial class SuspicionRuleSystem
                 _rejuvenate.PerformRejuvenate(ent.Value);
         }
 
-        var traitorCount = MathHelper.Clamp((int) (participatingPlayers.Count * component.TraitorPercentage), 1, allPlayerData.Count);
-        var detectiveCount = MathHelper.Clamp((int) (participatingPlayers.Count * component.DetectivePercentage), 1, allPlayerData.Count);
+        var traitorCount = MathHelper.Clamp((int) (participatingPlayers.Count * _traitorPercentage), 1, allPlayerData.Count);
+        var detectiveCount = MathHelper.Clamp((int) (participatingPlayers.Count * _detectivePercentage), 1, allPlayerData.Count);
 
         if (traitorCount + detectiveCount > participatingPlayers.Count)
         {
@@ -222,7 +222,7 @@ public sealed partial class SuspicionRuleSystem
             RaiseNetworkEvent(new SuspicionRulePlayerSpawn()
             {
                 GameState = SuspicionGameState.Preparing,
-                EndTime = TimeSpan.FromSeconds(sus.PreparingDuration),
+                EndTime = TimeSpan.FromSeconds(_preparingDuration),
             }, ev.Player);
 
             var newMind = _mindSystem.CreateMind(ev.Player.UserId, ev.Profile.Name);

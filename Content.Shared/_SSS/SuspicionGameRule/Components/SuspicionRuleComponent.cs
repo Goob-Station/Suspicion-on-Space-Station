@@ -22,41 +22,7 @@ public sealed partial class SuspicionRuleComponent : Component
 
     #endregion
 
-    /// <summary>
-    /// Percentage of total players that will be a traitor.
-    /// The number of players will be multiplied by this number, and then rounded down.
-    /// If the result is less than 1 or more than the player count, it is clamped to those values.
-    /// </summary>
-    [DataField]
-    public float TraitorPercentage = 0.25f;
 
-    /// <summary>
-    /// Percentage of total players that will be a detective (detective innocent). Handled similar to traitor percentage (rounded down etc).
-    /// </summary>
-    [DataField]
-    public float DetectivePercentage = 0.20f;
-
-    /// <summary>
-    /// How long to wait before the game starts after the round starts.
-    /// </summary>
-    [DataField]
-    public int PreparingDuration = 30;
-
-    /// <summary>
-    /// How long the round lasts in seconds.
-    /// </summary>
-    [DataField]
-    public int RoundDuration = 480;
-
-    /// <summary>
-    /// How long to add to the round time when a player is killed.
-    /// </summary>
-    [DataField]
-    public int TimeAddedPerKill = 30;
-
-    /// <summary>
-    /// How long to wait before restarting the round after the summary is displayed.
-    /// </summary>
     [DataField]
     public int PostRoundDuration = 30;
 
