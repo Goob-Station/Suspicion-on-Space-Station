@@ -16,7 +16,6 @@
     sprite: Structures/Storage/storage.rsi
     state: vent
   - type: SecretStash
-    secretPartName: secret-stash-part-vent
     maxItemSize: Normal
   - type: ContainerContainer
     containers:
