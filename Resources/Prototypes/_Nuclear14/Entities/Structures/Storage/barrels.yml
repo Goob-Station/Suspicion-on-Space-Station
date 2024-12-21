@@ -103,7 +103,7 @@
     solutions:
       barrel:
         reagents:
-        - Reagentid: N14WeldingFuel
+        - ReagentId: WeldingFuel
           Quantity: 100
   - type: DamageOnToolInteract
     tools: Welding
@@ -200,7 +200,7 @@
     solutions:
       barrel:
         reagents:
-        - Reagentid: N14WeldingFuel
+        - ReagentId: WeldingFuel
           Quantity: 100
   - type: DamageOnToolInteract
     tools: Welding
