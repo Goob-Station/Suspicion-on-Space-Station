@@ -21,7 +21,7 @@
   - type: ContainerContainer
     containers:
       stash: !type:ContainerSlot {}
-  - type: PottedPlantHide # TODO: This needs changed to be generic stash hide?
+  - type: SecretStash
 
 - type: entity
   parent: WallmountVent
