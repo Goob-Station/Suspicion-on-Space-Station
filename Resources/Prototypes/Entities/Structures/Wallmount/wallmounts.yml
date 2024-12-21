@@ -21,7 +21,6 @@
   - type: ContainerContainer
     containers:
       stash: !type:ContainerSlot {}
-  - type: SecretStash
 
 - type: entity
   parent: WallmountVent
