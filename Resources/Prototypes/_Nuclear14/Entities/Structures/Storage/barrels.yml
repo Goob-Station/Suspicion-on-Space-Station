@@ -246,7 +246,7 @@
 
 # Burning Barrels
 - type: entity
-  parent: N14BaseStructureDynamic
+  parent: BaseStructureDynamic
   id: N14BurningBarrel
   name: burnt barrel
   description: This barrel looks like it once contained a fire.
