@@ -338,7 +338,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Structures/Decoration/world.rsi
+    sprite: _Nuclear14/Structures/Decoration/world.rsi
 
 - type: entity
   parent: N14DecorFloorWorldBase
@@ -348,7 +348,7 @@
   suffix: 8 states
   components:
   - type: Sprite
-    sprite: Structures/Decoration/world.rsi
+    sprite: _Nuclear14/Structures/Decoration/world.rsi
     state: scattered_papers
     # add destruction drop for materials
 
