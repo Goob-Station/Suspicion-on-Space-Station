@@ -106,8 +106,7 @@
         - ReagentId: WeldingFuel
           Quantity: 100
   - type: DamageOnToolInteract
-    tools:
-    - Welding
+    tools: Welding
     weldingDamage:
       types:
         Heat: 10
@@ -204,8 +203,7 @@
         - ReagentId: WeldingFuel
           Quantity: 100
   - type: DamageOnToolInteract
-    tools:
-    - Welding
+    tools: Welding
     weldingDamage:
       types:
         Heat: 10
