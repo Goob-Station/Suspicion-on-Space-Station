@@ -99,9 +99,21 @@
   - type: Sprite
     sprite: Structures/Storage/barrels.rsi
     state: red-closed
+  - type: SolutionContainerManager
+    solutions:
+      barrel:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 100
+  - type: DamageOnToolInteract
+    tools:
+    - Welding
+    weldingDamage:
+      types:
+        Heat: 10
   - type: Explosive
     explosionType: Default
-    totalIntensity: 120 # ~ 5 tile radius
+    totalIntensity: 90
 
 - type: entity
   parent: BaseBarrel
@@ -190,7 +202,7 @@
       barrel:
         reagents:
         - ReagentId: WeldingFuel
-          Quantity: 500
+          Quantity: 100
   - type: DamageOnToolInteract
     tools:
     - Welding
@@ -199,7 +211,7 @@
         Heat: 10
   - type: Explosive
     explosionType: Default
-    totalIntensity: 120 # ~ 5 tile radius
+    totalIntensity: 90
 
 - type: entity
   parent: YellowBarrelOpen
