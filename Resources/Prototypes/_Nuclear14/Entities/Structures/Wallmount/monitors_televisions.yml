@@ -6,7 +6,7 @@
   components:
   - type: Sprite
     drawdepth: Overdoors
-    sprite: Structures/Wallmounts/vdu.rsi
+    sprite: _Nuclear14/Structures/Wallmounts/vdu.rsi
     layers:
       - map: ["computerLayerBody"]
         state: VDU
