@@ -111,19 +111,19 @@ public sealed partial class SuspicionRuleSystem
         RobustRandom.Shuffle(participatingPlayers); // I really don't trust the shuffle.
         */
 
-        int seed1 = (int)(Math.Sin(RobustRandom.Next()) * 10000);
-        int seed2 = (int)(Math.Cos(RobustRandom.Next()) * 10000);
-        int combinedSeed = seed1 ^ seed2;
+        var seed1 = (int)(Math.Sin(RobustRandom.Next()) * 10000);
+        var seed2 = (int)(Math.Cos(RobustRandom.Next()) * 10000);
+        var combinedSeed = seed1 ^ seed2;
 
         RobustRandom.SetSeed(combinedSeed);
 
-        int depth = 5;
+        var depth = 5;
         while (depth > 0)
         {
-            int chaoticSeed = (int)Math.Pow(RobustRandom.Next(), 3) ^ (RobustRandom.Next() % 10000);
+            var chaoticSeed = (int)Math.Pow(RobustRandom.Next(), 3) ^ (RobustRandom.Next() % 10000);
             RobustRandom.SetSeed(chaoticSeed);
 
-            int halfCount = participatingPlayers.Count / 2;
+            var halfCount = participatingPlayers.Count / 2;
             var shuffledSubset = participatingPlayers.Take(halfCount).ToList();
             RobustRandom.Shuffle(shuffledSubset);
             participatingPlayers.RemoveRange(0, halfCount);
@@ -148,7 +148,7 @@ public sealed partial class SuspicionRuleSystem
         participatingPlayers.Clear();
         participatingPlayers.AddRange(reorderedPlayers);
 
-        for (int i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
         {
             RobustRandom.SetSeed(RobustRandom.Next());
             RobustRandom.Shuffle(participatingPlayers);
