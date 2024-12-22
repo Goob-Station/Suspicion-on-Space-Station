@@ -22,17 +22,13 @@
   components:
   - type: Sprite
     layers:
-      - sprite: _SSS/markers.rsi # {
+      - sprite: _SSS/markers.rsi
         state: chasm
         shader: unshaded
-  - type: AtmosFixMarker
   - type: Chasm
   - type: StepTrigger
     requiredTriggeredSpeed: 0
     intersectRatio: 0.4
-    blacklist:
-      tags:
-      - Catwalk
   - type: Transform
     anchored: true
   - type: Clickable
@@ -58,7 +54,7 @@
   name: Invisible Chasm
   suffix: Corner
   id: FloorChasmEntityInvisibleCorner
-  parent: MarkerBase
+  parent: FloorChasmEntityInvisible
   placement:
     mode: SnapgridCenter
     snap:
@@ -66,22 +62,9 @@
   components:
   - type: Sprite
     layers:
-      - sprite: _SSS/markers.rsi # {
+      - sprite: _SSS/markers.rsi
         state: chasm_corner
         shader: unshaded
-  - type: AtmosFixMarker
-  - type: Chasm
-  - type: StepTrigger
-    requiredTriggeredSpeed: 0
-    intersectRatio: 0.4
-    blacklist:
-      tags:
-      - Catwalk
-  - type: Transform
-    anchored: true
-  - type: Clickable
-  - type: Physics
-    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -94,15 +77,12 @@
         - ItemMask
         density: 1000
         hard: false
-  - type: Tag
-    tags:
-    - HideContextMenu
 
 - type: entity
   name: Invisible Chasm
   suffix: Side
   id: FloorChasmEntityInvisibleSide
-  parent: MarkerBase
+  parent: FloorChasmEntityInvisible
   placement:
     mode: SnapgridCenter
     snap:
@@ -110,22 +90,9 @@
   components:
   - type: Sprite
     layers:
-      - sprite: _SSS/markers.rsi # {
+      - sprite: _SSS/markers.rsi
         state: chasm_side
         shader: unshaded
-  - type: AtmosFixMarker
-  - type: Chasm
-  - type: StepTrigger
-    requiredTriggeredSpeed: 0
-    intersectRatio: 0.4
-    blacklist:
-      tags:
-      - Catwalk
-  - type: Transform
-    anchored: true
-  - type: Clickable
-  - type: Physics
-    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -138,6 +105,3 @@
         - ItemMask
         density: 1000
         hard: false
-  - type: Tag
-    tags:
-    - HideContextMenu
