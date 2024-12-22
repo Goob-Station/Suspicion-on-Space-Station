@@ -8,6 +8,8 @@ public sealed partial class SuspicionRoleComponent : BaseMindRoleComponent
 {
     [ViewVariables]
     public SuspicionRole Role { get; set; } = SuspicionRole.Pending;
+    [ViewVariables]
+    public SuspicionSubRole? SubRole { get; set; } = null;
 }
 
 public static class SusRoleExtensions
@@ -19,6 +21,7 @@ public static class SusRoleExtensions
             SuspicionRole.Traitor => "red",
             SuspicionRole.Detective => "blue",
             SuspicionRole.Innocent => "green",
+            SuspicionRole.Wildcard => "pink",
             _ => "white",
         };
     }
@@ -32,4 +35,11 @@ public enum SuspicionRole
     Traitor,
     Detective,
     Innocent,
+    Wildcard,
+}
+
+[Serializable, NetSerializable]
+public enum SuspicionSubRole
+{
+    Jester,
 }

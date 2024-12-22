@@ -76,6 +76,8 @@ public sealed partial class SuspicionRuleSystem
 
             var allInnocents = FindAllOfType(SuspicionRole.Innocent);
             var allDetectives = FindAllOfType(SuspicionRole.Detective);
+            var allJestersAlive = FindAllOfType(SuspicionSubRole.Jester);
+            var allJesters = FindAllOfType(SuspicionSubRole.Jester, false);
 
             if (allInnocents.Count == 0 && allDetectives.Count == 0)
             {
@@ -92,6 +94,15 @@ public sealed partial class SuspicionRuleSystem
                 _roundEndSystem.EndRound(TimeSpan.FromSeconds(sus.PostRoundDuration));
                 return;
             }
+
+            if (allJesters != allJestersAlive)
+            {
+                _chatManager.DispatchServerAnnouncement("The jesters have won the round.");
+                sus.GameState = SuspicionGameState.PostRound;
+                _roundEndSystem.EndRound(TimeSpan.FromSeconds(sus.PostRoundDuration));
+                return;
+            }
+
             break;
         }
     }
@@ -166,7 +177,7 @@ public sealed partial class SuspicionRuleSystem
                                         EntityUid.Invalid,
                                         false,
                                         client: session.Channel,
-                                        recordReplay:true
+                                        recordReplay: true
                                     );
                                 }
                             }
@@ -176,11 +187,13 @@ public sealed partial class SuspicionRuleSystem
             }
         }
 
+        var victimRole = role.Value.Comp2.SubRole?.ToString() ?? role.Value.Comp2.Role.ToString();
+
         args.PushMarkup(Loc.GetString(
                 "suspicion-examination",
                 ("ent", args.Examined),
                 ("col", role.Value.Comp2.Role.GetRoleColor()),
-                ("role", role.Value.Comp2.Role.ToString())),
+                ("role", victimRole)),
             -10);
 
         if (!HasComp<HandsComponent>(args.Examiner))
@@ -211,7 +224,7 @@ public sealed partial class SuspicionRuleSystem
             ("found", args.Examined),
             ("where", _navMapSystem.GetNearestBeaconString(loc)),
             ("col", role.Value.Comp2.Role.GetRoleColor()),
-            ("role", role.Value.Comp2.Role.ToString()));
+            ("role", victimRole));
         SendAnnouncement(
             msg
         );

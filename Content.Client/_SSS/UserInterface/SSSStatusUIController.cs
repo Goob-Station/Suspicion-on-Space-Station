@@ -197,6 +197,11 @@ public sealed class SSSStatusUIController : UIController, IOnSystemChanged<SSSSt
             SuspicionRole.Traitor => "roles-antag-suspicion-traitor-name",
             SuspicionRole.Detective => "roles-antag-suspicion-detective-name",
             SuspicionRole.Innocent => "roles-antag-suspicion-innocent-name",
+            SuspicionRole.Wildcard => ev.NewSubRole switch
+            {
+                SuspicionSubRole.Jester => "roles-antag-suspicion-jester-name",
+                _ => "roles-antag-suspicion-wildcard-unknown",
+            },
             _ => "roles-antag-suspicion-unknown",
         });
         SetRoleUI(roleName, Color.FromName(ev.NewRole.GetRoleColor()));
