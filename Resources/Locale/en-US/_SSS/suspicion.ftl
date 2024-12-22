@@ -2,11 +2,11 @@
 innocent-briefing = You are an innocent. Your goal is to [bold]survive[/bold] and to [bold]kill[/bold] the traitors while keeping your fellow crew alive. Good luck.
 detective-briefing = You are a detective. Your goal is to [bold]survive[/bold] and to [bold]kill[/bold] the traitors while keeping your fellow crew alive. Good luck.
 jester-briefing = You are a jester. Your goal is to [bold]die[/bold] by the hands of your fellow crew. Good luck.
-wildcard-briefing = You are an... unspecified wildcard role? Something fucked up badly for you to see this, so report it and do whatever you want I guess.
+wildcard-briefing = You are an... unspecified wildcard? Something fucked up badly for you to see this, so report it and do whatever you want I guess.
 suspicion-traitor-uplink = Traitor Uplink
 suspicion-detective-uplink = Detective Uplink
 tc-added-sus = You have been given {$tc} TC for your performance.
-suspicion-examination = { SUBJECT($ent) } were [color={$col}]{ $role }[/color]
+suspicion-examination = { SUBJECT($ent) } was a [color={$col}]{ $role }[/color]!
 suspicion-examination-chat = [italic]{ $finder }[/italic] found the body of [italic]{ $found }[/italic] { $where } and discovered { SUBJECT($found) } { CONJUGATE-BASIC($found, "were", "was") } { INDEFINITE($role) } [bold][color={ $col }]{ $role }[/color][/bold].
 suspicion-found-tc = You found [bold]{$tc} TC[/bold] on the body. They have been added to your uplink.
 

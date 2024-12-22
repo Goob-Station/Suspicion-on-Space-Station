@@ -25,6 +25,7 @@ using Content.Shared.Players;
 using Content.Shared.Security.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared.CombatMode.Pacification;
+using Robust.Shared.Audio;
 
 namespace Content.Server._SSS.SuspicionGameRule;
 
@@ -232,6 +233,12 @@ public sealed partial class SuspicionRuleSystem
                 _ => Loc.GetString("wildcard-briefing")
             };
 
+            SoundPathSpecifier? briefingSound = selectedSubRole switch
+            {
+                SuspicionSubRole.Jester => new SoundPathSpecifier("/Audio/Voice/Cluwne/cluwnelaugh1.ogg"),
+                _ => null
+            };
+
             var ownedEntity = Comp<MindComponent>(role.mind).OwnedEntity;
             if (!ownedEntity.HasValue)
             {
@@ -252,7 +259,7 @@ public sealed partial class SuspicionRuleSystem
                 ownedEntity.Value,
                 briefingText,
                 Color.LightPink,
-                briefingSound: null);
+                briefingSound: briefingSound);
 
             RaiseNetworkEvent(new SuspicionRuleUpdateRole(SuspicionRole.Wildcard, selectedSubRole), ownedEntity.Value);
 

@@ -35,6 +35,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server.KillTracking;
 
 namespace Content.Server._SSS.SuspicionGameRule;
 
@@ -82,6 +83,7 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
         SubscribeLocalEvent<CommunicationConsoleCallShuttleAttemptEvent>(OnShuttleCall);
         SubscribeLocalEvent<GhostSpawnedEvent>(OnGhost); // Map init just doesn't work??
         SubscribeLocalEvent<ApcComponent, MapInitEvent>(OnApcInit);
+        SubscribeLocalEvent<KillReportedEvent>(OnKillReported);
     }
 
 

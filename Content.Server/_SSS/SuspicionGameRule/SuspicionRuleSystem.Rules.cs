@@ -17,6 +17,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Overlays;
 using Content.Shared.Popups;
+using Content.Server.KillTracking;
 
 namespace Content.Server._SSS.SuspicionGameRule;
 
@@ -53,6 +54,10 @@ public sealed partial class SuspicionRuleSystem
 
         DropAllItemsOnEntity(args.Target);
 
+    }
+
+    private void OnKillReported(ref KillReportedEvent ev)
+    {
         var query = EntityQueryEnumerator<SuspicionRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var ruleId, out var sus, out var gameRule))
         {
@@ -76,10 +81,9 @@ public sealed partial class SuspicionRuleSystem
 
             var allInnocents = FindAllOfType(SuspicionRole.Innocent);
             var allDetectives = FindAllOfType(SuspicionRole.Detective);
-            var allJestersAlive = FindAllOfType(SuspicionSubRole.Jester);
-            var allJesters = FindAllOfType(SuspicionSubRole.Jester, false);
+            var allWildcards = FindAllOfType(SuspicionRole.Wildcard);
 
-            if (allInnocents.Count == 0 && allDetectives.Count == 0)
+            if (allInnocents.Count == 0 && allDetectives.Count == 0 && allWildcards.Count == 0)
             {
                 _chatManager.DispatchServerAnnouncement("The traitors have won the round.");
                 sus.GameState = SuspicionGameState.PostRound;
@@ -95,13 +99,17 @@ public sealed partial class SuspicionRuleSystem
                 return;
             }
 
-            if (allJesters != allJestersAlive)
-            {
-                _chatManager.DispatchServerAnnouncement("The jesters have won the round.");
-                sus.GameState = SuspicionGameState.PostRound;
-                _roundEndSystem.EndRound(TimeSpan.FromSeconds(sus.PostRoundDuration));
-                return;
-            }
+            if (ev.Primary is KillPlayerSource player && !ev.Suicide)
+                if (TrySusRole(ev.Entity, out var roleComp))
+                    if (roleComp.SubRole == SuspicionSubRole.Jester)
+                        if (TrySusRole(player.PlayerId, out var attackerRoleComp))
+                            if (attackerRoleComp.Role == SuspicionRole.Innocent || attackerRoleComp.Role == SuspicionRole.Detective)
+                            {
+                                _chatManager.DispatchServerAnnouncement("The jesters have won the round.");
+                                sus.GameState = SuspicionGameState.PostRound;
+                                _roundEndSystem.EndRound(TimeSpan.FromSeconds(sus.PostRoundDuration));
+                                return;
+                            }
 
             break;
         }
@@ -229,7 +237,6 @@ public sealed partial class SuspicionRuleSystem
             msg
         );
     }
-
     private void UpdateSpaceWalkDamage(ref SuspicionRuleComponent sus, float frameTime)
     {
         var query = EntityQueryEnumerator<SuspicionPlayerComponent>();

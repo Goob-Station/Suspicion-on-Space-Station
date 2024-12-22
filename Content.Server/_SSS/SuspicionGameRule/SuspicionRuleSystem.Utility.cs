@@ -11,7 +11,8 @@ using Content.Shared.Storage;
 using Content.Shared.Store.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
-
+using Robust.Shared.Network;
+using System.Diagnostics.CodeAnalysis;
 namespace Content.Server._SSS.SuspicionGameRule;
 
 public sealed partial class SuspicionRuleSystem
@@ -81,6 +82,42 @@ public sealed partial class SuspicionRuleSystem
     }
 
     /// <summary>
+    /// Tries to find the SuspicionRoleComponent of a entity.
+    /// </summary>
+    private bool TrySusRole(EntityUid ent, [NotNullWhen(true)] out SuspicionRoleComponent? suspicionRole)
+    {
+        suspicionRole = null;
+
+        if (!_mindSystem.TryGetMind(ent, out var mind, out var mindComp))
+            return false;
+
+        if (!_roleSystem.MindHasRole<SuspicionRoleComponent>(mind, out var susRole))
+            return false;
+
+        suspicionRole = susRole;
+        return true;
+    }
+
+    /// <summary>
+    /// Tries to find the SuspicionRoleComponent of a user.
+    /// </summary>
+    private bool TrySusRole(NetUserId userId, [NotNullWhen(true)] out SuspicionRoleComponent? suspicionRole)
+    {
+        suspicionRole = null;
+
+        if (!_mindSystem.TryGetMind(userId, out var mind, out var mindComp) || mind == null)
+            return false;
+
+        var nullableMind = new Entity<MindComponent?>(mind.Value, mindComp);
+
+        if (!_roleSystem.MindHasRole<SuspicionRoleComponent>(nullableMind, out var susRole))
+            return false;
+
+        suspicionRole = susRole;
+        return true;
+    }
+
+    /// <summary>
     /// Finds all players with a specific role.
     /// </summary>
     private List<(EntityUid body, Entity<MindRoleComponent, SuspicionRoleComponent> sus)> FindAllOfType(SuspicionRole role, bool filterDead = true)
@@ -105,7 +142,7 @@ public sealed partial class SuspicionRuleSystem
         var result = new List<(EntityUid body, Entity<MindRoleComponent, SuspicionRoleComponent>)>();
         foreach (var mind in allMinds)
         {
-            var nullableMind = new Entity<MindComponent?>(mind.Owner, mind.Comp); // I see your shitcode, and i raise you MORE shit code.
+            var nullableMind = new Entity<MindComponent?>(mind.Owner, mind.Comp);
 
             if (!_roleSystem.MindHasRole<SuspicionRoleComponent>(nullableMind, out var roleComp))
                 continue;
@@ -148,7 +185,7 @@ public sealed partial class SuspicionRuleSystem
         var result = new List<(EntityUid body, Entity<MindRoleComponent, SuspicionRoleComponent>)>();
         foreach (var mind in allMinds)
         {
-            var nullableMind = new Entity<MindComponent?>(mind.Owner, mind.Comp); // Following the pattern from the original method.
+            var nullableMind = new Entity<MindComponent?>(mind.Owner, mind.Comp);
 
             if (!_roleSystem.MindHasRole<SuspicionRoleComponent>(nullableMind, out var roleComp))
                 continue;
