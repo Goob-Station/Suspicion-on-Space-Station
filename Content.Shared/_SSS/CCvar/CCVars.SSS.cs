@@ -20,6 +20,17 @@ public sealed partial class CCVars
         CVarDef.Create("sss.detective_percentage", 0.25f, CVar.SERVERONLY);
 
     /// <summary>
+    /// Percentage of total players that will be a wildcard role. Handled similar to traitor percentage (rounded down etc).
+    /// </summary>
+    public static readonly CVarDef<float> SSSWildcardPercentage =
+        CVarDef.Create("sss.wildcard_percentage", 0.15f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Chance a round will include wildcard roles.
+    /// </summary>
+    public static readonly CVarDef<float> SSSWildcardChance =
+        CVarDef.Create("sss.wildcard_chance", 0.3f, CVar.SERVERONLY);
+    /// <summary>
     /// How long to wait before the game starts after the round starts.
     /// </summary>
     public static readonly CVarDef<int> SSSPreparingDuration =

@@ -24,6 +24,8 @@ using Content.Shared.Overlays;
 using Content.Shared.Players;
 using Content.Shared.Security.Components;
 using Robust.Shared.Prototypes;
+using Content.Shared.CombatMode.Pacification;
+using Robust.Shared.Audio;
 
 namespace Content.Server._SSS.SuspicionGameRule;
 
@@ -39,6 +41,11 @@ public sealed partial class SuspicionRuleSystem
             SuspicionRole.Traitor => Loc.GetString("roles-antag-suspicion-traitor-objective"),
             SuspicionRole.Detective => Loc.GetString("roles-antag-suspicion-detective-objective"),
             SuspicionRole.Innocent => Loc.GetString("roles-antag-suspicion-innocent-objective"),
+            SuspicionRole.Wildcard => role.Comp.SubRole switch
+            {
+                SuspicionSubRole.Jester => Loc.GetString("roles-antag-suspicion-jester-objective"),
+                _ => "roles-antag-suspicion-pending-objective",
+            },
             _ => Loc.GetString("roles-antag-suspicion-pending-objective")
         };
     }
@@ -79,10 +86,13 @@ public sealed partial class SuspicionRuleSystem
                 _rejuvenate.PerformRejuvenate(ent.Value);
         }
 
-        var traitorCount = MathHelper.Clamp((int) (participatingPlayers.Count * _traitorPercentage), 1, allPlayerData.Count);
-        var detectiveCount = MathHelper.Clamp((int) (participatingPlayers.Count * _detectivePercentage), 1, allPlayerData.Count);
+        var traitorCount = MathHelper.Clamp((int)(participatingPlayers.Count * _traitorPercentage), 1, allPlayerData.Count);
+        var detectiveCount = MathHelper.Clamp((int)(participatingPlayers.Count * _detectivePercentage), 1, allPlayerData.Count);
+        var wildcardCount = 0; // Zero by default, we roll to see if wildcards will be in the next round in the next line.
+        if (RobustRandom.NextFloat() <= _wildcardChance)
+            wildcardCount = MathHelper.Clamp((int)(participatingPlayers.Count * _wildcardPercentage), 1, allPlayerData.Count);
 
-        if (traitorCount + detectiveCount > participatingPlayers.Count)
+        if (traitorCount + detectiveCount + wildcardCount > participatingPlayers.Count)
         {
             // we somehow have more picked players than valid
 
@@ -90,18 +100,65 @@ public sealed partial class SuspicionRuleSystem
 
             traitorCount = participatingPlayers.Count;
             detectiveCount = 0;
+            wildcardCount = 0;
         }
 
+        /* Simyon, I think the issue is you didnt make it random enough, so I made it more random for you!
         RobustRandom.Shuffle(participatingPlayers); // Shuffle the list so we can just take the first N players
         RobustRandom.Shuffle(participatingPlayers);
         RobustRandom.Shuffle(participatingPlayers); // I don't trust the shuffle.
         RobustRandom.Shuffle(participatingPlayers);
         RobustRandom.Shuffle(participatingPlayers); // I really don't trust the shuffle.
+        */
 
+        var seed1 = (int)(Math.Sin(RobustRandom.Next()) * 10000);
+        var seed2 = (int)(Math.Cos(RobustRandom.Next()) * 10000);
+        var combinedSeed = seed1 ^ seed2;
+
+        RobustRandom.SetSeed(combinedSeed);
+
+        var depth = 5;
+        while (depth > 0)
+        {
+            var chaoticSeed = (int)Math.Pow(RobustRandom.Next(), 3) ^ (RobustRandom.Next() % 10000);
+            RobustRandom.SetSeed(chaoticSeed);
+
+            var halfCount = participatingPlayers.Count / 2;
+            var shuffledSubset = participatingPlayers.Take(halfCount).ToList();
+            RobustRandom.Shuffle(shuffledSubset);
+            participatingPlayers.RemoveRange(0, halfCount);
+            participatingPlayers.AddRange(shuffledSubset);
+
+            depth--;
+        }
+
+        RobustRandom.SetSeed(RobustRandom.Next());
+        RobustRandom.Shuffle(participatingPlayers);
+
+        RobustRandom.SetSeed(RobustRandom.Next());
+        RobustRandom.Shuffle(participatingPlayers);
+
+        var shuffledIndices = participatingPlayers
+            .Select((_, i) => (Index: i, Value: RobustRandom.Next()))
+            .OrderBy(tuple => tuple.Value)
+            .Select(tuple => tuple.Index)
+            .ToList();
+
+        var reorderedPlayers = shuffledIndices.Select(i => participatingPlayers[i]).ToList();
+        participatingPlayers.Clear();
+        participatingPlayers.AddRange(reorderedPlayers);
+
+        for (var i = 0; i < 3; i++)
+        {
+            RobustRandom.SetSeed(RobustRandom.Next());
+            RobustRandom.Shuffle(participatingPlayers);
+        }
+
+        // I hope thats random enough!
 
         for (var i = 0; i < traitorCount; i++)
         {
-            var role = participatingPlayers[i];
+            var role = participatingPlayers[RobustRandom.Next(participatingPlayers.Count)];
             role.comp.Role = SuspicionRole.Traitor;
             var ownedEntity = Comp<MindComponent>(role.mind).OwnedEntity;
             if (!ownedEntity.HasValue)
@@ -118,7 +175,7 @@ public sealed partial class SuspicionRuleSystem
 
             _npcFactionSystem.AddFaction(ownedEntity.Value, component.TraitorFaction);
 
-            _subdermalImplant.AddImplants(ownedEntity.Value, new List<string> {component.UplinkImplant}); // Why does this method only take in a list???
+            _subdermalImplant.AddImplants(ownedEntity.Value, new List<string> { component.UplinkImplant }); // Why does this method only take in a list???
 
             _antagSelectionSystem.SendBriefing(
                 ownedEntity.Value,
@@ -127,11 +184,12 @@ public sealed partial class SuspicionRuleSystem
                 _traitorStartSound);
 
             RaiseNetworkEvent(new SuspicionRuleUpdateRole(SuspicionRole.Traitor), ownedEntity.Value);
+            participatingPlayers.Remove(role);
         }
 
-        for (var i = traitorCount; i < traitorCount + detectiveCount; i++)
+        for (var i = 0; i < detectiveCount; i++)
         {
-            var role = participatingPlayers[i];
+            var role = participatingPlayers[RobustRandom.Next(participatingPlayers.Count)];
             role.comp.Role = SuspicionRole.Detective;
             var ownedEntity = Comp<MindComponent>(role.mind).OwnedEntity;
             if (!ownedEntity.HasValue)
@@ -144,14 +202,68 @@ public sealed partial class SuspicionRuleSystem
 
             AddKeyToRadio(ownedEntity.Value, component.DetectiveRadio);
 
-            _subdermalImplant.AddImplants(ownedEntity.Value, new List<string> {component.DetectiveImplant});
+            _subdermalImplant.AddImplants(ownedEntity.Value, new List<string> { component.DetectiveImplant });
 
             _antagSelectionSystem.SendBriefing(
                 ownedEntity.Value,
                 Loc.GetString("detective-briefing"),
                 Color.LightBlue,
-                briefingSound:null);
+                briefingSound: null);
             RaiseNetworkEvent(new SuspicionRuleUpdateRole(SuspicionRole.Detective), ownedEntity.Value);
+            participatingPlayers.Remove(role);
+        }
+
+        var wildcardRoles = new List<SuspicionSubRole>
+        {
+            SuspicionSubRole.Jester
+        };
+
+        for (var i = 0; i < wildcardCount; i++)
+        {
+            var role = participatingPlayers[RobustRandom.Next(participatingPlayers.Count)];
+
+            var selectedSubRole = wildcardRoles[RobustRandom.Next(wildcardRoles.Count)];
+
+            role.comp.Role = SuspicionRole.Wildcard;
+            role.comp.SubRole = selectedSubRole;
+
+            string briefingText = selectedSubRole switch
+            {
+                SuspicionSubRole.Jester => Loc.GetString("jester-briefing"),
+                _ => Loc.GetString("wildcard-briefing")
+            };
+
+            SoundPathSpecifier? briefingSound = selectedSubRole switch
+            {
+                SuspicionSubRole.Jester => new SoundPathSpecifier("/Audio/Voice/Cluwne/cluwnelaugh1.ogg"),
+                _ => null
+            };
+
+            var ownedEntity = Comp<MindComponent>(role.mind).OwnedEntity;
+            if (!ownedEntity.HasValue)
+            {
+                Log.Error("Player mind has no entity.");
+                continue;
+            }
+
+            switch (selectedSubRole)
+            {
+                case SuspicionSubRole.Jester:
+                    {
+                        EnsureComp<PacifiedComponent>(ownedEntity.Value);
+                        break;
+                    }
+            }
+
+            _antagSelectionSystem.SendBriefing(
+                ownedEntity.Value,
+                briefingText,
+                Color.LightPink,
+                briefingSound: briefingSound);
+
+            RaiseNetworkEvent(new SuspicionRuleUpdateRole(SuspicionRole.Wildcard, selectedSubRole), ownedEntity.Value);
+
+            participatingPlayers.Remove(role);
         }
 
         // Anyone who isn't a traitor will get the innocent role.
@@ -169,7 +281,7 @@ public sealed partial class SuspicionRuleSystem
                 ownedEntity.Value,
                 Loc.GetString("innocent-briefing"),
                 briefingColor: Color.Green,
-                briefingSound:null);
+                briefingSound: null);
 
             RaiseNetworkEvent(new SuspicionRuleUpdateRole(SuspicionRole.Innocent), ownedEntity.Value);
         }

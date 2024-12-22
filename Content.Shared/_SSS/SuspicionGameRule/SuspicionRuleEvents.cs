@@ -17,9 +17,10 @@ public sealed class SuspicionRulePreroundStarted(TimeSpan preroundEndTime) : Ent
 }
 
 [Serializable, NetSerializable]
-public sealed class SuspicionRuleUpdateRole(SuspicionRole newRole) : EntityEventArgs
+public sealed class SuspicionRuleUpdateRole(SuspicionRole newRole, SuspicionSubRole? newSubRole = null) : EntityEventArgs
 {
     public readonly SuspicionRole NewRole = newRole;
+    public readonly SuspicionSubRole? NewSubRole = newSubRole;
 }
 
 [Serializable, NetSerializable]

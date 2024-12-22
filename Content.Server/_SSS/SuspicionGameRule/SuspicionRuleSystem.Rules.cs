@@ -17,6 +17,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Overlays;
 using Content.Shared.Popups;
+using Content.Server.KillTracking;
 
 namespace Content.Server._SSS.SuspicionGameRule;
 
@@ -53,6 +54,10 @@ public sealed partial class SuspicionRuleSystem
 
         DropAllItemsOnEntity(args.Target);
 
+    }
+
+    private void OnKillReported(ref KillReportedEvent ev)
+    {
         var query = EntityQueryEnumerator<SuspicionRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var ruleId, out var sus, out var gameRule))
         {
@@ -76,8 +81,9 @@ public sealed partial class SuspicionRuleSystem
 
             var allInnocents = FindAllOfType(SuspicionRole.Innocent);
             var allDetectives = FindAllOfType(SuspicionRole.Detective);
+            var allWildcards = FindAllOfType(SuspicionRole.Wildcard);
 
-            if (allInnocents.Count == 0 && allDetectives.Count == 0)
+            if (allInnocents.Count == 0 && allDetectives.Count == 0 && allWildcards.Count == 0)
             {
                 _chatManager.DispatchServerAnnouncement("The traitors have won the round.");
                 sus.GameState = SuspicionGameState.PostRound;
@@ -92,6 +98,19 @@ public sealed partial class SuspicionRuleSystem
                 _roundEndSystem.EndRound(TimeSpan.FromSeconds(sus.PostRoundDuration));
                 return;
             }
+
+            if (ev.Primary is KillPlayerSource player && !ev.Suicide)
+                if (TrySusRole(ev.Entity, out var roleComp))
+                    if (roleComp.SubRole == SuspicionSubRole.Jester)
+                        if (TrySusRole(player.PlayerId, out var attackerRoleComp))
+                            if (attackerRoleComp.Role == SuspicionRole.Innocent || attackerRoleComp.Role == SuspicionRole.Detective)
+                            {
+                                _chatManager.DispatchServerAnnouncement("The jesters have won the round.");
+                                sus.GameState = SuspicionGameState.PostRound;
+                                _roundEndSystem.EndRound(TimeSpan.FromSeconds(sus.PostRoundDuration));
+                                return;
+                            }
+
             break;
         }
     }
@@ -166,7 +185,7 @@ public sealed partial class SuspicionRuleSystem
                                         EntityUid.Invalid,
                                         false,
                                         client: session.Channel,
-                                        recordReplay:true
+                                        recordReplay: true
                                     );
                                 }
                             }
@@ -176,11 +195,13 @@ public sealed partial class SuspicionRuleSystem
             }
         }
 
+        var victimRole = role.Value.Comp2.SubRole?.ToString() ?? role.Value.Comp2.Role.ToString();
+
         args.PushMarkup(Loc.GetString(
                 "suspicion-examination",
                 ("ent", args.Examined),
                 ("col", role.Value.Comp2.Role.GetRoleColor()),
-                ("role", role.Value.Comp2.Role.ToString())),
+                ("role", victimRole)),
             -10);
 
         if (!HasComp<HandsComponent>(args.Examiner))
@@ -211,12 +232,11 @@ public sealed partial class SuspicionRuleSystem
             ("found", args.Examined),
             ("where", _navMapSystem.GetNearestBeaconString(loc)),
             ("col", role.Value.Comp2.Role.GetRoleColor()),
-            ("role", role.Value.Comp2.Role.ToString()));
+            ("role", victimRole));
         SendAnnouncement(
             msg
         );
     }
-
     private void UpdateSpaceWalkDamage(ref SuspicionRuleComponent sus, float frameTime)
     {
         var query = EntityQueryEnumerator<SuspicionPlayerComponent>();

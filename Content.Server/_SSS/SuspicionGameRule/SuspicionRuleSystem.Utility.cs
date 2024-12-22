@@ -11,7 +11,8 @@ using Content.Shared.Storage;
 using Content.Shared.Store.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
-
+using Robust.Shared.Network;
+using System.Diagnostics.CodeAnalysis;
 namespace Content.Server._SSS.SuspicionGameRule;
 
 public sealed partial class SuspicionRuleSystem
@@ -81,11 +82,47 @@ public sealed partial class SuspicionRuleSystem
     }
 
     /// <summary>
+    /// Tries to find the SuspicionRoleComponent of a entity.
+    /// </summary>
+    private bool TrySusRole(EntityUid ent, [NotNullWhen(true)] out SuspicionRoleComponent? suspicionRole)
+    {
+        suspicionRole = null;
+
+        if (!_mindSystem.TryGetMind(ent, out var mind, out var mindComp))
+            return false;
+
+        if (!_roleSystem.MindHasRole<SuspicionRoleComponent>(mind, out var susRole))
+            return false;
+
+        suspicionRole = susRole;
+        return true;
+    }
+
+    /// <summary>
+    /// Tries to find the SuspicionRoleComponent of a user.
+    /// </summary>
+    private bool TrySusRole(NetUserId userId, [NotNullWhen(true)] out SuspicionRoleComponent? suspicionRole)
+    {
+        suspicionRole = null;
+
+        if (!_mindSystem.TryGetMind(userId, out var mind, out var mindComp) || mind == null)
+            return false;
+
+        var nullableMind = new Entity<MindComponent?>(mind.Value, mindComp);
+
+        if (!_roleSystem.MindHasRole<SuspicionRoleComponent>(nullableMind, out var susRole))
+            return false;
+
+        suspicionRole = susRole;
+        return true;
+    }
+
+    /// <summary>
     /// Finds all players with a specific role.
     /// </summary>
     private List<(EntityUid body, Entity<MindRoleComponent, SuspicionRoleComponent> sus)> FindAllOfType(SuspicionRole role, bool filterDead = true)
     {
-        var allMinds = new  HashSet<Entity<MindComponent>>();
+        var allMinds = new HashSet<Entity<MindComponent>>();
         if (filterDead)
         {
             allMinds = _mindSystem.GetAliveHumans();
@@ -105,12 +142,55 @@ public sealed partial class SuspicionRuleSystem
         var result = new List<(EntityUid body, Entity<MindRoleComponent, SuspicionRoleComponent>)>();
         foreach (var mind in allMinds)
         {
-            var nullableMind = new Entity<MindComponent?>(mind.Owner, mind.Comp); // I see your shitcode, and i raise you MORE shit code.
+            var nullableMind = new Entity<MindComponent?>(mind.Owner, mind.Comp);
 
             if (!_roleSystem.MindHasRole<SuspicionRoleComponent>(nullableMind, out var roleComp))
                 continue;
 
             if (roleComp.Value.Comp2.Role != role)
+                continue;
+
+            var entity = Comp<MindComponent>(mind).OwnedEntity;
+            if (!entity.HasValue)
+                continue;
+
+            result.Add((entity.Value, roleComp.Value));
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Finds all players with a specific sub-role.
+    /// </summary>
+    private List<(EntityUid body, Entity<MindRoleComponent, SuspicionRoleComponent> sus)> FindAllOfType(SuspicionSubRole subRole, bool filterDead = true)
+    {
+        var allMinds = new HashSet<Entity<MindComponent>>();
+        if (filterDead)
+        {
+            allMinds = _mindSystem.GetAliveHumans();
+        }
+        else
+        {
+            var query = EntityQueryEnumerator<HumanoidAppearanceComponent>();
+            while (query.MoveNext(out var uid, out _))
+            {
+                if (!_mindSystem.TryGetMind(uid, out var mind, out var mindComp))
+                    continue;
+
+                allMinds.Add(new Entity<MindComponent>(mind, mindComp));
+            }
+        }
+
+        var result = new List<(EntityUid body, Entity<MindRoleComponent, SuspicionRoleComponent>)>();
+        foreach (var mind in allMinds)
+        {
+            var nullableMind = new Entity<MindComponent?>(mind.Owner, mind.Comp);
+
+            if (!_roleSystem.MindHasRole<SuspicionRoleComponent>(nullableMind, out var roleComp))
+                continue;
+
+            if (roleComp.Value.Comp2.SubRole != subRole)
                 continue;
 
             var entity = Comp<MindComponent>(mind).OwnedEntity;

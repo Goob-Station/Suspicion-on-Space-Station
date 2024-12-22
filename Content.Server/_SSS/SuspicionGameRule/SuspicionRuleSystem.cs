@@ -35,6 +35,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server.KillTracking;
 
 namespace Content.Server._SSS.SuspicionGameRule;
 
@@ -82,6 +83,7 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
         SubscribeLocalEvent<CommunicationConsoleCallShuttleAttemptEvent>(OnShuttleCall);
         SubscribeLocalEvent<GhostSpawnedEvent>(OnGhost); // Map init just doesn't work??
         SubscribeLocalEvent<ApcComponent, MapInitEvent>(OnApcInit);
+        SubscribeLocalEvent<KillReportedEvent>(OnKillReported);
     }
 
 
@@ -95,10 +97,14 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
         var traitors = FindAllOfType(SuspicionRole.Traitor, false);
         var innocents = FindAllOfType(SuspicionRole.Innocent, false);
         var detectives = FindAllOfType(SuspicionRole.Detective, false);
+        var wildcards = FindAllOfType(SuspicionRole.Wildcard, false);
+        var jesters = FindAllOfType(SuspicionSubRole.Jester, false);
 
         var traitorsOnlyAlive = FindAllOfType(SuspicionRole.Traitor);
         var innocentsOnlyAlive = FindAllOfType(SuspicionRole.Innocent);
         var detectivesOnlyAlive = FindAllOfType(SuspicionRole.Detective);
+        var wildcardsOnlyAlive = FindAllOfType(SuspicionRole.Wildcard);
+        var jestersOnlyAlive = FindAllOfType(SuspicionSubRole.Jester);
 
         void Append(List<EntityUid> people, ref RoundEndTextAppendEvent args)
         {
@@ -113,8 +119,22 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
             }
         }
 
-        var victory = innocentsOnlyAlive.Count + detectivesOnlyAlive.Count == 0 ? "Traitors" : "Innocents";
-        // Traitors win if there are no innocents or detectives left.
+        string victory;
+
+        switch (true)
+        {
+            case var _ when jestersOnlyAlive.Count != jesters.Count:
+                victory = "Jesters";
+                break;
+
+            case var _ when innocentsOnlyAlive.Count + detectivesOnlyAlive.Count == 0:
+                victory = "Traitors";
+                break;
+
+            default:
+                victory = "Innocents";
+                break;
+        }
 
         args.AddLine($"[bold]{victory}[/bold] have won the round.");
 
@@ -124,6 +144,8 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
         Append(innocents.Select(t => t.body).ToList(), ref args);
         args.AddLine($"[color=blue][bold]Detectives[/bold][/color]: {detectives.Count}");
         Append(detectives.Select(t => t.body).ToList(), ref args);
+        args.AddLine($"[color=pink][bold]Wildcards[/bold][/color]: {wildcards.Count}");
+        Append(wildcards.Select(t => t.body).ToList(), ref args);
     }
 
 
@@ -133,8 +155,8 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
 
         component.GameState = SuspicionGameState.Preparing;
 
-        Timer.Spawn(TimeSpan.FromSeconds(_preparingDuration - 5), () =>  _chatManager.DispatchServerAnnouncement("The round will start in 5 seconds."));
-        Timer.Spawn(TimeSpan.FromSeconds(_preparingDuration), () =>  StartRound(uid, component, gameRule));
+        Timer.Spawn(TimeSpan.FromSeconds(_preparingDuration - 5), () => _chatManager.DispatchServerAnnouncement("The round will start in 5 seconds."));
+        Timer.Spawn(TimeSpan.FromSeconds(_preparingDuration), () => StartRound(uid, component, gameRule));
         Log.Debug("Starting a game of Suspicion.");
 
         RaiseNetworkEvent(new SuspicionRulePreroundStarted(TimeSpan.FromSeconds(_preparingDuration)));
