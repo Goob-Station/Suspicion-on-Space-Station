@@ -8,6 +8,9 @@ public sealed partial class SuspicionRoleComponent : BaseMindRoleComponent
 {
     [ViewVariables]
     public SuspicionRole Role { get; set; } = SuspicionRole.Pending;
+    /// <summary>
+    /// SubRole of the normal role, lets you specialize a role more if you want. If null everything just uses the normal Role definition.
+    /// </summary>
     [ViewVariables]
     public SuspicionSubRole? SubRole { get; set; } = null;
 }
