@@ -15,5 +15,19 @@ namespace Content.Server.Damage.Components
         [ViewVariables(VVAccess.ReadWrite)]
         public DamageSpecifier Damage = default!;
 
+        [DataField("damageMultiplierOverTime")]
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float DamageMultiplierOverTime = 1f;
+
+        [DataField("timeTillMaxDamage")]
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float TimeTillMaxDamage = 0f;
+
+        [ViewVariables(VVAccess.ReadOnly)]
+        public TimeSpan TimeThrown = TimeSpan.Zero;
+
+        [ViewVariables(VVAccess.ReadOnly)]
+        public TimeSpan TimeToMaxDamage = TimeSpan.Zero;
+
     }
 }

@@ -7,3 +7,6 @@ uplink-disruptive-throwable-desc = A set of 1 flash, smoke and stinger grenades.
 uplink-exploding-syndicate-bomb-SSS-desc = A big, anchored bomb that can create a huge explosion if not defused in time. Useful as a distraction. Has an adjustable timer with a minimum setting of 90 seconds. Stays quiet for 30 seconds upon activation.
 uplink-armour-upgrade-name = Armour Upgrade Kit
 uplink-armour-upgrade-desc = An armour upgrade kit. Use on your armour to upgrade the protection. Armour will drop if equipped!
+
+uplink-one-shot-knife-name = Throwing Knife
+uplink-one-shot-knife-desc = A combat knife that appears to be normal, but its damage scales with how long its been in the air, dealing up to 100 damage. Destroyed after use, so use it wisely!
