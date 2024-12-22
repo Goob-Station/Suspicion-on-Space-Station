@@ -85,6 +85,17 @@
     Telecrystal: 4
 
 - type: listing
+  id: UplinkHomerunBatSSS
+  name: uplink-homerun-bat-name
+  description: uplink-homerun-bat-desc
+  productEntity: WeaponMeleeHomerunBat
+  categories:
+  - SSSTraitorWeapons
+  cost:
+    Telecrystal: 3
+
+
+- type: listing
   id: UplinkExplosiveGrenadeSSS
   name: uplink-explosive-grenade-name
   description: uplink-explosive-grenade-desc
@@ -383,10 +394,30 @@
     stock: 1
 
 - type: listing
+  id: UplinkZiptiesSSSDetective
+  name: uplink-zipties-name
+  description: uplink-zipties-desc
+  productEntity: ZiptiesDetective
+  cost:
+    Telecrystal: 1
+  categories:
+  - SSSDetectiveDisruption
+
+- type: listing
   id: UplinkBoxDisruptiveThrowableSSSDetective
   name: uplink-disruptive-throwable-name
   description: uplink-disruptive-throwable-desc
   productEntity: BoxDisruptiveThrowable
+  categories:
+  - SSSDetectiveChemicals
+  cost:
+    Telecrystal: 2
+
+- type: listing
+  id: UplinkDefibrillatorSSSDetective
+  name: uplink-defibrillator-name
+  description: uplink-defibrillator-desc
+  productEntity: SSSDefibrillator
   categories:
   - SSSDetectiveExplosives
   cost:

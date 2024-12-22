@@ -1,0 +1,34 @@
+- type: entity
+  name: homerun bat
+  parent: BaseBallBat
+  id: WeaponMeleeHomerunBat
+  description: K.O.
+  suffix: Traitor
+  components:
+  - type: MeleeThrowOnHit
+    speed: 30
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 20
+    soundHit:
+      path: /Audio/_SSS/Effects/homerun.ogg
+    attackRate: 0.5
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: WoodDestroy
+            params:
+              volume: -1
+  - type: DamageOnHit
+    damage:
+      types:
+        Blunt: 25

@@ -7,3 +7,12 @@ uplink-disruptive-throwable-desc = A set of 1 flash, smoke and stinger grenades.
 uplink-exploding-syndicate-bomb-SSS-desc = A big, anchored bomb that can create a huge explosion if not defused in time. Useful as a distraction. Has an adjustable timer with a minimum setting of 90 seconds. Stays quiet for 30 seconds upon activation.
 uplink-armour-upgrade-name = Armour Upgrade Kit
 uplink-armour-upgrade-desc = An armour upgrade kit. Use on your armour to upgrade the protection. Armour will drop if equipped!
+
+uplink-zipties-name = Zipties
+uplink-zipties-desc = Tough single-use plastic zipties, ideal for restraining rowdy crew.
+
+uplink-homerun-bat-name = Homerun Bat
+uplink-homerun-bat-desc = Send your enemies flying! Breaks after four hits.
+
+uplink-defibrillator-name = Defibrillator
+uplink-defibrillator-desc = Revive your friends! One time use.
