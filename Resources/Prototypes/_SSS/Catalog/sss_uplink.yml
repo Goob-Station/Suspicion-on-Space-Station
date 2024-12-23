@@ -419,7 +419,7 @@
   description: uplink-disruptive-throwable-desc
   productEntity: BoxDisruptiveThrowable
   categories:
-  - SSSDetectiveChemicals
+  - SSSDetectiveExplosives
   cost:
     Telecrystal: 2
 
@@ -429,7 +429,7 @@
   description: uplink-defibrillator-desc
   productEntity: SSSDefibrillator
   categories:
-  - SSSDetectiveExplosives
+  - SSSDetectiveChemicals
   cost:
     Telecrystal: 2
 
