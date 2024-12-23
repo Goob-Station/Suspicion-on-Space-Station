@@ -85,6 +85,17 @@
     Telecrystal: 4
 
 - type: listing
+  id: UplinkOneShotKnifeSSS
+  name: uplink-one-shot-knife-name
+  description: uplink-one-shot-knife-desc
+  icon: { sprite: /Textures/Objects/Weapons/Melee/combat_knife.rsi, state: icon }
+  productEntity: CombatKnifeOneShotThrowing
+  categories:
+  - SSSTraitorWeapons
+  cost:
+    Telecrystal: 2
+
+- type: listing
   id: UplinkExplosiveGrenadeSSS
   name: uplink-explosive-grenade-name
   description: uplink-explosive-grenade-desc

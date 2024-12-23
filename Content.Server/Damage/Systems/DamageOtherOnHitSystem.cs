@@ -13,6 +13,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Wires;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Damage.Systems
 {
@@ -24,12 +25,14 @@ namespace Content.Server.Damage.Systems
         [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
         [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
         [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
+        [Dependency] private readonly IGameTiming _gameTiming = default!;
 
         public override void Initialize()
         {
             SubscribeLocalEvent<DamageOtherOnHitComponent, ThrowDoHitEvent>(OnDoHit);
             SubscribeLocalEvent<DamageOtherOnHitComponent, DamageExamineEvent>(OnDamageExamine);
             SubscribeLocalEvent<DamageOtherOnHitComponent, AttemptPacifiedThrowEvent>(OnAttemptPacifiedThrow);
+            SubscribeLocalEvent<DamageOtherOnHitComponent, ThrownEvent>(OnThrow);
         }
 
         private void OnDoHit(EntityUid uid, DamageOtherOnHitComponent component, ThrowDoHitEvent args)
@@ -37,7 +40,15 @@ namespace Content.Server.Damage.Systems
             if (TerminatingOrDeleted(args.Target))
                 return;
 
-            var dmg = _damageable.TryChangeDamage(args.Target, component.Damage, component.IgnoreResistances, origin: args.Component.Thrower);
+            var currentTime = _gameTiming.CurTime;
+            var timeSinceThrown = (currentTime - component.TimeThrown).TotalSeconds;
+            float scaleFactor = MathHelper.Clamp((float)(timeSinceThrown / component.TimeTillMaxDamage), 0f, 1f);
+
+            var scaledDamage = new DamageSpecifier();
+            foreach (var (damageType, baseDamage) in component.Damage.DamageDict)
+                scaledDamage.DamageDict[damageType] = baseDamage * (1f - scaleFactor) + baseDamage * component.DamageMultiplierOverTime * scaleFactor;
+
+            var dmg = _damageable.TryChangeDamage(args.Target, scaledDamage, component.IgnoreResistances, origin: args.Component.Thrower);
 
             // Log damage only for mobs. Useful for when people throw spears at each other, but also avoids log-spam when explosions send glass shards flying.
             if (dmg != null && HasComp<MobStateComponent>(args.Target))
@@ -68,5 +79,12 @@ namespace Content.Server.Damage.Systems
         {
             args.Cancel("pacified-cannot-throw");
         }
+
+        private void OnThrow(EntityUid uid, DamageOtherOnHitComponent component, ref ThrownEvent args)
+        {
+            component.TimeThrown = _gameTiming.CurTime;
+            component.TimeToMaxDamage = component.TimeThrown + TimeSpan.FromSeconds(component.TimeTillMaxDamage);
+        }
+
     }
 }
