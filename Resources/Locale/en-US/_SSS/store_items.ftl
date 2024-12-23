@@ -16,3 +16,6 @@ uplink-homerun-bat-desc = Send your enemies flying! Breaks after four hits.
 
 uplink-defibrillator-name = Defibrillator
 uplink-defibrillator-desc = Revive your friends! One time use.
+
+uplink-one-shot-knife-name = Throwing Knife
+uplink-one-shot-knife-desc = A combat knife that appears to be normal, but its damage scales with how long its been in the air, dealing up to 100 damage. Destroyed after use, so use it wisely!

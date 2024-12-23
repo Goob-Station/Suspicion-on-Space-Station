@@ -94,6 +94,16 @@
   cost:
     Telecrystal: 3
 
+- type: listing
+  id: UplinkOneShotKnifeSSS
+  name: uplink-one-shot-knife-name
+  description: uplink-one-shot-knife-desc
+  icon: { sprite: /Textures/Objects/Weapons/Melee/combat_knife.rsi, state: icon }
+  productEntity: CombatKnifeOneShotThrowing
+  categories:
+  - SSSTraitorWeapons
+  cost:
+    Telecrystal: 2
 
 - type: listing
   id: UplinkExplosiveGrenadeSSS
@@ -409,7 +419,7 @@
   description: uplink-disruptive-throwable-desc
   productEntity: BoxDisruptiveThrowable
   categories:
-  - SSSDetectiveChemicals
+  - SSSDetectiveExplosives
   cost:
     Telecrystal: 2
 
@@ -419,7 +429,7 @@
   description: uplink-defibrillator-desc
   productEntity: SSSDefibrillator
   categories:
-  - SSSDetectiveExplosives
+  - SSSDetectiveChemicals
   cost:
     Telecrystal: 2
 
