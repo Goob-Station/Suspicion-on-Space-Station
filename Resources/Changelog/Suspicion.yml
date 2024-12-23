@@ -235,3 +235,17 @@
   id: 27
   time: '2024-12-23T01:41:25.0000000+00:00'
   url: https://github.com/Goob-Station/Suspicion-on-Space-Station/pull/50
+- author: Aidenkrz
+  changes:
+  - message: Added new detective item, Defibrillator. Costs 2 tc and is a one time
+      use revive.
+    type: Add
+  - message: Added new detective item, Zipties. Costs 1 tc and cuffs nearly instantly,
+      but is easy to breakout of.
+    type: Add
+  - message: Added new traitor item, Homerun Bat. Costs 3 tc and sends people flying,
+      but has 4 uses.
+    type: Add
+  id: 28
+  time: '2024-12-23T02:19:28.0000000+00:00'
+  url: https://github.com/Goob-Station/Suspicion-on-Space-Station/pull/51
