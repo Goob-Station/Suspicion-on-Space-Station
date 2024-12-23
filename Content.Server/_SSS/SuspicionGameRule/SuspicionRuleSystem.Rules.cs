@@ -43,7 +43,7 @@ public sealed partial class SuspicionRuleSystem
     {
         if (args.NewMobState == MobState.Critical)
         {
-            var damageSpec = new DamageSpecifier(_prototypeManager.Index<DamageGroupPrototype>("Genetic"), 90000);
+            var damageSpec = new DamageSpecifier(_prototypeManager.Index<DamageGroupPrototype>("Genetic"), 1000);
             _damageableSystem.TryChangeDamage(args.Target, damageSpec);
             Log.Debug("Player is critical, applying genetic damage.");
             return;
