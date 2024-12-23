@@ -1,0 +1,19 @@
+- type: entity
+  parent: Defibrillator
+  id: SSSDefibrillator
+  name: defibrillator
+  description: CLEAR! Zzzzat!
+  suffix: SSS
+  components:
+  - type: Defibrillator
+    zapHeal:
+      groups:
+        Brute: -900000
+        Burn: -900000
+        Airloss: -900000
+        Toxin: -900000
+        Genetic: -900000
+        Metaphysical: -900000
+    doAfterDuration: 20
+  - type: PowerCellDraw
+    useRate: 300

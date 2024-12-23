@@ -363,9 +363,8 @@ public sealed partial class SuspicionRuleSystem
             EnsureComp<SuspicionPlayerComponent>(mob);
 
             RemComp<PerishableComponent>(mob);
-            RemComp<RottingComponent>(mob); // No rotting bodies in this mode, can't revive them anyways.
+            RemComp<RottingComponent>(mob); // No rotting bodies in this mode.
 
-            EnsureComp<UnrevivableComponent>(mob);
             EnsureComp<KillTrackerComponent>(mob);
             EnsureComp<BodyComponent>(mob).CanGib = false; // Examination is important.
 
