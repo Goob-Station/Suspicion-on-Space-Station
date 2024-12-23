@@ -81,8 +81,7 @@
   - type: ReagentTank
     tankType: Fuel
   - type: DamageOnToolInteract
-    tools:
-    - Welding
+    tools: Welding
     weldingDamage:
       types:
         Heat: 10
@@ -113,8 +112,8 @@
         reagents:
         - ReagentId: WeldingFuel
           Quantity: 2000
-          
-          
+
+
 - type: entity
   parent: N14StorageTankWide
   id: N14StorageTank
@@ -135,7 +134,7 @@
         - MachineMask
         layer:
         - WallLayer
-      
+
 - type: entity
   id: N14StorageTankFullFuel
   parent: N14StorageTank
@@ -147,7 +146,7 @@
         reagents:
         - ReagentId: WeldingFuel
           Quantity: 1500
-          
+
 - type: entity
   id: N14StorageTankHuge
   parent: N14StorageTankWide
@@ -168,7 +167,7 @@
         - MachineMask
         layer:
         - WallLayer
-      
+
 - type: entity
   id: N14StorageTankHugeFullFuel
   parent: N14StorageTankHuge
@@ -180,7 +179,7 @@
         reagents:
         - ReagentId: WeldingFuel
           Quantity: 2000
-          
+
 - type: entity
   parent: N14StorageTankBase
   id: N14StorageTankVat
@@ -201,7 +200,7 @@
         - MachineMask
         layer:
         - WallLayer
-      
+
 - type: entity
   parent: N14StorageTankVat
   id: N14StorageTankVatFullFuel
@@ -213,7 +212,7 @@
         reagents:
         - ReagentId: WeldingFuel
           Quantity: 1500
-          
+
 - type: entity
   parent: N14StorageTankVat
   id: N14StorageTankVatFullWater
