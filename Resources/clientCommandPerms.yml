@@ -79,6 +79,7 @@
     - mapping
     - toggleautosave
     - toggledecals
+    - mappingclientsidesetup
 
 - Flags: QUERY
   Commands:
