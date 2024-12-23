@@ -2265,48 +2265,6 @@ entities:
     - type: Transform
       pos: -15.261324,34.24787
       parent: 768
-- proto: N14BulletBB
-  entities:
-  - uid: 979
-    components:
-    - type: Transform
-      pos: -5.2093225,27.766617
-      parent: 768
-  - uid: 982
-    components:
-    - type: Transform
-      pos: -5.2301555,27.91245
-      parent: 768
-  - uid: 983
-    components:
-    - type: Transform
-      pos: -5.2093225,27.829117
-      parent: 768
-  - uid: 984
-    components:
-    - type: Transform
-      pos: -5.2926555,27.829117
-      parent: 768
-  - uid: 985
-    components:
-    - type: Transform
-      pos: -5.2718225,27.870783
-      parent: 768
-  - uid: 986
-    components:
-    - type: Transform
-      pos: -5.1468225,27.829117
-      parent: 768
-  - uid: 987
-    components:
-    - type: Transform
-      pos: -5.1051555,27.558283
-      parent: 768
-  - uid: 988
-    components:
-    - type: Transform
-      pos: -5.2301555,27.579117
-      parent: 768
 - proto: N14BurningBarrelLit
   entities:
   - uid: 401
@@ -7004,7 +6962,7 @@ entities:
     - type: Transform
       pos: -4.5,-18.5
       parent: 768
-- proto: N14ClosetFireFilled
+- proto: ClosetFireFilled
   entities:
   - uid: 1347
     components:
@@ -7051,25 +7009,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -6.747732,34.576366
-      parent: 768
-- proto: N14ClothingEyesGlassesChemist
-  entities:
-  - uid: 2026
-    components:
-    - type: Transform
-      pos: -11.612112,35.810013
-      parent: 768
-  - uid: 2027
-    components:
-    - type: Transform
-      pos: -11.630862,35.641262
-      parent: 768
-- proto: N14ClothingHandsGlovesChemist
-  entities:
-  - uid: 2017
-    components:
-    - type: Transform
-      pos: -6.203982,34.445114
       parent: 768
 - proto: ClothingHandsGlovesLeather
   entities:
@@ -7172,13 +7111,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -33.249302,-27.76202
-      parent: 768
-- proto: N14ClothingNeckTieChem
-  entities:
-  - uid: 2020
-    components:
-    - type: Transform
-      pos: -5.641482,33.638866
       parent: 768
 - proto: N14ClothingOuterDdCorporateJacket
   entities:
@@ -7432,7 +7364,7 @@ entities:
     - type: Transform
       pos: 16.5,5.5
       parent: 768
-- proto: N14CrateFreezer2
+- proto: N14CrateFreezer
   entities:
   - uid: 2350
     components:
@@ -9716,27 +9648,6 @@ entities:
     - type: Transform
       pos: -6.638831,-2.434335
       parent: 768
-- proto: N14DrinkJuiceGrapeJuicebox
-  entities:
-  - uid: 2419
-    components:
-    - type: Transform
-      pos: -28.342623,18.726095
-      parent: 768
-- proto: N14DrinkJuiceOrangeJuicebox
-  entities:
-  - uid: 2416
-    components:
-    - type: Transform
-      pos: -28.801748,18.786007
-      parent: 768
-- proto: N14DrinkJuicePineappleJuicebox
-  entities:
-  - uid: 2418
-    components:
-    - type: Transform
-      pos: -28.66081,18.564531
-      parent: 768
 - proto: DrinkMug
   entities:
   - uid: 1997
@@ -11081,13 +10992,6 @@ entities:
     - type: Transform
       pos: -28.5,-25.5
       parent: 768
-- proto: N14LunchboxGeneric
-  entities:
-  - uid: 944
-    components:
-    - type: Transform
-      pos: 29.686945,-2.0419123
-      parent: 768
 - proto: LuxuryPen
   entities:
   - uid: 2068
@@ -11442,17 +11346,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 10.57828,26.582527
       parent: 768
-- proto: N14PlushieJester
-  entities:
-  - uid: 6
-    components:
-    - type: Transform
-      parent: 5
-    - type: Physics
-      angularDamping: 0
-      linearDamping: 0
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: PortableGeneratorJrPacman
   entities:
   - uid: 1947
@@ -14317,18 +14210,6 @@ entities:
     components:
     - type: Transform
       pos: 7.5,24.5
-      parent: 768
-- proto: N14VendingMachineBoozeUnlocked
-  entities:
-  - uid: 92
-    components:
-    - type: Transform
-      pos: -30.5,-1.5
-      parent: 768
-  - uid: 2417
-    components:
-    - type: Transform
-      pos: -37.5,30.5
       parent: 768
 - proto: VendingMachineChefvend
   entities:
@@ -22337,13 +22218,6 @@ entities:
     components:
     - type: Transform
       pos: -11.5,-15.5
-      parent: 768
-- proto: N14WeaponRifleBB
-  entities:
-  - uid: 981
-    components:
-    - type: Transform
-      pos: -5.4384894,27.59995
       parent: 768
 - proto: WeaponWaterPistol
   entities:
