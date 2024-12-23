@@ -227,3 +227,11 @@
   id: 26
   time: '2024-12-22T07:33:55.0000000+00:00'
   url: https://github.com/Goob-Station/Suspicion-on-Space-Station/pull/49
+- author: Aidenkrz
+  changes:
+  - message: Added new traitor item, (Throwing) Combat Knife. Costs 2 tc, looks like
+      a normal combat knife but can one shot if thrown from ~8 tiles away.
+    type: Add
+  id: 27
+  time: '2024-12-23T01:41:25.0000000+00:00'
+  url: https://github.com/Goob-Station/Suspicion-on-Space-Station/pull/50
