@@ -1908,7 +1908,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 24.346512,9.511669
       parent: 768
-- proto: BarberSignPole
+- proto: N14BarberSignPole
   entities:
   - uid: 2735
     components:
@@ -1916,7 +1916,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 22.5,7.5
       parent: 768
-- proto: BarberSignThesnip
+- proto: N14BarberSignThesnip
   entities:
   - uid: 2695
     components:
@@ -2062,14 +2062,14 @@ entities:
     - type: Transform
       pos: -22.5,-4.5
       parent: 768
-- proto: BenchParkLeft
+- proto: N14BenchParkLeft
   entities:
   - uid: 1166
     components:
     - type: Transform
       pos: 8.5,7.5
       parent: 768
-- proto: BenchParkRight
+- proto: N14BenchParkRight
   entities:
   - uid: 1104
     components:
@@ -2084,35 +2084,35 @@ entities:
       rot: 3.141592653589793 rad
       pos: -22.5,-7.5
       parent: 768
-- proto: BenchSofaCorpLeft
+- proto: N14BenchSofaCorpLeft
   entities:
   - uid: 2119
     components:
     - type: Transform
       pos: -26.5,26.5
       parent: 768
-- proto: BenchSofaLeft
+- proto: N14BenchSofaLeft
   entities:
   - uid: 2121
     components:
     - type: Transform
       pos: 7.5,28.5
       parent: 768
-- proto: BenchSofaRight
+- proto: N14BenchSofaRight
   entities:
   - uid: 2122
     components:
     - type: Transform
       pos: 6.5,28.5
       parent: 768
-- proto: BenchSteelLeft
+- proto: N14BenchSteelLeft
   entities:
   - uid: 2780
     components:
     - type: Transform
       pos: 11.5,22.5
       parent: 768
-- proto: BenchSteelRight
+- proto: N14BenchSteelRight
   entities:
   - uid: 2733
     components:
@@ -2265,7 +2265,7 @@ entities:
     - type: Transform
       pos: -15.261324,34.24787
       parent: 768
-- proto: BulletBB
+- proto: N14BulletBB
   entities:
   - uid: 979
     components:
@@ -2307,7 +2307,7 @@ entities:
     - type: Transform
       pos: -5.2301555,27.579117
       parent: 768
-- proto: BurningBarrelLit
+- proto: N14BurningBarrelLit
   entities:
   - uid: 401
     components:
@@ -6303,7 +6303,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -28.5,22.5
       parent: 768
-- proto: ChairBarber
+- proto: N14ChairBarber
   entities:
   - uid: 2708
     components:
@@ -6980,14 +6980,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: 16.5,18.5
       parent: 768
-- proto: ClosetBaseW
+- proto: N14ClosetBaseW
   entities:
   - uid: 2941
     components:
     - type: Transform
       pos: -6.5,32.5
       parent: 768
-- proto: ClosetCabinetWood
+- proto: N14ClosetCabinetWood
   entities:
   - uid: 702
     components:
@@ -7004,14 +7004,14 @@ entities:
     - type: Transform
       pos: -4.5,-18.5
       parent: 768
-- proto: ClosetFireFilled
+- proto: N14ClosetFireFilled
   entities:
   - uid: 1347
     components:
     - type: Transform
       pos: 9.5,-20.5
       parent: 768
-- proto: ClosetFridgeWideDirty
+- proto: N14ClosetFridgeWideDirty
   entities:
   - uid: 1219
     components:
@@ -7023,21 +7023,21 @@ entities:
     - type: Transform
       pos: -3.5,24.5
       parent: 768
-- proto: ClosetGrey1
+- proto: N14ClosetGrey1
   entities:
   - uid: 412
     components:
     - type: Transform
       pos: 1.5,25.5
       parent: 768
-- proto: ClosetGunCabinet
+- proto: N14ClosetGunCabinet
   entities:
   - uid: 1291
     components:
     - type: Transform
       pos: -8.5,1.5
       parent: 768
-- proto: ClosetSafeSpinner
+- proto: N14ClosetSafeSpinner
   entities:
   - uid: 767
     components:
@@ -7052,7 +7052,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -6.747732,34.576366
       parent: 768
-- proto: ClothingEyesGlassesChemist
+- proto: N14ClothingEyesGlassesChemist
   entities:
   - uid: 2026
     components:
@@ -7064,7 +7064,7 @@ entities:
     - type: Transform
       pos: -11.630862,35.641262
       parent: 768
-- proto: ClothingHandsGlovesChemist
+- proto: N14ClothingHandsGlovesChemist
   entities:
   - uid: 2017
     components:
@@ -7173,14 +7173,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -33.249302,-27.76202
       parent: 768
-- proto: ClothingNeckTieChem
+- proto: N14ClothingNeckTieChem
   entities:
   - uid: 2020
     components:
     - type: Transform
       pos: -5.641482,33.638866
       parent: 768
-- proto: ClothingOuterDdCorporateJacket
+- proto: N14ClothingOuterDdCorporateJacket
   entities:
   - uid: 1515
     components:
@@ -7266,7 +7266,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,24.5
       parent: 768
-- proto: CrateBreakPlain
+- proto: N14CrateBreakPlain
   entities:
   - uid: 375
     components:
@@ -7318,7 +7318,7 @@ entities:
     - type: Transform
       pos: 17.5,6.5
       parent: 768
-- proto: CrateBreakPlainDamaged
+- proto: N14CrateBreakPlainDamaged
   entities:
   - uid: 2115
     components:
@@ -7350,7 +7350,7 @@ entities:
     - type: Transform
       pos: -27.5,-20.5
       parent: 768
-- proto: CrateBreakWood
+- proto: N14CrateBreakWood
   entities:
   - uid: 70
     components:
@@ -7432,7 +7432,7 @@ entities:
     - type: Transform
       pos: 16.5,5.5
       parent: 768
-- proto: CrateFreezer2
+- proto: N14CrateFreezer2
   entities:
   - uid: 2350
     components:
@@ -7466,7 +7466,7 @@ entities:
     - type: Transform
       pos: 29.496525,-25.28304
       parent: 768
-- proto: DecorBarrels
+- proto: N14DecorBarrels
   entities:
   - uid: 315
     components:
@@ -7480,7 +7480,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -21.5,30.5
       parent: 768
-- proto: DecorFloorBoard1
+- proto: N14DecorFloorBoard1
   entities:
   - uid: 265
     components:
@@ -7561,7 +7561,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard10
+- proto: N14DecorFloorBoard10
   entities:
   - uid: 274
     components:
@@ -7620,7 +7620,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard11
+- proto: N14DecorFloorBoard11
   entities:
   - uid: 2670
     components:
@@ -7667,7 +7667,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard12
+- proto: N14DecorFloorBoard12
   entities:
   - uid: 2734
     components:
@@ -7714,7 +7714,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard13
+- proto: N14DecorFloorBoard13
   entities:
   - uid: 2798
     components:
@@ -7803,7 +7803,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard14
+- proto: N14DecorFloorBoard14
   entities:
   - uid: 268
     components:
@@ -7828,7 +7828,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard15
+- proto: N14DecorFloorBoard15
   entities:
   - uid: 2668
     components:
@@ -7861,7 +7861,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard16
+- proto: N14DecorFloorBoard16
   entities:
   - uid: 2801
     components:
@@ -7877,7 +7877,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard17
+- proto: N14DecorFloorBoard17
   entities:
   - uid: 2800
     components:
@@ -7918,7 +7918,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard18
+- proto: N14DecorFloorBoard18
   entities:
   - uid: 456
     components:
@@ -7944,7 +7944,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard19
+- proto: N14DecorFloorBoard19
   entities:
   - uid: 2795
     components:
@@ -7985,7 +7985,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard20
+- proto: N14DecorFloorBoard20
   entities:
   - uid: 452
     components:
@@ -8011,7 +8011,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard21
+- proto: N14DecorFloorBoard21
   entities:
   - uid: 2792
     components:
@@ -8027,7 +8027,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard22
+- proto: N14DecorFloorBoard22
   entities:
   - uid: 273
     components:
@@ -8037,7 +8037,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard23
+- proto: N14DecorFloorBoard23
   entities:
   - uid: 2794
     components:
@@ -8070,7 +8070,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard24
+- proto: N14DecorFloorBoard24
   entities:
   - uid: 1091
     components:
@@ -8110,7 +8110,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard3
+- proto: N14DecorFloorBoard3
   entities:
   - uid: 2604
     components:
@@ -8135,7 +8135,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard4
+- proto: N14DecorFloorBoard4
   entities:
   - uid: 2806
     components:
@@ -8193,7 +8193,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard5
+- proto: N14DecorFloorBoard5
   entities:
   - uid: 2796
     components:
@@ -8250,7 +8250,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard6
+- proto: N14DecorFloorBoard6
   entities:
   - uid: 2797
     components:
@@ -8283,7 +8283,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard7
+- proto: N14DecorFloorBoard7
   entities:
   - uid: 449
     components:
@@ -8337,7 +8337,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard8
+- proto: N14DecorFloorBoard8
   entities:
   - uid: 136
     components:
@@ -8386,7 +8386,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBoard9
+- proto: N14DecorFloorBoard9
   entities:
   - uid: 463
     components:
@@ -8470,7 +8470,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBookPile6
+- proto: N14DecorFloorBookPile6
   entities:
   - uid: 818
     components:
@@ -8480,7 +8480,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBrickrubble
+- proto: N14DecorFloorBrickrubble
   entities:
   - uid: 1026
     components:
@@ -8514,7 +8514,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorBrickStack
+- proto: N14DecorFloorBrickStack
   entities:
   - uid: 914
     components:
@@ -8528,7 +8528,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 21.5,-5.5
       parent: 768
-- proto: DecorFloorCardboard
+- proto: N14DecorFloorCardboard
   entities:
   - uid: 237
     components:
@@ -8721,7 +8721,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorFood1
+- proto: N14DecorFloorFood1
   entities:
   - uid: 1978
     components:
@@ -8731,7 +8731,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorFood3
+- proto: N14DecorFloorFood3
   entities:
   - uid: 528
     components:
@@ -8757,7 +8757,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorFood5
+- proto: N14DecorFloorFood5
   entities:
   - uid: 1977
     components:
@@ -8767,7 +8767,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorGlass1
+- proto: N14DecorFloorGlass1
   entities:
   - uid: 84
     components:
@@ -8784,7 +8784,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorGlass3
+- proto: N14DecorFloorGlass3
   entities:
   - uid: 297
     components:
@@ -8794,7 +8794,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorGlass6
+- proto: N14DecorFloorGlass6
   entities:
   - uid: 2688
     components:
@@ -8804,7 +8804,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorPallet
+- proto: N14DecorFloorPallet
   entities:
   - uid: 911
     components:
@@ -8834,7 +8834,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorPalletStack
+- proto: N14DecorFloorPalletStack
   entities:
   - uid: 909
     components:
@@ -8863,7 +8863,7 @@ entities:
     - type: Transform
       pos: 25.5,-7.5
       parent: 768
-- proto: DecorFloorPaper
+- proto: N14DecorFloorPaper
   entities:
   - uid: 7
     components:
@@ -9188,7 +9188,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorPaper1
+- proto: N14DecorFloorPaper1
   entities:
   - uid: 977
     components:
@@ -9251,7 +9251,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorPaper2
+- proto: N14DecorFloorPaper2
   entities:
   - uid: 689
     components:
@@ -9300,7 +9300,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorPaper3
+- proto: N14DecorFloorPaper3
   entities:
   - uid: 2131
     components:
@@ -9326,7 +9326,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorScrapwood
+- proto: N14DecorFloorScrapwood
   entities:
   - uid: 73
     components:
@@ -9491,7 +9491,7 @@ entities:
       parent: 768
     - type: Fixtures
       fixtures: {}
-- proto: DecorFloorTrashbags1
+- proto: N14DecorFloorTrashbags1
   entities:
   - uid: 798
     components:
@@ -9504,7 +9504,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -32.5,-26.5
       parent: 768
-- proto: DecorFloorTrashbags2
+- proto: N14DecorFloorTrashbags2
   entities:
   - uid: 165
     components:
@@ -9534,14 +9534,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,24.5
       parent: 768
-- proto: DecorFloorTrashbags3
+- proto: N14DecorFloorTrashbags3
   entities:
   - uid: 796
     components:
     - type: Transform
       pos: 10.5,26.5
       parent: 768
-- proto: DecorFloorTrashbags4
+- proto: N14DecorFloorTrashbags4
   entities:
   - uid: 3441
     components:
@@ -9549,7 +9549,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 10.5,24.5
       parent: 768
-- proto: DecorFloorTrashbags6
+- proto: N14DecorFloorTrashbags6
   entities:
   - uid: 682
     components:
@@ -9716,21 +9716,21 @@ entities:
     - type: Transform
       pos: -6.638831,-2.434335
       parent: 768
-- proto: DrinkJuiceGrapeJuicebox
+- proto: N14DrinkJuiceGrapeJuicebox
   entities:
   - uid: 2419
     components:
     - type: Transform
       pos: -28.342623,18.726095
       parent: 768
-- proto: DrinkJuiceOrangeJuicebox
+- proto: N14DrinkJuiceOrangeJuicebox
   entities:
   - uid: 2416
     components:
     - type: Transform
       pos: -28.801748,18.786007
       parent: 768
-- proto: DrinkJuicePineappleJuicebox
+- proto: N14DrinkJuicePineappleJuicebox
   entities:
   - uid: 2418
     components:
@@ -10631,7 +10631,7 @@ entities:
     - type: Transform
       pos: -30.514633,18.372793
       parent: 768
-- proto: FurnitureWashingmachineIndustrial
+- proto: N14FurnitureWashingmachineIndustrial
   entities:
   - uid: 5
     components:
@@ -11040,7 +11040,7 @@ entities:
       linearDamping: 0
       canCollide: True
     - type: ActionsContainer
-- proto: LightSmall
+- proto: N14LightSmall
   entities:
   - uid: 2404
     components:
@@ -11081,7 +11081,7 @@ entities:
     - type: Transform
       pos: -28.5,-25.5
       parent: 768
-- proto: LunchboxGeneric
+- proto: N14LunchboxGeneric
   entities:
   - uid: 944
     components:
@@ -11442,7 +11442,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 10.57828,26.582527
       parent: 768
-- proto: PlushieJester
+- proto: N14PlushieJester
   entities:
   - uid: 6
     components:
@@ -12822,7 +12822,7 @@ entities:
     - type: Transform
       pos: -36.60712,-0.03584948
       parent: 768
-- proto: RedBarrelFull
+- proto: N14RedBarrelFull
   entities:
   - uid: 124
     components:
@@ -13094,7 +13094,7 @@ entities:
     - type: Transform
       pos: -12.5,35.5
       parent: 768
-- proto: SignConspiracyBoard
+- proto: N14SignConspiracyBoard
   entities:
   - uid: 445
     components:
@@ -13456,7 +13456,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -26.4401,-4.245708
       parent: 768
-- proto: StorageTankFullFuel
+- proto: N14StorageTankFullFuel
   entities:
   - uid: 355
     components:
@@ -14291,7 +14291,7 @@ entities:
     - type: Transform
       pos: -32.50144,-5.326637
       parent: 768
-- proto: Trashbin
+- proto: N14Trashbin
   entities:
   - uid: 300
     components:
@@ -14318,7 +14318,7 @@ entities:
     - type: Transform
       pos: 7.5,24.5
       parent: 768
-- proto: VendingMachineBoozeUnlocked
+- proto: N14VendingMachineBoozeUnlocked
   entities:
   - uid: 92
     components:
@@ -14577,7 +14577,7 @@ entities:
     - type: Transform
       pos: 31.5,-9.5
       parent: 768
-- proto: WallmountVent
+- proto: N14WallmountVent
   entities:
   - uid: 2153
     components:
@@ -14637,14 +14637,14 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,33.5
       parent: 768
-- proto: WallmountVentDamaged
+- proto: N14WallmountVentDamaged
   entities:
   - uid: 2155
     components:
     - type: Transform
       pos: 3.5,25.5
       parent: 768
-- proto: WallmountVentOpen
+- proto: N14WallmountVentOpen
   entities:
   - uid: 2156
     components:
@@ -22338,7 +22338,7 @@ entities:
     - type: Transform
       pos: -11.5,-15.5
       parent: 768
-- proto: WeaponRifleBB
+- proto: N14WeaponRifleBB
   entities:
   - uid: 981
     components:
