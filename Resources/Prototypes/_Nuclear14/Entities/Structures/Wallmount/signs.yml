@@ -148,7 +148,7 @@
   description: A sign indicating the Security department.
   components:
   - type: Sprite
-    sprite: _N14/Structures/Wallmounts/signs.rsi
+    sprite: _Nuclear14/Structures/Wallmounts/signs.rsi
     state: sec
 
 - type: entity
@@ -158,7 +158,7 @@
   description: Must be an Engineering joke.
   components:
   - type: Sprite
-    sprite: _N14/Structures/Wallmounts/last_idiot.rsi
+    sprite: _Nuclear14/Structures/Wallmounts/last_idiot.rsi
     state: icon
     offset: "0.5,0"
 
@@ -169,7 +169,7 @@
   description: Perfect for tracking the multiple layers of criminal activities.
   components:
   - type: Sprite
-    sprite: _N14/Structures/Wallmounts/conspiracy_board.rsi
+    sprite: _Nuclear14/Structures/Wallmounts/conspiracy_board.rsi
     state: icon
     offset: "0.5,0"
 
@@ -180,5 +180,5 @@
   description: A sign indicating a place with discipline and tatami mats.
   components:
   - type: Sprite
-    sprite: _N14/Structures/Wallmounts/doujou.rsi
+    sprite: _Nuclear14/Structures/Wallmounts/doujou.rsi
     state: doujousign

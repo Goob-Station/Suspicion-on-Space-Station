@@ -22,7 +22,7 @@
   parent: BenchBaseMiddle
   components:
   - type: Sprite
-    sprite: SimpleStation14/Structures/Furniture/Benches/parkbench_wooden.rsi
+    sprite: _Nuclear14/Structures/Furniture/Benches/parkbench_wooden.rsi
 
 - type: entity
   id: BenchParkLeft
@@ -47,7 +47,7 @@
   parent: BenchBaseMiddle
   components:
   - type: Sprite
-    sprite: SimpleStation14/Structures/Furniture/Benches/parkbench_bamboo.rsi
+    sprite: _Nuclear14/Structures/Furniture/Benches/parkbench_bamboo.rsi
 
 - type: entity
   id: BenchParkBambooLeft
@@ -72,7 +72,7 @@
   parent: BenchBaseMiddle
   components:
   - type: Sprite
-    sprite: SimpleStation14/Structures/Furniture/Benches/pews.rsi
+    sprite: _Nuclear14/Structures/Furniture/Benches/pews.rsi
 
 - type: entity
   id: BenchPewLeft
@@ -97,7 +97,7 @@
   parent: BenchBaseMiddle
   components:
   - type: Sprite
-    sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench.rsi
+    sprite: _Nuclear14/Structures/Furniture/Benches/steel_bench.rsi
 
 - type: entity
   id: BenchSteelLeft
@@ -122,7 +122,7 @@
   parent: BenchBaseMiddle
   components:
   - type: Sprite
-    sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench_white.rsi
+    sprite: _Nuclear14/Structures/Furniture/Benches/steel_bench_white.rsi
 
 - type: entity
   id: BenchSteelWhiteLeft
@@ -147,7 +147,7 @@
   parent: BenchBaseMiddle
   components:
   - type: Sprite
-    sprite: SimpleStation14/Structures/Furniture/Benches/sofa.rsi
+    sprite: _Nuclear14/Structures/Furniture/Benches/sofa.rsi
 
 - type: entity
   id: BenchSofaLeft
@@ -177,7 +177,7 @@
     anchored: true
   - type: Rotatable
   - type: Sprite
-    sprite: SimpleStation14/Structures/Furniture/Benches/sofa.rsi
+    sprite: _Nuclear14/Structures/Furniture/Benches/sofa.rsi
     state: corner
   - type: Clickable
   - type: InteractionOutline
@@ -204,7 +204,7 @@
   parent: BenchBaseMiddle
   components:
   - type: Sprite
-    sprite: SimpleStation14/Structures/Furniture/Benches/sofa_corp.rsi
+    sprite: _Nuclear14/Structures/Furniture/Benches/sofa_corp.rsi
 
 - type: entity
   id: BenchSofaCorpLeft
@@ -234,7 +234,7 @@
     anchored: true
   - type: Rotatable
   - type: Sprite
-    sprite: SimpleStation14/Structures/Furniture/Benches/sofa_corp.rsi
+    sprite: _Nuclear14/Structures/Furniture/Benches/sofa_corp.rsi
     state: corner
   - type: Clickable
   - type: InteractionOutline
