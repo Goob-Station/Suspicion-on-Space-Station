@@ -34,5 +34,5 @@ public sealed partial class ChasmFallingComponent : Component
     /// <summary>
     ///     Scale that the animation should bring entities to.
     /// </summary>
-    public Vector2 AnimationScale = new Vector2(0.02f, 0.02f);
+    public Vector2 AnimationScale = new Vector2(0.2f, 0.2f);
 }
