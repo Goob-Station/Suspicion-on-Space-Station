@@ -6,6 +6,8 @@
   - ReachSSS
   #- TrainSSS
   # train sucks for sss holy shit
+  - CrashedReachSS
+  - RooftopsSSS
 
 - type: gameMap
   id: ReachSSS
