@@ -1,5 +1,7 @@
 ﻿using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Damage;
+using Content.Shared.Item;
 using Content.Shared.Movement.Events;
 using Content.Shared.StepTrigger.Systems;
 using Robust.Shared.Audio;
@@ -19,6 +21,7 @@ public sealed class ChasmSystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -43,7 +46,15 @@ public sealed class ChasmSystem : EntitySystem
             if (_timing.CurTime < chasm.NextDeletionTime)
                 continue;
 
-            QueueDel(uid);
+            chasm.NextDeletionTime = TimeSpan.MaxValue;
+
+            if (!TryComp<ItemComponent>(uid, out var item))
+                RemComp<ItemComponent>(uid);
+
+            if (!TryComp<DamageableComponent>(uid, out var damageableComponent))
+                return;
+            //QueueDel(uid); SSS: KILL INSTEAD
+            _damageable.SetAllDamage(uid, damageableComponent, 1000);
         }
     }
 

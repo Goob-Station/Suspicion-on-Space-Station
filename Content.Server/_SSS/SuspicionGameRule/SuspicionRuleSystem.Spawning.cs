@@ -25,6 +25,7 @@ using Content.Shared.Players;
 using Content.Shared.Security.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Temperature.Components;
 using Robust.Shared.Audio;
 
 namespace Content.Server._SSS.SuspicionGameRule;
@@ -350,6 +351,7 @@ public sealed partial class SuspicionRuleSystem
             // Rounds only last like 5 minutes, so players shouldn't need to eat or drink.
             RemComp<ThirstComponent>(mob);
             RemComp<HungerComponent>(mob);
+            RemComp<TemperatureSpeedComponent>(mob);
 
             EnsureComp<ShowCriminalRecordIconsComponent>(mob); // Hijacking criminal records for the blue "D" symbol.
 

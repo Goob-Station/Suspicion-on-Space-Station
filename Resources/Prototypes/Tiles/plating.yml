@@ -69,7 +69,7 @@
   footstepSounds:
     collection: FootstepPlating
   friction: 0.3
-  isSpace: true
+  isSpace: false
   itemDrop: PartRodMetal1
   heatCapacity: 10000
 
