@@ -121,6 +121,7 @@ entities:
     - type: Shuttle
     - type: GridPathfinding
     - type: Gravity
+      enabled: True
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
     - type: DecalGrid

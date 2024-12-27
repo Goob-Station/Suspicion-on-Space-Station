@@ -7,7 +7,7 @@
       Heat: 5
       Blunt: 5
       Piercing: 5
-  tileBreakChance: [0, 0.5, 1]
+  tileBreakChance: [0]
   tileBreakIntensity: [0, 10, 30]
   tileBreakRerollReduction: 20
   lightColor: Orange
@@ -22,7 +22,7 @@
       Blunt: 3
       Piercing: 3
       Structural: 50
-  tileBreakChance: [ 0, 0.5, 1 ]
+  tileBreakChance: [ 0 ]
   tileBreakIntensity: [ 0, 10, 30 ]
   tileBreakRerollReduction: 20
   lightColor: Orange
@@ -37,7 +37,7 @@
       Blunt: 6
       Piercing: 6
       Structural: 20
-  tileBreakChance: [ 0, 0.5, 1 ]
+  tileBreakChance: [ 0 ]
   tileBreakIntensity: [ 1, 10, 15 ]
   tileBreakRerollReduction: 30
   intensityPerState: 20
@@ -79,7 +79,7 @@
       Heat: 4
       Blunt: 7
       Piercing: 4
-  tileBreakChance: [0, 0.5, 1]
+  tileBreakChance: [0]
   tileBreakIntensity: [0, 10, 30]
   tileBreakRerollReduction: 20
   lightColor: Orange
@@ -94,7 +94,7 @@
       Blunt: 12
       Piercing: 12
       Structural: 30
-  tileBreakChance: [ 0, 0.5, 1 ]
+  tileBreakChance: [ 0 ]
   tileBreakIntensity: [ 1, 5, 10 ]
   tileBreakRerollReduction: 3
   intensityPerState: 20
@@ -110,7 +110,7 @@
       Blunt: 15
       Piercing: 6
       Structural: 40
-  tileBreakChance: [ 0, 0.5, 1 ]
+  tileBreakChance: [ 0 ]
   tileBreakIntensity: [ 0, 10, 30 ]
   tileBreakRerollReduction: 10
   intensityPerState: 20
