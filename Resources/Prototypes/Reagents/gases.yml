@@ -46,15 +46,15 @@
 #          types:
 #            Poison:
 #              7
-      - !type:AdjustAlert
-        alertType: Toxins
-        conditions:
-          - !type:ReagentThreshold
-            min: 0.5
-          - !type:OrganType
-            type: Vox
-        clear: true
-        time: 5
+#      - !type:AdjustAlert
+#        alertType: Toxins
+#        conditions:
+#          - !type:ReagentThreshold
+#            min: 0.5
+#          - !type:OrganType
+#            type: Vox
+#        clear: true
+#        time: 5
 
 - type: reagent
   id: Plasma
