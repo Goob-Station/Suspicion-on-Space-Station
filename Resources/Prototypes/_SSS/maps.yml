@@ -3,6 +3,7 @@
   maps:
   - ReachSSS
   - CentcommSSS
+  - ReachSSS
   #- TrainSSS
   # train sucks for sss holy shit
 
@@ -18,6 +19,38 @@
       components:
       - type: StationNameSetup
         mapNameTemplate: "Reach"
+      - type: StationJobs
+        availableJobs:
+          Passenger: [ -1, -1 ]
+
+- type: gameMap
+  id: RooftopsSSS
+  mapName: Rooftops
+  mapPath: /Maps/_SSS/rooftops-sss.yml
+  minPlayers: 0
+  maxPlayers: 30
+  stations:
+    RooftopsSSS:
+      stationProto: StandardStationArena
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: "Rooftops"
+      - type: StationJobs
+        availableJobs:
+          Passenger: [ -1, -1 ]
+
+- type: gameMap
+  id: CrashedReachSS
+  mapName: Crashed Reach
+  mapPath: /Maps/_SSS/crashed-reach-sss.yml
+  minPlayers: 0
+  maxPlayers: 30
+  stations:
+    CrashedReachSSS:
+      stationProto: StandardStationArena
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: "Crashed Reach"
       - type: StationJobs
         availableJobs:
           Passenger: [ -1, -1 ]
