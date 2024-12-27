@@ -108,12 +108,12 @@ entities:
       parallax: Sky
   - uid: 768
     components:
-    - type: BecomesStation
-      id: RooftopsSSS
     - type: MetaData
     - type: Transform
       pos: 0.3842575,0.4217209
       parent: 1
+    - type: BecomesStation
+      id: RooftopsSSS
     - type: MapGrid
       chunks:
         -1,-1:
@@ -24056,7 +24056,7 @@ entities:
       pos: -7.5,7.5
       parent: 768
     - type: Door
-      secondsUntilStateChange: -3243.6284
+      secondsUntilStateChange: -3504.3032
       state: Opening
   - uid: 2655
     components:
@@ -24126,7 +24126,7 @@ entities:
       pos: 25.5,29.5
       parent: 768
     - type: Door
-      secondsUntilStateChange: -1324.3168
+      secondsUntilStateChange: -1584.9916
       state: Opening
   - uid: 5728
     components:
@@ -31674,6 +31674,13 @@ entities:
     components:
     - type: Transform
       pos: -11.5,-11.5
+      parent: 768
+- proto: TelecomServerFilled
+  entities:
+  - uid: 6261
+    components:
+    - type: Transform
+      pos: -39.5,29.5
       parent: 768
 - proto: TintedWindow
   entities:

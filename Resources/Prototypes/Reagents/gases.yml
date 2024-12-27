@@ -35,16 +35,17 @@
         ratios:
           CarbonDioxide: 1.0
           Oxygen: -1.0
-      - !type:HealthChange
-        conditions:
-        - !type:OrganType
-          type: Vox
-        scaleByQuantity: true
-        ignoreResistances: true
-        damage:
-          types:
-            Poison:
-              7
+# SSS - Remove vox poison
+#      - !type:HealthChange
+#        conditions:
+#        - !type:OrganType
+#          type: Vox
+#        scaleByQuantity: true
+#        ignoreResistances: true
+#        damage:
+#          types:
+#            Poison:
+#              7
       - !type:AdjustAlert
         alertType: Toxins
         conditions:
