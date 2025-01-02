@@ -215,19 +215,21 @@ public sealed partial class ChatSystem : SharedChatSystem
             message = message[1..];
         }
 
-        bool shouldCapitalize = (desiredType != InGameICChatType.Emote);
-        bool shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation);
-        // Capitalizing the word I only happens in English, so we check language here
-        bool shouldCapitalizeTheWordI = (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
-            || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en");
+        // SSS start - Do not sanitize IC messages
+        // bool shouldCapitalize = (desiredType != InGameICChatType.Emote);
+        // bool shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation);
+        // // Capitalizing the word I only happens in English, so we check language here
+        // bool shouldCapitalizeTheWordI = (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
+        //     || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en");
 
-        message = SanitizeInGameICMessage(source, message, out var emoteStr, shouldCapitalize, shouldPunctuate, shouldCapitalizeTheWordI);
+        message = SanitizeInGameOOCMessage(message);
 
-        // Was there an emote in the message? If so, send it.
-        if (player != null && emoteStr != message && emoteStr != null)
-        {
-            SendEntityEmote(source, emoteStr, range, nameOverride, ignoreActionBlocker);
-        }
+        // // Was there an emote in the message? If so, send it.
+        // if (player != null && emoteStr != message && emoteStr != null)
+        // {
+        //     SendEntityEmote(source, emoteStr, range, nameOverride, ignoreActionBlocker);
+        // }
+        // SSS end
 
         // This can happen if the entire string is sanitized out.
         if (string.IsNullOrEmpty(message))

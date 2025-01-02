@@ -138,7 +138,7 @@ public abstract class SharedChatSystem : EntitySystem
 
         if (input.StartsWith(RadioCommonPrefix))
         {
-            output = SanitizeMessageCapital(input[1..].TrimStart());
+            output = input[1..].TrimStart(); // SSS - Do not capitalize messages
             channel = _prototypeManager.Index<RadioChannelPrototype>(CommonChannel);
             return true;
         }
@@ -148,7 +148,7 @@ public abstract class SharedChatSystem : EntitySystem
 
         if (input.Length < 2 || char.IsWhiteSpace(input[1]))
         {
-            output = SanitizeMessageCapital(input[1..].TrimStart());
+            output = input[1..].TrimStart(); // SSS - Do not capitalize messages
             if (!quiet)
                 _popup.PopupEntity(Loc.GetString("chat-manager-no-radio-key"), source, source);
             return true;
@@ -156,7 +156,7 @@ public abstract class SharedChatSystem : EntitySystem
 
         var channelKey = input[1];
         channelKey = char.ToLower(channelKey);
-        output = SanitizeMessageCapital(input[2..].TrimStart());
+        output = input[2..].TrimStart(); // SSS - Do not capitalize messages
 
         if (channelKey == DefaultChannelKey)
         {
