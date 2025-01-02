@@ -140,23 +140,24 @@ public sealed class BloodstreamSystem : EntitySystem
             var bloodPercentage = GetBloodLevelPercentage(uid, bloodstream);
             if (bloodPercentage < bloodstream.BloodlossThreshold && !_mobStateSystem.IsDead(uid))
             {
-                // bloodloss damage is based on the base value, and modified by how low your blood level is.
-                var amt = bloodstream.BloodlossDamage / (0.1f + bloodPercentage);
-
-                _damageableSystem.TryChangeDamage(uid, amt,
-                    ignoreResistances: false, interruptsDoAfters: false);
-
-                // Apply dizziness as a symptom of bloodloss.
-                // The effect is applied in a way that it will never be cleared without being healthy.
-                // Multiplying by 2 is arbitrary but works for this case, it just prevents the time from running out
-                _drunkSystem.TryApplyDrunkenness(
-                    uid,
-                    (float) bloodstream.UpdateInterval.TotalSeconds * 2,
-                    applySlur: false);
-                _stutteringSystem.DoStutter(uid, bloodstream.UpdateInterval * 2, refresh: false);
-
-                // storing the drunk and stutter time so we can remove it independently from other effects additions
-                bloodstream.StatusTime += bloodstream.UpdateInterval * 2;
+                // SSS - Disable bloodloss damage and bloodloss effects
+                // // bloodloss damage is based on the base value, and modified by how low your blood level is.
+                // var amt = bloodstream.BloodlossDamage / (0.1f + bloodPercentage);
+                //
+                // _damageableSystem.TryChangeDamage(uid, amt,
+                //     ignoreResistances: false, interruptsDoAfters: false);
+                //
+                // // Apply dizziness as a symptom of bloodloss.
+                // // The effect is applied in a way that it will never be cleared without being healthy.
+                // // Multiplying by 2 is arbitrary but works for this case, it just prevents the time from running out
+                // _drunkSystem.TryApplyDrunkenness(
+                //     uid,
+                //     (float) bloodstream.UpdateInterval.TotalSeconds * 2,
+                //     applySlur: false);
+                // _stutteringSystem.DoStutter(uid, bloodstream.UpdateInterval * 2, refresh: false);
+                //
+                // // storing the drunk and stutter time so we can remove it independently from other effects additions
+                // bloodstream.StatusTime += bloodstream.UpdateInterval * 2;
             }
             else if (!_mobStateSystem.IsDead(uid))
             {
@@ -166,11 +167,13 @@ public sealed class BloodstreamSystem : EntitySystem
                     bloodstream.BloodlossHealDamage * bloodPercentage,
                     ignoreResistances: true, interruptsDoAfters: false);
 
-                // Remove the drunk effect when healthy. Should only remove the amount of drunk and stutter added by low blood level
-                _drunkSystem.TryRemoveDrunkenessTime(uid, bloodstream.StatusTime.TotalSeconds);
-                _stutteringSystem.DoRemoveStutterTime(uid, bloodstream.StatusTime.TotalSeconds);
-                // Reset the drunk and stutter time to zero
-                bloodstream.StatusTime = TimeSpan.Zero;
+                // SSS - Disable bloodloss damage and bloodloss effects
+                // (Bloodloss healing is kept because there are weapons that directly deal bloodloss damage)
+                // // Remove the drunk effect when healthy. Should only remove the amount of drunk and stutter added by low blood level
+                // _drunkSystem.TryRemoveDrunkenessTime(uid, bloodstream.StatusTime.TotalSeconds);
+                // _stutteringSystem.DoRemoveStutterTime(uid, bloodstream.StatusTime.TotalSeconds);
+                // // Reset the drunk and stutter time to zero
+                // bloodstream.StatusTime = TimeSpan.Zero;
             }
         }
     }
