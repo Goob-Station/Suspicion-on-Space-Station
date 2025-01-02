@@ -257,3 +257,14 @@
   id: 29
   time: '2025-01-02T08:35:31.0000000+00:00'
   url: https://github.com/Goob-Station/Suspicion-on-Space-Station/pull/60
+- author: Skubman
+  changes:
+  - message: Removed netspeak filters when talking (things like lol, xD, lmao, and
+      emotes like :) ) and auto-capitalization of sentences.
+    type: Remove
+  - message: 'Adjusted the format for chat messages from "Urist McHands says, "Hello""
+      to "Urist McHands: Hello".'
+    type: Tweak
+  id: 30
+  time: '2025-01-02T08:42:35.0000000+00:00'
+  url: https://github.com/Goob-Station/Suspicion-on-Space-Station/pull/59
