@@ -249,3 +249,11 @@
   id: 28
   time: '2024-12-23T02:19:28.0000000+00:00'
   url: https://github.com/Goob-Station/Suspicion-on-Space-Station/pull/51
+- author: Skubman
+  changes:
+  - message: Removed blood loss damage, dizziness and stuttering due to bleeding.
+      Bleeding is now just a visual indicator.
+    type: Remove
+  id: 29
+  time: '2025-01-02T08:35:31.0000000+00:00'
+  url: https://github.com/Goob-Station/Suspicion-on-Space-Station/pull/60
