@@ -44,19 +44,19 @@ public sealed partial class CCVars
     /// <seealso cref="DiscordReplyColor"/>
     /// <seealso cref="AdminBwoinkColor"/>
     public static readonly CVarDef<bool> UseDiscordRoleColor =
-        CVarDef.Create("ahelp.use_discord_role_color", true, CVar.SERVERONLY);
+        CVarDef.Create("sss.ahelp.use_discord_role_color", true, CVar.SERVERONLY);
 
     /// <summary>
     ///     If an admin replies to users from discord, should it use their discord role name? (if applicable)
     /// </summary>
     public static readonly CVarDef<bool> UseDiscordRoleName =
-        CVarDef.Create("ahelp.use_discord_role_name", true, CVar.SERVERONLY);
+        CVarDef.Create("sss.ahelp.use_discord_role_name", true, CVar.SERVERONLY);
 
     /// <summary>
     ///     The text before an admin's name when replying from discord to indicate they're speaking from discord.
     /// </summary>
     public static readonly CVarDef<string> DiscordReplyPrefix =
-        CVarDef.Create("ahelp.discord_reply_prefix", "(DISCORD) ", CVar.SERVERONLY);
+        CVarDef.Create("sss.ahelp.discord_reply_prefix", "(DISCORD) ", CVar.SERVERONLY);
 
     /// <summary>
     ///     The color of the names of admins. This is the fallback color for admins.
@@ -65,7 +65,7 @@ public sealed partial class CCVars
     /// <seealso cref="UseDiscordRoleColor"/>
     /// <seealso cref="DiscordReplyColor"/>
     public static readonly CVarDef<string> AdminBwoinkColor =
-        CVarDef.Create("ahelp.admin_bwoink_color", "red", CVar.SERVERONLY);
+        CVarDef.Create("sss.ahelp.admin_bwoink_color", "red", CVar.SERVERONLY);
 
     /// <summary>
     ///     The color of the names of admins who reply from discord. Leave empty to disable.
@@ -75,7 +75,7 @@ public sealed partial class CCVars
     /// <seealso cref="UseDiscordRoleColor"/>
     /// <seealso cref="AdminBwoinkColor"/>
     public static readonly CVarDef<string> DiscordReplyColor =
-        CVarDef.Create("ahelp.discord_reply_color", string.Empty, CVar.SERVERONLY);
+        CVarDef.Create("sss.ahelp.discord_reply_color", string.Empty, CVar.SERVERONLY);
     
     /// <summary>
     ///     Use the admin's Admin OOC color in bwoinks.
@@ -83,5 +83,5 @@ public sealed partial class CCVars
     /// </summary>
     /// <seealso cref="AdminBwoinkColor"/>
     public static readonly CVarDef<bool> UseAdminOOCColorInBwoinks =
-        CVarDef.Create("ahelp.bwoink_use_admin_ooc_color", true, CVar.SERVERONLY);
+        CVarDef.Create("sss.ahelp.bwoink_use_admin_ooc_color", true, CVar.SERVERONLY);
 }
