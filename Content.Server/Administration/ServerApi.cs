@@ -63,12 +63,10 @@ public sealed partial class ServerApi : IPostInjectInit
 
     private string _token = string.Empty;
     private ISawmill _sawmill = default!;
-    private GameTicker _ticker = default!;
 
     void IPostInjectInit.PostInject()
     {
         _sawmill = _logManager.GetSawmill("serverApi");
-        _ticker = _entityManager.System<GameTicker>();
 
         // Get
         RegisterActorHandler(HttpMethod.Get, "/admin/info", InfoHandler);
@@ -217,7 +215,8 @@ public sealed partial class ServerApi : IPostInjectInit
 
         await RunOnMainThread(async () =>
         {
-            if (_ticker.RunLevel != GameRunLevel.PreRoundLobby)
+            var ticker = _entitySystemManager.GetEntitySystem<GameTicker>();
+            if (ticker.RunLevel != GameRunLevel.PreRoundLobby)
             {
                 await RespondError(
                     context,
@@ -227,7 +226,7 @@ public sealed partial class ServerApi : IPostInjectInit
                 return;
             }
 
-            var preset = _ticker.FindGamePreset(body.PresetId);
+            var preset = ticker.FindGamePreset(body.PresetId);
             if (preset == null)
             {
                 await RespondError(
@@ -238,7 +237,7 @@ public sealed partial class ServerApi : IPostInjectInit
                 return;
             }
 
-            _ticker.SetGamePreset(preset);
+            ticker.SetGamePreset(preset);
             _sawmill.Info($"Forced the game to start with preset {body.PresetId} by {FormatLogActor(actor)}.");
 
             await RespondOk(context);
