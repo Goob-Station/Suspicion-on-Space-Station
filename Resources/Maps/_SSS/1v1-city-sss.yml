@@ -706,40 +706,6 @@ entities:
     - type: ContainedSolution
       containerName: tank
       container: 27
-  - uid: 31
-    components:
-    - type: MetaData
-      name: solution - Welder
-    - type: Transform
-      parent: 30
-    - type: Solution
-      solution:
-        maxVol: 100
-        name: Welder
-        reagents:
-        - data: []
-          ReagentId: WeldingFuel
-          Quantity: 100
-    - type: ContainedSolution
-      containerName: Welder
-      container: 30
-  - uid: 33
-    components:
-    - type: MetaData
-      name: solution - food
-    - type: Transform
-      parent: 32
-    - type: Solution
-      solution:
-        maxVol: 10
-        name: food
-        reagents:
-        - data: []
-          ReagentId: Fiber
-          Quantity: 10
-    - type: ContainedSolution
-      containerName: food
-      container: 32
   - uid: 41
     components:
     - type: MetaData
@@ -981,40 +947,6 @@ entities:
     - type: ContainedSolution
       containerName: food
       container: 79
-  - uid: 87
-    components:
-    - type: MetaData
-      name: solution - Welder
-    - type: Transform
-      parent: 86
-    - type: Solution
-      solution:
-        maxVol: 100
-        name: Welder
-        reagents:
-        - data: []
-          ReagentId: WeldingFuel
-          Quantity: 100
-    - type: ContainedSolution
-      containerName: Welder
-      container: 86
-  - uid: 89
-    components:
-    - type: MetaData
-      name: solution - food
-    - type: Transform
-      parent: 88
-    - type: Solution
-      solution:
-        maxVol: 10
-        name: food
-        reagents:
-        - data: []
-          ReagentId: Fiber
-          Quantity: 10
-    - type: ContainedSolution
-      containerName: food
-      container: 88
   - uid: 98
     components:
     - type: MetaData
@@ -3207,36 +3139,6 @@ entities:
         quickInsert:
           length: 0.5
         storage: {}
-- proto: ClothingHandsGlovesCombat
-  entities:
-  - uid: 32
-    components:
-    - type: Transform
-      parent: 29
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - food
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        solution@food: !type:ContainerSlot
-          ent: 33
-  - uid: 88
-    components:
-    - type: Transform
-      parent: 85
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - food
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        solution@food: !type:ContainerSlot
-          ent: 89
 - proto: ClothingHeadHelmetEVALarge
   entities:
   - uid: 44
@@ -3375,20 +3277,6 @@ entities:
       parent: 109
     - type: Physics
       canCollide: False
-- proto: ClothingMaskGasSyndicate
-  entities:
-  - uid: 34
-    components:
-    - type: Transform
-      parent: 29
-    - type: Physics
-      canCollide: False
-  - uid: 90
-    components:
-    - type: Transform
-      parent: 85
-    - type: Physics
-      canCollide: False
 - proto: ClothingOuterSuitEmergency
   entities:
   - uid: 43
@@ -3445,20 +3333,6 @@ entities:
     components:
     - type: Transform
       parent: 109
-    - type: Physics
-      canCollide: False
-- proto: Crowbar
-  entities:
-  - uid: 35
-    components:
-    - type: Transform
-      parent: 29
-    - type: Physics
-      canCollide: False
-  - uid: 91
-    components:
-    - type: Transform
-      parent: 85
     - type: Physics
       canCollide: False
 - proto: CrowbarRed
@@ -4368,6 +4242,18 @@ entities:
       parent: 76
     - type: Physics
       canCollide: False
+- proto: Gauze5
+  entities:
+  - uid: 29
+    components:
+    - type: Transform
+      pos: -4.5,-6.5
+      parent: 2
+  - uid: 30
+    components:
+    - type: Transform
+      pos: 7.5,7.5
+      parent: 2
 - proto: GravityGeneratorMini
   entities:
   - uid: 483
@@ -4528,36 +4414,6 @@ entities:
       unspawnedCount: 10
     - type: Physics
       canCollide: False
-- proto: Medkit
-  entities:
-  - uid: 503
-    components:
-    - type: Transform
-      pos: -4.5,-6.5
-      parent: 2
-    - type: Physics
-      canCollide: False
-    - type: UseDelay
-      delays:
-        default:
-          length: 1
-        quickInsert:
-          length: 0.5
-        storage: {}
-  - uid: 504
-    components:
-    - type: Transform
-      pos: 7.5,7.5
-      parent: 2
-    - type: Physics
-      canCollide: False
-    - type: UseDelay
-      delays:
-        default:
-          length: 1
-        quickInsert:
-          length: 0.5
-        storage: {}
 - proto: MedkitOxygenFilled
   entities:
   - uid: 54
@@ -4601,20 +4457,6 @@ entities:
         quickInsert:
           length: 0.5
         storage: {}
-- proto: Multitool
-  entities:
-  - uid: 36
-    components:
-    - type: Transform
-      parent: 29
-    - type: Physics
-      canCollide: False
-  - uid: 92
-    components:
-    - type: Transform
-      parent: 85
-    - type: Physics
-      canCollide: False
 - proto: OxygenTankFilled
   entities:
   - uid: 48
@@ -5635,28 +5477,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-0.5
       parent: 2
-- proto: Screwdriver
-  entities:
-  - uid: 37
-    components:
-    - type: Transform
-      parent: 29
-    - type: RandomSprite
-      selected:
-        enum.DamageStateVisualLayers.Base:
-          screwdriver: '#0E7F1BFF'
-    - type: Physics
-      canCollide: False
-  - uid: 93
-    components:
-    - type: Transform
-      parent: 85
-    - type: RandomSprite
-      selected:
-        enum.DamageStateVisualLayers.Base:
-          screwdriver: '#D58C18FF'
-    - type: Physics
-      canCollide: False
 - proto: SheetSteel1
   entities:
   - uid: 123
@@ -6280,116 +6100,6 @@ entities:
           ents:
           - 123
           - 125
-- proto: ToolboxSyndicateFilled
-  entities:
-  - uid: 29
-    components:
-    - type: Transform
-      pos: -6.5,-4.5
-      parent: 2
-    - type: Storage
-      storedItems:
-        35:
-          position: 0,0
-          _rotation: South
-        39:
-          position: 1,0
-          _rotation: South
-        37:
-          position: 2,0
-          _rotation: East
-        38:
-          position: 4,0
-          _rotation: East
-        30:
-          position: 6,0
-          _rotation: South
-        36:
-          position: 7,0
-          _rotation: South
-        32:
-          position: 2,1
-          _rotation: East
-        34:
-          position: 4,1
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 35
-          - 39
-          - 37
-          - 38
-          - 30
-          - 36
-          - 32
-          - 34
-    - type: Physics
-      canCollide: False
-    - type: UseDelay
-      delays:
-        default:
-          length: 1
-        quickInsert:
-          length: 0.5
-        storage: {}
-  - uid: 85
-    components:
-    - type: Transform
-      pos: 9.5,5.5
-      parent: 2
-    - type: Storage
-      storedItems:
-        91:
-          position: 0,0
-          _rotation: South
-        95:
-          position: 1,0
-          _rotation: South
-        93:
-          position: 2,0
-          _rotation: East
-        94:
-          position: 4,0
-          _rotation: East
-        86:
-          position: 6,0
-          _rotation: South
-        92:
-          position: 7,0
-          _rotation: South
-        88:
-          position: 2,1
-          _rotation: East
-        90:
-          position: 4,1
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 91
-          - 95
-          - 93
-          - 94
-          - 86
-          - 92
-          - 88
-          - 90
-    - type: Physics
-      canCollide: False
-    - type: UseDelay
-      delays:
-        default:
-          length: 1
-        quickInsert:
-          length: 0.5
-        storage: {}
 - proto: WallReinforced
   entities:
   - uid: 686
@@ -7163,48 +6873,6 @@ entities:
           ent: 296
     - type: Physics
       canCollide: False
-- proto: Welder
-  entities:
-  - uid: 30
-    components:
-    - type: Transform
-      parent: 29
-    - type: UseDelay
-      delays:
-        default:
-          endTime: 0
-          startTime: 0
-          length: 1
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - Welder
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        solution@Welder: !type:ContainerSlot
-          ent: 31
-  - uid: 86
-    components:
-    - type: Transform
-      parent: 85
-    - type: UseDelay
-      delays:
-        default:
-          endTime: 0
-          startTime: 0
-          length: 1
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - Welder
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        solution@Welder: !type:ContainerSlot
-          ent: 87
 - proto: WeldingFuelTankFull
   entities:
   - uid: 27
@@ -7304,40 +6972,4 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,1.5
       parent: 2
-- proto: Wirecutter
-  entities:
-  - uid: 38
-    components:
-    - type: Transform
-      parent: 29
-    - type: RandomSprite
-      selected:
-        enum.DamageStateVisualLayers.Base:
-          cutters: '#D58C18FF'
-    - type: Physics
-      canCollide: False
-  - uid: 94
-    components:
-    - type: Transform
-      parent: 85
-    - type: RandomSprite
-      selected:
-        enum.DamageStateVisualLayers.Base:
-          cutters: '#D58C18FF'
-    - type: Physics
-      canCollide: False
-- proto: Wrench
-  entities:
-  - uid: 39
-    components:
-    - type: Transform
-      parent: 29
-    - type: Physics
-      canCollide: False
-  - uid: 95
-    components:
-    - type: Transform
-      parent: 85
-    - type: Physics
-      canCollide: False
 ...
