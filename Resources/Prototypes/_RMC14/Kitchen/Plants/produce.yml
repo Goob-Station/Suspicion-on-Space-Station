@@ -1,6 +1,6 @@
 - type: entity 
   name: mango
-  parent: FoodProduceBase
+  parent: [ FoodProduceBase, BaseSyndicateContraband ]
   id: FoodMango
   description: "MANGO MANGO MANGO"
   components:
@@ -37,7 +37,5 @@
       state: produce
     # TODO: Sequence sprites are to be scaled by 0.8x. 
     entries:
-      taco:
-        name: food-sequence-content-mango
-      burger:
-        name: food-sequence-burger-content-mango
+      Taco: mango
+      Burger: mango
