@@ -177,6 +177,7 @@ public sealed partial class SuspicionRuleSystem : GameRuleSystem<SuspicionRuleCo
 
             UpdateTimer(ref sus, frameTime);
             UpdateSpaceWalkDamage(ref sus, frameTime);
+            UpdateDeadRoundEndCondition((uid, sus), frameTime);
         }
     }
 }

@@ -56,6 +56,32 @@ public sealed partial class SuspicionRuleSystem
 
     }
 
+    private bool UpdateDeadRoundEndCondition(Entity<SuspicionRuleComponent> sus, float frameTime)
+    {
+        var allTraitors = FindAllOfType(SuspicionRole.Traitor);
+        var allInnocents = FindAllOfType(SuspicionRole.Innocent);
+        var allDetectives = FindAllOfType(SuspicionRole.Detective);
+        var allWildcards = FindAllOfType(SuspicionRole.Wildcard);
+
+        if (allInnocents.Count == 0 && allDetectives.Count == 0 && allWildcards.Count == 0)
+        {
+            _chatManager.DispatchServerAnnouncement("The traitors have won the round.");
+            sus.Comp.GameState = SuspicionGameState.PostRound;
+            _roundEndSystem.EndRound(TimeSpan.FromSeconds(sus.Comp.PostRoundDuration));
+            return true;
+        }
+
+        if (allTraitors.Count == 0)
+        {
+            _chatManager.DispatchServerAnnouncement("The innocents have won the round.");
+            sus.Comp.GameState = SuspicionGameState.PostRound;
+            _roundEndSystem.EndRound(TimeSpan.FromSeconds(sus.Comp.PostRoundDuration));
+            return true;
+        }
+
+        return false;
+    }
+
     private void OnKillReported(ref KillReportedEvent ev)
     {
         var query = EntityQueryEnumerator<SuspicionRuleComponent, GameRuleComponent>();
@@ -67,11 +93,6 @@ public sealed partial class SuspicionRuleSystem
             if (sus.GameState != SuspicionGameState.InProgress)
                 break;
 
-            sus.EndAt += TimeSpan.FromSeconds(_timeAddedPerKill);
-            sus.AnnouncedTimeLeft.Clear();
-
-            RaiseNetworkEvent(new SuspicionRuleTimerUpdate(_gameTicker.RoundDuration() + sus.EndAt));
-
             var allTraitors = FindAllOfType(SuspicionRole.Traitor);
             // Ok this is fucking horrible
             foreach (var traitor in allTraitors)
@@ -79,25 +100,10 @@ public sealed partial class SuspicionRuleSystem
                 AddTcToPlayer(traitor.body, sus.AmountAddedPerKill);
             }
 
-            var allInnocents = FindAllOfType(SuspicionRole.Innocent);
-            var allDetectives = FindAllOfType(SuspicionRole.Detective);
-            var allWildcards = FindAllOfType(SuspicionRole.Wildcard);
+            sus.EndAt += TimeSpan.FromSeconds(_timeAddedPerKill);
+            sus.AnnouncedTimeLeft.Clear();
 
-            if (allInnocents.Count == 0 && allDetectives.Count == 0 && allWildcards.Count == 0)
-            {
-                _chatManager.DispatchServerAnnouncement("The traitors have won the round.");
-                sus.GameState = SuspicionGameState.PostRound;
-                _roundEndSystem.EndRound(TimeSpan.FromSeconds(sus.PostRoundDuration));
-                return;
-            }
-
-            if (allTraitors.Count == 0)
-            {
-                _chatManager.DispatchServerAnnouncement("The innocents have won the round.");
-                sus.GameState = SuspicionGameState.PostRound;
-                _roundEndSystem.EndRound(TimeSpan.FromSeconds(sus.PostRoundDuration));
-                return;
-            }
+            RaiseNetworkEvent(new SuspicionRuleTimerUpdate(_gameTicker.RoundDuration() + sus.EndAt));
 
             if (ev.Primary is KillPlayerSource player && !ev.Suicide)
                 if (TrySusRole(ev.Entity, out var roleComp))
