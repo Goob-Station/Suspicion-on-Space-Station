@@ -6,6 +6,11 @@ namespace Content.Server.Discord;
 public struct WebhookPayload
 {
     /// <summary>
+    ///     This is used to identify the players in the webhook by their GUID.
+    /// </summary>
+    [JsonPropertyName("UserID")] // Frontier
+    public Guid? UserID { get; set; }
+    /// <summary>
     ///     The message to send in the webhook. Maximum of 2000 characters.
     /// </summary>
     [JsonPropertyName("content")]
